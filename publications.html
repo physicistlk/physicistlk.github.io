@@ -1,49 +1,4 @@
-<!DOCTYPE html><html class="dark" lang="en"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Publications &amp; Patents | Lokesh Kumar, PhD</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Hanken+Grotesk:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .glass-card {
-            background: rgba(24, 24, 27, 0.8);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(60, 74, 66, 0.3);
-        }
-        html:not(.dark) .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(133, 148, 139, 0.3);
-        }
-        .publication-row:hover {
-            background: rgba(69, 223, 164, 0.05);
-        }
-        html:not(.dark) .publication-row:hover {
-            background: rgba(0, 108, 75, 0.05);
-        }
-        @keyframes subtle-glow {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 0.8; }
-        }
-        .animate-glow {
-            animation: subtle-glow 4s ease-in-out infinite;
-        }
-        
-        /* Mobile menu transition */
-        #mobile-menu {
-            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-        }
-        #mobile-menu.open {
-            max-height: 300px;
-            opacity: 1;
-        }
-    </style>
-<script id="tailwind-config">
+<!DOCTYPE html><html class="dark" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Hanken+Grotesk:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -140,9 +95,7 @@
                 }
             }
         }
-    </script>
-</head>
-<body class="bg-inverse-surface text-surface dark:bg-background dark:text-on-surface selection:bg-inverse-primary/30 dark:selection:bg-primary/30 transition-colors duration-300">
+    }catch(_e){}</script></head><body class="bg-inverse-surface text-surface dark:bg-background dark:text-on-surface selection:bg-inverse-primary/30 dark:selection:bg-primary/30 transition-colors duration-300">
 <!-- Navigation Shell -->
 <header class="fixed top-0 w-full z-50 bg-inverse-surface/90 dark:bg-surface/90 backdrop-blur-md border-b border-outline-variant shadow-sm transition-colors duration-300">
 <div class="flex flex-col md:flex-row md:justify-between md:items-center min-h-[4rem] px-gutter max-w-container-max mx-auto py-3 md:py-0">
@@ -160,10 +113,10 @@
 </div>
 <div class="md:!opacity-100 md:!max-h-full flex flex-col md:flex-row md:items-center gap-4 md:gap-8 pt-4 md:pt-0" id="mobile-menu">
 <nav class="flex flex-col md:flex-row gap-4 md:gap-8">
-<a class="font-label-ui text-label-ui text-surface/70 dark:text-on-surface-variant hover:text-inverse-primary dark:hover:text-primary transition-colors" href="{{DATA:SCREEN:SCREEN_4}}">Home</a>
-<a class="font-label-ui text-label-ui text-surface/70 dark:text-on-surface-variant hover:text-inverse-primary dark:hover:text-primary transition-colors" href="{{DATA:SCREEN:SCREEN_5}}">Research</a>
-<a class="font-label-ui text-label-ui text-inverse-primary dark:text-primary md:border-b-2 border-inverse-primary dark:border-primary pb-1" href="{{DATA:SCREEN:SCREEN_3}}">Publications</a>
-<a class="font-label-ui text-label-ui text-surface/70 dark:text-on-surface-variant hover:text-inverse-primary dark:hover:text-primary transition-colors" href="{{DATA:SCREEN:SCREEN_2}}">Contact</a>
+<a class="font-label-ui text-label-ui text-surface/70 dark:text-on-surface-variant hover:text-inverse-primary dark:hover:text-primary transition-colors" href="index.html">Home</a>
+<a class="font-label-ui text-label-ui text-surface/70 dark:text-on-surface-variant hover:text-inverse-primary dark:hover:text-primary transition-colors" href="research.html">Research</a>
+<a class="font-label-ui text-label-ui text-inverse-primary dark:text-primary md:border-b-2 border-inverse-primary dark:border-primary pb-1" href="publications.html">Publications</a>
+<a class="font-label-ui text-label-ui text-surface/70 dark:text-on-surface-variant hover:text-inverse-primary dark:hover:text-primary transition-colors" href="contact.html">Contact</a>
 </nav>
 <a class="bg-inverse-primary dark:bg-primary text-white dark:text-on-primary px-4 py-2 rounded-lg font-label-ui text-label-ui font-semibold active:scale-95 transition-transform inline-block text-center w-full md:w-auto mt-2 md:mt-0" href="#">Download CV</a>
 </div>
@@ -254,28 +207,6 @@
 <span class="font-label-mono text-label-mono text-inverse-primary dark:text-primary px-2 py-1 bg-inverse-primary/10 dark:bg-primary/10 rounded">Chemical Science</span>
 <span class="font-label-mono text-label-mono text-surface/60 dark:text-text-muted">15, 710–719, 2024</span>
 <span class="font-label-mono text-label-mono text-secondary-container dark:text-secondary-fixed">IF: 9.8</span>
-</div>
-</div>
-<div class="flex flex-row md:flex-col items-start gap-3 mt-4 md:mt-0">
-<button class="material-symbols-outlined text-outline hover:text-inverse-primary dark:hover:text-primary transition-colors" title="DOI Link">link</button>
-<button class="material-symbols-outlined text-outline hover:text-inverse-primary dark:hover:text-primary transition-colors" title="Download PDF">picture_as_pdf</button>
-</div>
-</div>
-</article>
-<!-- Publication 4 -->
-<article class="publication-row p-4 md:p-6 rounded-xl border border-transparent transition-all hover:border-outline-variant/30 group duration-700 opacity-100 translate-y-0">
-<div class="flex flex-col md:flex-row gap-4 md:gap-6">
-<div class="flex-grow">
-<h3 class="font-headline-subsection text-headline-subsection text-surface dark:text-text-primary mb-2 group-hover:text-inverse-primary dark:group-hover:text-primary transition-colors">
-                                An ultra-compressible piezoresistive strain and pressure sensor based on RGO-CNT-Melamine foam composite for biomedical sensing
-                            </h3>
-<p class="font-body-standard text-body-standard text-surface/70 dark:text-text-muted mb-3">
-                                B. Bhatt, <span class="text-surface font-medium dark:text-on-surface">L. Kumar</span>, A. Kushwaha, D. Gupta
-                            </p>
-<div class="flex flex-wrap items-center gap-2 md:gap-4">
-<span class="font-label-mono text-label-mono text-inverse-primary dark:text-primary px-2 py-1 bg-inverse-primary/10 dark:bg-primary/10 rounded">Sensors and Actuators A-Physical</span>
-<span class="font-label-mono text-label-mono text-surface/60 dark:text-text-muted">331, 2021</span>
-<span class="font-label-mono text-label-mono text-secondary-container dark:text-secondary-fixed">IF: 5.0</span>
 </div>
 </div>
 <div class="flex flex-row md:flex-col items-start gap-3 mt-4 md:mt-0">
@@ -442,6 +373,4 @@
             observer.observe(el);
         });
     </script>
-
-
 </body></html>
