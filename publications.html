@@ -99,32 +99,28 @@
         }
     }catch(_e){}</script></head><body class="bg-inverse-surface text-surface dark:bg-background dark:text-on-surface selection:bg-inverse-primary/30 dark:selection:bg-primary/30 transition-colors duration-300">
 <!-- Navigation Shell -->
-<header class="fixed top-0 w-full z-50 bg-inverse-surface/90 dark:bg-surface/90 backdrop-blur-md border-b border-outline-variant shadow-sm transition-colors duration-300">
-<div class="flex flex-col md:flex-row md:justify-between md:items-center min-h-[4rem] px-gutter max-w-container-max mx-auto py-3 md:py-0">
-<div class="flex justify-between items-center w-full md:w-auto">
+<nav class="fixed top-0 w-full z-50 bg-white/90 dark:bg-surface/90 backdrop-blur-md border-b border-gray-200 dark:border-outline-variant shadow-sm h-16 transition-colors duration-300">
+<div class="flex justify-between items-center h-full px-gutter max-w-container-max mx-auto">
 <div class="flex items-center gap-4">
-<button aria-label="Toggle dark mode" class="p-2 rounded-full hover:bg-surface-container-high/20 dark:hover:bg-surface-container-high transition-colors" id="theme-toggle">
-<span class="material-symbols-outlined dark:hidden">dark_mode</span>
-<span class="material-symbols-outlined hidden dark:block text-primary">light_mode</span>
+<button class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-surface-container-high focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 transition-colors" id="theme-toggle" type="button">
+<span class="hidden material-symbols-outlined" data-original-icon="dark_mode" id="theme-toggle-dark-icon">dark_mode</span>
+<span class="hidden material-symbols-outlined" data-original-icon="light_mode" id="theme-toggle-light-icon">light_mode</span>
 </button>
-<span class="font-headline-section text-headline-section font-bold text-inverse-primary dark:text-primary">Lokesh Kumar, PhD</span>
+<a class="font-headline-section text-headline-section font-bold text-emerald-600 dark:text-primary" href="index.html">
+                    Lokesh Kumar, PhD
+                </a>
 </div>
-<button class="md:hidden p-2 text-surface dark:text-on-surface" id="mobile-menu-btn">
-<span class="material-symbols-outlined">menu</span>
-</button>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-label-ui text-label-ui text-gray-600 dark:text-on-surface-variant hover:text-emerald-600 dark:hover:text-primary transition-colors" href="index.html">Home</a>
+<a class="font-label-ui text-label-ui text-gray-600 dark:text-on-surface-variant hover:text-emerald-600 dark:hover:text-primary transition-colors" href="research.html">Research</a>
+<a class="font-label-ui text-label-ui text-emerald-600 dark:text-primary border-b-2 border-emerald-600 dark:border-primary pb-1" href="publications.html">Publications</a>
+<a class="font-label-ui text-label-ui text-gray-600 dark:text-on-surface-variant hover:text-emerald-600 dark:hover:text-primary transition-colors" href="contact.html">Contact</a>
+<a class="cursor-pointer active:scale-95 transition-transform bg-emerald-600 dark:bg-primary text-white dark:text-on-primary px-4 py-2 rounded-lg font-label-ui inline-block" href="#">Download CV</a>
 </div>
-<div class="md:!opacity-100 md:!max-h-full flex flex-col md:flex-row md:items-center gap-4 md:gap-8 pt-4 md:pt-0 hidden" id="mobile-menu">
-<nav class="flex flex-col md:flex-row gap-4 md:gap-8">
-<a class="font-label-ui text-label-ui text-surface/70 dark:text-on-surface-variant hover:text-inverse-primary dark:hover:text-primary transition-colors" href="index.html">Home</a>
-<a class="font-label-ui text-label-ui text-surface/70 dark:text-on-surface-variant hover:text-inverse-primary dark:hover:text-primary transition-colors" href="research.html">Research</a>
-<a class="font-label-ui text-label-ui text-inverse-primary dark:text-primary md:border-b-2 border-inverse-primary dark:border-primary pb-1" href="publications.html">Publications</a>
-<a class="font-label-ui text-label-ui text-surface/70 dark:text-on-surface-variant hover:text-inverse-primary dark:hover:text-primary transition-colors" href="contact.html">Contact</a>
+<div class="md:hidden"><button class="p-2 text-emerald-600 dark:text-primary focus:outline-none" id="mobile-menu-btn"><span class="material-symbols-outlined text-3xl">menu</span></button></div>
+</div>
 </nav>
-<a class="bg-inverse-primary dark:bg-primary text-white dark:text-on-primary px-4 py-2 rounded-lg font-label-ui text-label-ui font-semibold active:scale-95 transition-transform inline-block text-center w-full md:w-auto mt-2 md:mt-0" href="#">Download CV</a>
-</div>
-</div>
-</header>
-<main class="pt-32 pb-section-v-space px-gutter max-w-container-max mx-auto">
+<div class="hidden md:hidden fixed inset-0 z-[60] bg-white dark:bg-background p-gutter flex flex-col gap-8 pt-24" id="mobile-menu"><button class="absolute top-4 right-4 p-2 text-gray-500 dark:text-on-surface-variant" id="mobile-menu-close"><span class="material-symbols-outlined text-3xl">close</span></button><nav class="flex flex-col gap-6"><a class="font-label-ui text-2xl text-gray-600 dark:text-on-surface-variant" href="index.html">Home</a><a class="font-label-ui text-2xl text-gray-600 dark:text-on-surface-variant" href="research.html">Research</a><a class="font-label-ui text-2xl text-emerald-600 dark:text-primary" href="publications.html">Publications</a><a class="font-label-ui text-2xl text-gray-600 dark:text-on-surface-variant" href="contact.html">Contact</a></nav><a class="bg-emerald-600 dark:bg-primary text-white dark:text-on-primary px-6 py-4 rounded-lg font-label-ui text-center text-xl" href="#">Download CV</a></div><main class="pt-32 pb-section-v-space px-gutter max-w-container-max mx-auto">
 <!-- Header Section -->
 <section class="mb-16 transition-all duration-700 opacity-100 translate-y-0">
 <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
