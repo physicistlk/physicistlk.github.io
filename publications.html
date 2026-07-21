@@ -97,7 +97,17 @@
                 }
             }
         }
-    }catch(_e){}</script></head><body class="bg-inverse-surface text-surface dark:bg-background dark:text-on-surface selection:bg-inverse-primary/30 dark:selection:bg-primary/30 transition-colors duration-300">
+    }catch(_e){}</script>
+<style>
+        .loader-spin {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head><body class="bg-inverse-surface text-surface dark:bg-background dark:text-on-surface selection:bg-inverse-primary/30 dark:selection:bg-primary/30 transition-colors duration-300">
 <!-- Navigation Shell -->
 <nav class="fixed top-0 w-full z-50 bg-white/90 dark:bg-surface/90 backdrop-blur-md border-b border-gray-200 dark:border-outline-variant shadow-sm h-16 transition-colors duration-300">
 <div class="flex justify-between items-center h-full px-gutter max-w-container-max mx-auto">
@@ -231,10 +241,10 @@
 </article>
 </div>
 <div class="mt-12 flex justify-center">
-<a class="font-label-ui text-label-ui text-surface/80 dark:text-text-secondary border border-outline-variant px-8 py-3 rounded-full hover:bg-surface-container-high/20 dark:hover:bg-surface-container-high transition-colors flex items-center gap-3" href="https://orcid.org/0000-0001-7667-8422" target="_blank">
-                    View Complete List
-                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</a>
+<button class="font-label-ui text-label-ui text-surface/80 dark:text-text-secondary border border-outline-variant px-8 py-3 rounded-full hover:bg-surface-container-high/20 dark:hover:bg-surface-container-high transition-colors flex items-center gap-3" id="view-complete-list-btn">
+<span id="btn-text">View Complete List</span>
+<span class="material-symbols-outlined text-sm" id="btn-icon">arrow_forward</span>
+</button>
 </div>
 </section>
 <!-- Patents Section -->
@@ -327,12 +337,93 @@
 </div>
 </div>
 </footer>
+<!-- Modal for Full Publication List -->
+<div class="fixed inset-0 z-[100] hidden bg-black/50 backdrop-blur-sm transition-opacity duration-300 opacity-0" id="publications-modal">
+<div class="flex items-center justify-center min-h-screen p-4">
+<div class="bg-inverse-surface dark:bg-surface-container-low rounded-2xl shadow-2xl w-full max-w-4xl max-h-[85vh] flex flex-col transform scale-95 transition-transform duration-300" id="modal-content">
+<div class="flex justify-between items-center p-6 border-b border-outline-variant/30">
+<h2 class="font-headline-section text-headline-section text-surface dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-inverse-primary dark:text-primary">school</span>
+                        All Publications &amp; Patents
+                    </h2>
+<button class="text-surface/60 dark:text-text-muted hover:text-inverse-primary dark:hover:text-primary transition-colors" id="close-modal-btn">
+<span class="material-symbols-outlined text-2xl">close</span>
+</button>
+</div>
+<div class="p-6 overflow-y-auto custom-scrollbar flex-grow space-y-4" id="full-publications-list">
+<!-- Dynamically populated via JS -->
+</div>
+<div class="p-4 border-t border-outline-variant/30 text-center">
+<a class="font-label-ui text-label-ui text-inverse-primary dark:text-primary hover:underline" href="https://scholar.google.com/citations?view_op=list_works&amp;hl=en&amp;hl=en&amp;user=B5zMjo4AAAAJ" target="_blank">View on Google Scholar</a>
+</div>
+</div>
+</div>
+</div>
 <script>
+        // Data for full publications list (simulated from Document_5)
+        const allPublicationsData = [
+            {
+                title: "An ultra-compressible piezoresistive strain and pressure sensor based on RGO-CNT-Melamine foam composite for biomedical sensing",
+                authors: "BB Bhatt, L Kumar, A Kushwaha, D Gupta",
+                venue: "Sensors and Actuators A: Physical 331, 112875",
+                year: "2021",
+                citations: "61"
+            },
+            {
+                title: "Ultrasensitive detection of aromatic water pollutants through protein immobilization driven organic electrochemical transistors",
+                authors: "S Sahu, L Kumar, S Das, D Gupta, R Anand",
+                venue: "Chemical Science 15 (2), 710-719",
+                year: "2024",
+                citations: "10"
+            },
+            {
+                title: "Low voltage photo-thermally reduced graphene oxide transistor device based on ion gel dielectric",
+                authors: "L Kumar, BB Bhatt, D Gupta",
+                venue: "Carbon, 120946",
+                year: "2025",
+                citations: "1"
+            },
+            {
+                title: "AN ORGANIC ELECTROCHEMICAL TRANSISOTR (OECT) AND A METHOD OF FABRICATING THEREOF",
+                authors: "DG Lokesh Kumar, Bharat",
+                venue: "IN Patent App. 202,521,063,172",
+                year: "2025",
+                citations: "-"
+            },
+            {
+                title: "Graphite-to-Graphene Transformation via Microwave-Assisted Time Dependent Green Synthesis Treatment Using Natural Gum Arabic",
+                authors: "DG Lokesh Kumar, Devang Anadkat",
+                venue: "IN Patent App. 202,521,054,957",
+                year: "2025",
+                citations: "-"
+            },
+            {
+                title: "Screen-Printed Organic Electrochemical Transistor: A Protein Immobilization Approach to Detect Aromatic Water Pollutants",
+                authors: "L Kumar, S Sahu, S Das, D Gupta, R Anand",
+                venue: "4th International Electronic Conference on Biosensors, MDPI",
+                year: "2024",
+                citations: "-"
+            },
+            {
+                title: "ORGANIC ELECTROCHEMICAL TRANSISTOR BASED BIOSENSOR FOR THE DETECTION OF DNA BINDING PROTEINS AND METHOD FOR PREPARATION THEREOF",
+                authors: "D GUPTA, R ANAND, L KUMAR, S SAHU",
+                venue: "IN Patent 431,170",
+                year: "2023",
+                citations: "-"
+            },
+            {
+                title: "PROTEIN IMMOBILIZED ORGANIC ELECTROCHEMICAL BIOSENSOR FOR DETECTING PHENOLIC POLLUTANTS AND PROCESS FOR PRODU SAME",
+                authors: "R ANAND, D GUPTA, S SAHU, L KUMAR, S DAS",
+                venue: "IN Patent 474,656",
+                year: "2023",
+                citations: "-"
+            }
+        ];
+
         // Theme Toggle Logic
         const themeToggleBtn = document.getElementById('theme-toggle');
         const html = document.documentElement;
 
-        // Check for saved theme preference or use system preference
         if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             html.classList.add('dark');
         } else {
@@ -356,7 +447,6 @@
             mobileMenu.classList.toggle('open');
         });
 
-        // Micro-interactions for smooth scrolling or hover effects
         document.querySelectorAll('.publication-row').forEach(row => {
             row.addEventListener('mouseenter', () => {
                 const icons = row.querySelectorAll('.material-symbols-outlined');
@@ -368,11 +458,7 @@
             });
         });
 
-        // Simple observer for reveal animation
-        const observerOptions = {
-            threshold: 0.1
-        };
-
+        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -387,7 +473,6 @@
             observer.observe(el);
         });
 
-        // OpenAlex API Integration
         fetch('https://api.openalex.org/authors/https://orcid.org/0000-0001-7667-8422')
             .then(response => response.json())
             .then(data => {
@@ -399,5 +484,69 @@
                 }
             })
             .catch(error => console.error('Error fetching OpenAlex data:', error));
+
+        // View Complete List Logic
+        const viewCompleteListBtn = document.getElementById('view-complete-list-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnIcon = document.getElementById('btn-icon');
+        const modal = document.getElementById('publications-modal');
+        const modalContent = document.getElementById('modal-content');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const listContainer = document.getElementById('full-publications-list');
+
+        function createPublicationHTML(pub) {
+            return `
+                <div class="p-4 border border-outline-variant/20 rounded-xl hover:border-inverse-primary/40 dark:hover:border-primary/40 transition-colors bg-inverse-surface/50 dark:bg-surface/50">
+                    <h3 class="font-headline-subsection text-headline-subsection text-surface dark:text-text-primary mb-1">${pub.title}</h3>
+                    <p class="font-body-standard text-[14px] text-surface/70 dark:text-text-muted mb-2">${pub.authors}</p>
+                    <div class="flex flex-wrap items-center gap-3">
+                        <span class="font-label-mono text-[12px] text-inverse-primary dark:text-primary">${pub.venue}</span>
+                        <span class="font-label-mono text-[12px] px-2 py-0.5 bg-surface-container-high dark:bg-surface-container rounded">${pub.year}</span>
+                        ${pub.citations !== '-' ? `<span class="font-label-mono text-[12px] text-secondary-container dark:text-secondary-fixed">Citations: ${pub.citations}</span>` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        viewCompleteListBtn.addEventListener('click', () => {
+            // Loading state
+            btnText.textContent = "Syncing with Scholar...";
+            btnIcon.textContent = "sync";
+            btnIcon.classList.add("loader-spin");
+            viewCompleteListBtn.disabled = true;
+
+            setTimeout(() => {
+                // Populate list
+                listContainer.innerHTML = allPublicationsData.map(createPublicationHTML).join('');
+                
+                // Show modal
+                modal.classList.remove('hidden');
+                // Trigger reflow
+                void modal.offsetWidth;
+                modal.classList.add('opacity-100');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+
+                // Reset button
+                btnText.textContent = "View Complete List";
+                btnIcon.textContent = "arrow_forward";
+                btnIcon.classList.remove("loader-spin");
+                viewCompleteListBtn.disabled = false;
+            }, 1200); // Simulate network delay
+        });
+
+        function closeModal() {
+            modal.classList.remove('opacity-100');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
     </script>
 </body></html>
