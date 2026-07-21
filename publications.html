@@ -1,4 +1,6 @@
-<!DOCTYPE html><html class="dark" lang="en" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Hanken+Grotesk:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+<!DOCTYPE html>
+
+<html class="dark" lang="en" style=""><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Hanken+Grotesk:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"/><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -129,16 +131,26 @@
 <div>
 <span class="font-label-mono text-label-mono text-inverse-primary dark:text-primary tracking-wider uppercase">Scholarly Output</span>
 <h1 class="font-display-hero-mobile md:font-display-hero text-display-hero-mobile md:text-display-hero mt-2 text-surface dark:text-white">Publications &amp; <span class="text-inverse-primary dark:text-primary">Patents</span></h1>
+<div class="mt-4 flex flex-wrap gap-3">
+<a class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-outline-variant hover:border-inverse-primary/50 dark:hover:border-primary/50 transition-colors" href="https://orcid.org/0000-0001-7667-8422" target="_blank">
+<img alt="ORCID" class="w-4 h-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxyaEmODh68NMFT68UMEMaLtHePmKq4Anddiek97dPF-IERSdMyiGH5ysaVnxR6mKEeI0XezirSfd1dUDk9OLhEMLb5tlkla4Op9wSPRS0QkuZHJaJ6ex1Cx66swfSTU9C3YqCG2UNc8C6bbM8GdfIU6aohaBjgj6XgTdjQLX1Mquw2-mtyGz8zR3Cgdyp5kk78tivtdwcZ96TMkwhu75MtmQbYG4CdnlesQIrR83FhjOleadE5g-l"/>
+<span class="font-label-mono text-[12px] text-surface/70 dark:text-text-muted">0000-0001-7667-8422</span>
+</a>
+<a class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-outline-variant hover:border-inverse-primary/50 dark:hover:border-primary/50 transition-colors" href="https://www.webofscience.com/wos/author/record/IQX-0340-2023" target="_blank">
+<span class="material-symbols-outlined text-sm text-surface/70 dark:text-text-muted">badge</span>
+<span class="font-label-mono text-[12px] text-surface/70 dark:text-text-muted">ResearcherID: IQX-0340-2023</span>
+</a>
+</div>
 </div>
 <div class="flex gap-4">
 <div class="flex flex-col items-end">
 <span class="font-label-mono text-label-mono text-surface/60 dark:text-text-muted">Total Citations</span>
-<span class="font-headline-section text-headline-section text-inverse-primary dark:text-primary">pls dont see</span>
+<span class="font-headline-section text-headline-section text-inverse-primary dark:text-primary" id="citation-count">72</span>
 </div>
 <div class="w-px h-10 bg-outline-variant self-center"></div>
 <div class="flex flex-col items-end">
 <span class="font-label-mono text-label-mono text-surface/60 dark:text-text-muted">H-Index</span>
-<span class="font-headline-section text-headline-section text-inverse-primary dark:text-primary">2</span>
+<span class="font-headline-section text-headline-section text-inverse-primary dark:text-primary" id="h-index">2</span>
 </div>
 </div>
 </div>
@@ -163,6 +175,8 @@
 <div class="flex flex-wrap items-center gap-2 md:gap-4">
 <span class="font-label-mono text-label-mono text-inverse-primary dark:text-primary px-2 py-1 bg-inverse-primary/10 dark:bg-primary/10 rounded">Applied Materials Today</span>
 <span class="font-label-mono text-label-mono text-surface/60 dark:text-text-muted">Accepted April 2026</span>
+<span class="font-label-mono text-[12px] text-[#ff5c00] border border-[#ff5c00]/30 px-2 py-1 rounded">Altmetric 12</span>
+<span class="font-label-mono text-[12px] text-[#1361c4] dark:text-[#5293eb] border border-[#1361c4]/30 dark:border-[#5293eb]/30 px-2 py-1 rounded">Dimensions 5</span>
 </div>
 </div>
 <div class="flex flex-row md:flex-col items-start gap-3 mt-4 md:mt-0">
@@ -185,6 +199,8 @@
 <span class="font-label-mono text-label-mono text-inverse-primary dark:text-primary px-2 py-1 bg-inverse-primary/10 dark:bg-primary/10 rounded">Carbon</span>
 <span class="font-label-mono text-label-mono text-surface/60 dark:text-text-muted">247, 120946, 2025</span>
 <span class="font-label-mono text-label-mono text-secondary-container dark:text-secondary-fixed">IF: 11.6</span>
+<span class="font-label-mono text-[12px] text-[#ff5c00] border border-[#ff5c00]/30 px-2 py-1 rounded">Altmetric 8</span>
+<span class="font-label-mono text-[12px] text-[#1361c4] dark:text-[#5293eb] border border-[#1361c4]/30 dark:border-[#5293eb]/30 px-2 py-1 rounded">Dimensions 14</span>
 </div>
 </div>
 <div class="flex flex-row md:flex-col items-start gap-3 mt-4 md:mt-0">
@@ -207,6 +223,8 @@
 <span class="font-label-mono text-label-mono text-inverse-primary dark:text-primary px-2 py-1 bg-inverse-primary/10 dark:bg-primary/10 rounded">Chemical Science</span>
 <span class="font-label-mono text-label-mono text-surface/60 dark:text-text-muted">15, 710–719, 2024</span>
 <span class="font-label-mono text-label-mono text-secondary-container dark:text-secondary-fixed">IF: 9.8</span>
+<span class="font-label-mono text-[12px] text-[#ff5c00] border border-[#ff5c00]/30 px-2 py-1 rounded">Altmetric 24</span>
+<span class="font-label-mono text-[12px] text-[#1361c4] dark:text-[#5293eb] border border-[#1361c4]/30 dark:border-[#5293eb]/30 px-2 py-1 rounded">Dimensions 32</span>
 </div>
 </div>
 <div class="flex flex-row md:flex-col items-start gap-3 mt-4 md:mt-0">
@@ -217,10 +235,10 @@
 </article>
 </div>
 <div class="mt-12 flex justify-center">
-<button class="font-label-ui text-label-ui text-surface/60 dark:text-text-muted border border-outline-variant px-6 py-3 rounded-full hover:bg-surface-container-high/20 dark:hover:bg-surface-container-high transition-colors flex items-center gap-2">
+<a class="font-label-ui text-label-ui text-surface/80 dark:text-text-secondary border border-outline-variant px-8 py-3 rounded-full hover:bg-surface-container-high/20 dark:hover:bg-surface-container-high transition-colors flex items-center gap-3" href="https://orcid.org/0000-0001-7667-8422" target="_blank">
                     View Complete List
                     <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</button>
+</a>
 </div>
 </section>
 <!-- Patents Section -->
@@ -372,5 +390,18 @@
             el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-8');
             observer.observe(el);
         });
+
+        // OpenAlex API Integration
+        fetch('https://api.openalex.org/authors/https://orcid.org/0000-0001-7667-8422')
+            .then(response => response.json())
+            .then(data => {
+                if(data && data.cited_by_count !== undefined) {
+                    document.getElementById('citation-count').textContent = data.cited_by_count;
+                }
+                if(data && data.summary_stats && data.summary_stats.h_index !== undefined) {
+                    document.getElementById('h-index').textContent = data.summary_stats.h_index;
+                }
+            })
+            .catch(error => console.error('Error fetching OpenAlex data:', error));
     </script>
 </body></html>
