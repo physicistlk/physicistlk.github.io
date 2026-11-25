@@ -1,0 +1,21 @@
+{
+  "name": "the-cascade",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "The Cascade — a scroll-driven 3D narrative set inside a semiconductor fabrication facility.",
+  "scripts": {
+    "prepare": "node scripts/prepare-model.mjs",
+    "predev": "node scripts/prepare-model.mjs",
+    "dev": "vite",
+    "prebuild": "node scripts/prepare-model.mjs",
+    "build": "vite build",
+    "preview": "vite preview --port 4173 --host 127.0.0.1"
+  },
+  "dependencies": {
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "vite": "^7.3.8"
+  }
+}

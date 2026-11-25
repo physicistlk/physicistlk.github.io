@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>The Cascade — A Semiconductor Fabrication Narrative</title>
+  <meta name="description" content="A scroll-driven descent into a semiconductor fab: lithography, etch and deposition, and the organic electrochemical transistors and biosensors they become.">
+  <meta name="author" content="Lokesh Kumar">
+  <meta name="theme-color" content="#000000">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="The Cascade — A Semiconductor Fabrication Narrative">
+  <meta property="og:description" content="Light, etch and layer — and the sensors they become. An interactive 3D narrative set inside a semiconductor fab.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./src/styles.css">
+</head>
+<body class="is-loading">
+  <!-- fixed 3D stage --------------------------------------------------- -->
+  <canvas id="stage" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <!-- minimal navigation ------------------------------------------------ -->
+  <header class="hud-nav" id="hud-nav">
+    <a class="hud-nav__brand" href="index.html">LOKESH KUMAR</a>
+    <nav class="hud-nav__links" aria-label="Primary">
+      <a href="about.html">About</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- title card -------------------------------------------------------- -->
+  <section class="title-card" id="title-card">
+    <p class="title-card__eyebrow" id="tc-eyebrow"></p>
+    <h1 class="title-card__title" id="tc-title"></h1>
+    <p class="title-card__subtitle" id="tc-subtitle"></p>
+    <div class="title-card__hint" id="tc-hint">
+      <span class="title-card__hint-line"></span>
+      <span class="title-card__hint-text"></span>
+    </div>
+  </section>
+
+  <!-- scene label ------------------------------------------------------- -->
+  <div class="scene-label" id="scene-label"><span></span></div>
+
+  <!-- chapter rail ------------------------------------------------------ -->
+  <nav class="chapter-rail" id="chapter-rail" aria-hidden="true">
+    <span class="chapter-rail__track"><i class="chapter-rail__fill"></i></span>
+  </nav>
+
+  <!-- cinema HUD -------------------------------------------------------- -->
+  <div class="film" id="film" aria-hidden="true">
+    <div class="film__bar film__bar--top"></div>
+    <div class="film__bar film__bar--bottom"></div>
+    <div class="film__hud">
+      <span class="film__code" id="film-code">OPTICAL PATH</span>
+      <span class="film__note" id="film-note"></span>
+    </div>
+    <div class="film__time" id="film-time">00:00:00</div>
+    <div class="film__locked" id="film-locked">SCROLL LOCKED</div>
+    <button class="film__skip" id="film-skip" type="button">SKIP FILM</button>
+  </div>
+
+  <!-- overlays ---------------------------------------------------------- -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- loader ------------------------------------------------------------ -->
+  <div class="loader" id="loader">
+    <div class="loader__ring"></div>
+    <p class="loader__label">CALIBRATING FAB OPTICS</p>
+    <div class="loader__bar"><i id="loader-fill"></i></div>
+    <p class="loader__pct" id="loader-pct">0%</p>
+  </div>
+
+  <!-- scroll runway ----------------------------------------------------- -->
+  <div class="runway" id="runway"></div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

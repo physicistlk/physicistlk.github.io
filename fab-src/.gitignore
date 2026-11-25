@@ -1,0 +1,4 @@
+node_modules/
+dist/
+# the binary model is generated from src/assets/model/*.b64 at build time
+src/assets/fab-tool.glb
