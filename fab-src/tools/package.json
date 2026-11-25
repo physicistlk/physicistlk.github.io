@@ -1,0 +1,14 @@
+{
+  "name": "cascade-model-tools",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Authoring tools for the fab-tool model (not needed to build the site).",
+  "scripts": {
+    "build-model": "node build-model.mjs"
+  },
+  "devDependencies": {
+    "@gltf-transform/cli": "^4.5.1",
+    "sharp": "^0.35.5"
+  }
+}
