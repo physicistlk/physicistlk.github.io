@@ -1,4 +1,7 @@
 node_modules/
 dist/
-# the binary model is generated from src/assets/model/*.b64 at build time
-src/assets/fab-tool.glb
+
+# the model parts are staged from the repository-root model/ directory by
+# scripts/prepare-model.mjs — only the staged copy is ignored, the canonical
+# parts live in model/ at the repository root
+public/model/

@@ -14,7 +14,6 @@ import { createTunnel } from '../scenes/tunnel.js';
 import { ContrastField } from '../scenes/contrast.js';
 import { createEpilogue } from '../scenes/epilogue.js';
 import { TITLE_CARD, SECTION_LABELS, FILM } from '../content.js';
-import modelUrl from '../assets/fab-tool.glb?url';
 
 const GATE = 0.565;          // scroll progress where the cinema takes over
 const EPILOGUE_AT = 0.62;
@@ -160,7 +159,7 @@ export class Narrative {
     };
 
     try {
-      this.fab = await loadFabTool(modelUrl, manager);
+      this.fab = await loadFabTool(import.meta.env.BASE_URL);
       this.scene.add(this.fab.group);
       progress(0.9);
     } catch (err) {
@@ -305,7 +304,12 @@ export class Narrative {
   // -------------------------------------------------------------- loop ---
   _loop() {
     this._raf = requestAnimationFrame(this._loop.bind(this));
-    const dt = Math.min(0.05, this.clock.getDelta());
+    const raw = this.clock.getDelta();
+    const dt = Math.min(0.05, raw);
+    // the cinema is a timed cut, not a scroll-driven scene: it has to last
+    // thirty seconds of wall time even when the renderer is slow, so it runs
+    // on a looser clamp than the scroll choreography
+    const filmDt = Math.min(0.25, raw);
     this.elapsed += dt;
 
     const p = this.scroll.update(dt);
@@ -410,7 +414,7 @@ export class Narrative {
     if (!this.film.played && p >= GATE && !this.scroll.locked) {
       this._startFilm();
     }
-    this._updateFilm(dt);
+    this._updateFilm(filmDt);
 
     // ------------------------------------------------------- rendering --
     if (this.film.active) {

@@ -15,30 +15,40 @@ const SILVER = 0xdfe4ea;
 const LAMP_COOL = 0x7fe9ff;
 const LAMP_WARM = 0xffb46b;
 
-export async function loadFabTool(url, manager) {
-  const loader = new GLTFLoader(manager);
-  loader.setMeshoptDecoder(MeshoptDecoder);
-
-  const gltf = await loader.loadAsync(url);
-  return buildFabTool(gltf);
-}
-
 /**
- * Same model, delivered as base64 text (used when the hosting path cannot
- * carry binary assets). Decoded in the browser and parsed in-memory.
+ * The model travels through the repository as base64 text, so it is fetched,
+ * reassembled and parsed in memory.
  */
-export async function loadFabToolFromBase64(b64, manager) {
+async function loadModelBytes(base) {
+  const manifestRes = await fetch(`${base}model/manifest.json`);
+  if (!manifestRes.ok) throw new Error('model manifest missing');
+  const manifest = await manifestRes.json();
+
+  const parts = await Promise.all(
+    manifest.parts.map(async (name) => {
+      const r = await fetch(`${base}model/${name}`);
+      if (!r.ok) throw new Error(`model part ${name} missing`);
+      return r.text();
+    })
+  );
+
+  const b64 = parts.join('').replace(/\s+/g, '');
   const bin = atob(b64);
   const bytes = new Uint8Array(bin.length);
   for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
 
-  const loader = new GLTFLoader(manager);
-  loader.setMeshoptDecoder(MeshoptDecoder);
-  const gltf = await loader.parseAsync(bytes.buffer, '');
-  return buildFabTool(gltf);
+  if (manifest.bytes && bytes.length !== manifest.bytes) {
+    console.warn('[cascade] model size mismatch', bytes.length, manifest.bytes);
+  }
+  return bytes.buffer;
 }
 
-function buildFabTool(gltf) {
+export async function loadFabTool(base = import.meta.env.BASE_URL) {
+  const loader = new GLTFLoader();
+  loader.setMeshoptDecoder(MeshoptDecoder);
+
+  const buffer = await loadModelBytes(base);
+  const gltf = await loader.parseAsync(buffer, '');
   const root = gltf.scene;
 
   // --- normalise scale + placement ---------------------------------------
@@ -286,7 +296,7 @@ function makeStatusLamps(count = 28, radius = 11.4) {
     update(elapsed) {
       for (let i = 0; i < count; i++) {
         const s = 0.65 + 0.5 * (0.5 + 0.5 * Math.sin(elapsed * 2.4 + phases[i]));
-        dummy.position.set(0, 0, 0);
+        dummy.position.copy(spots[i]);
         dummy.scale.setScalar(s);
         dummy.updateMatrix();
         mesh.setMatrixAt(i, dummy.matrix);

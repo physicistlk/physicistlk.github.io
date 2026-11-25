@@ -6,6 +6,10 @@ export default defineConfig({
   build: {
     // keep the bundle out of the site's existing /assets folder
     assetsDir: 'fab-assets',
+    // esbuild (Vite's default) — terser's `unsafe_arrows` transform rewrites
+    // three.js's `function ColorBuffer(){}` constructor into an arrow function,
+    // which is not constructible and breaks WebGLState at runtime.
+    minify: 'esbuild',
     target: 'es2020',
     chunkSizeWarningLimit: 1600,
     assetsInlineLimit: 0,

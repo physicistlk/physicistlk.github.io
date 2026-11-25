@@ -1,66 +1,65 @@
-# The Cascade — front page of physicistlk.github.io
+# The Cascade — source
 
-A scroll-driven 3D narrative set inside a semiconductor fabrication facility.
-Vite + Three.js, no runtime dependencies beyond Three.
+The front page of [physicistlk.github.io](https://physicistlk.github.io/): a
+scroll-driven 3D narrative set inside a semiconductor fabrication facility.
+Vite + Three.js, no runtime CDN dependency.
 
-## Scenes
-
-| # | Scene | What happens |
-|---|-------|--------------|
-| I | **The Fab Awakens** | The cluster tool resolves out of a wireframe reveal against a glowing wafer-diffraction backdrop. Bloom, inertial mouse orbit. |
-| II | **The Lithography Cascade** | Lithography, deposition, etch, the OECT interface and biosensing cascade in word by word, floating in depth. The tool dissolves into a process-flow diagram. |
-| III | **Into the Wafer** | Scroll locks; the camera falls through a scanner optical path, a reticle stage, a plasma etch chamber and into a silicon lattice. The frame's contrast is sampled live and drives a dot-and-line field. |
-| IV | **Epilogue** | The tool returns, tiny and distant; credits roll and a closing quote fades in. |
-
-## Build
-
-```bash
-npm ci
-npm run build      # prebuild decodes the model, then vite bundles to dist/
-npm run preview    # serve dist/ locally
+```
+fab-src/
+├── index.html          page shell: loader, title card, HUD, overlay
+├── src/
+│   ├── main.js         entry point
+│   ├── content.js      every string in the narrative (edit copy here)
+│   ├── core/           app loop, scroll, pointer, environment map
+│   └── scenes/         fab tool, wafer, theory, tunnel, contrast, epilogue
+├── scripts/
+│   ├── prepare-model.mjs   stages + verifies the model parts
+│   └── pack-app.mjs        packs the built bundle for transport
+├── tools/              model optimisation pipeline (sharp, gltf-transform)
+└── public/             static files served as-is (generated model parts live here)
 ```
 
-`npm run build` produces `dist/`, which GitHub Actions lays over the static
-pages of the site root. The published front page is `dist/index.html`.
+## Commands
+
+```bash
+npm ci          # install
+npm run dev     # dev server on http://127.0.0.1:5173
+npm run build   # -> dist/  (bundle + packed copy + stylesheet + favicon)
+npm run preview # serve dist/
+```
+
+`npm run build` runs two steps:
+
+1. **`prepare-model.mjs`** copies the base64 model parts from the
+   repository-root `model/` directory into `public/model/`, verifies that they
+   decode to the exact GLB the manifest describes (size + SHA-256), and fails
+   the build if they do not. The staged copy is git-ignored; the canonical
+   parts live once, in `model/`.
+2. **`pack-app.mjs`** gzips and base64-encodes the built bundle into
+   `dist/fab-assets/app.js.gz.b64` and rewrites `dist/index.html` to inflate
+   it in the browser and import it as a blob module. This keeps the site
+   self-contained — no CDN, no import map — while the bundle stays small
+   enough to move through a text-only transport.
 
 ## The model
 
-The fab tool is a reinterpretation of:
+> "Space Station 4" by re1monsen — <https://sketchfab.com/re1monsen>
+> Licensed under CC BY 4.0 — <https://creativecommons.org/licenses/by/4.0/>
 
-> **"Space Station 4" by re1monsen** — <https://sketchfab.com/3d-models/space-station-4-cf80075368174bf9895f4fd266cf17e3>
-> Licensed under **CC BY 4.0** — <https://creativecommons.org/licenses/by/4.0/>
+The model is re-interpreted here as a circular cleanroom cluster tool: a
+central transfer module ringed by process chambers, with load-lock pods and
+service ports. All materials, lighting, indicator lamps, edge geometry and the
+reveal choreography are original work for this site.
 
-All materials, lighting, the re-material as cleanroom hardware, the camera
-work, the wafer backdrop and the entire tunnel sequence are original work for
-this site.
+`tools/build-model.mjs` rebuilds the optimised GLB from the source model
+(sharp + gltf-transform, kept out of the site's own dependencies).
 
-### Why the model is stored as text
+## Deployment
 
-`src/assets/model/part-00*.b64` holds the model as base64 text in four parts.
-`scripts/prepare-model.mjs` (run by the `prebuild` / `predev` hooks) decodes
-them back into `src/assets/fab-tool.glb` — a 4.4 MB binary, meshopt-compressed
-geometry with 1.5K WebP textures. Keeping the source of truth as plain text
-means the model survives any repository or CI transport unchanged.
+The Pages workflow publishes the repository as it stands, so the **built**
+front page lives at the repository root. After `npm run build`, copy the
+output there:
 
-The model was optimised with [`gltf-transform`](https://gltf-transform.dev):
-4K textures resized to WebP, geometry compressed with meshopt, the 20 original
-meshes and the material structure left intact.
-
-## Layout
-
-```
-src/
-  main.js              bootstrap
-  content.js           every line of narrative copy
-  core/
-    app.js             renderer, composer, camera choreography, state machine
-    scroll.js          scroll progress, damping, scroll lock
-    pointer.js         inertial mouse parallax
-  scenes/
-    fabtool.js         model load, re-material, wireframe reveal
-    wafer.js           procedural wafer / diffraction backdrop
-    theory.js          word-by-word chapter text + process-flow diagram
-    tunnel.js          the procedural tunnel sequence
-    contrast.js        live contrast sampling → dot-and-line field
-    epilogue.js        credits and closing quote
+```bash
+cp dist/index.html dist/fab-assets dist/fab-favicon.svg ../
 ```

@@ -91,7 +91,7 @@ export class ContrastField {
           vec3 cool = vec3(0.12, 0.45, 0.85);
           vec3 hot  = vec3(0.85, 0.97, 1.0);
           vec3 col = mix(cool, hot, pow(vBright, 0.75));
-          gl_FragColor = vec4(col, m * uOpacity * (0.05 + vBright * 0.4));
+          gl_FragColor = vec4(col, m * uOpacity * (0.10 + vBright * 0.5));
         }
       `,
     });
@@ -134,7 +134,7 @@ export class ContrastField {
         uniform float uOpacity;
         varying float vAlpha;
         void main() {
-          gl_FragColor = vec4(vec3(0.45, 0.78, 1.0), vAlpha * uOpacity * 0.32);
+          gl_FragColor = vec4(vec3(0.45, 0.78, 1.0), vAlpha * uOpacity * 0.45);
         }
       `,
     });
@@ -203,8 +203,11 @@ export class ContrastField {
     const { width, height, luma, smooth, pixels } = this;
     for (let i = 0; i < width * height; i++) {
       const o = i * 4;
-      luma[i] =
+      const linear =
         (0.2126 * pixels[o] + 0.7152 * pixels[o + 1] + 0.0722 * pixels[o + 2]) / 255;
+      // the sample target holds linear light, so convert to perceptual
+      // luminance before deciding how bright a sample reads on screen
+      luma[i] = Math.pow(linear, 1 / 2.2);
     }
     // 3x3 blur so the dot field responds to regions, not single pixels
     for (let y = 0; y < height; y++) {
@@ -238,12 +241,14 @@ export class ContrastField {
       const gx = this.grid[i * 2];
       const gy = this.grid[i * 2 + 1];
       const v = smooth[gy * width + gx];
-      // gamma boost: keep the field quiet in the blacks, alive in the highlights
-      // capped below the bloom threshold so the field never blooms into a haze
-      const b = Math.min(0.5, Math.pow(Math.min(1, v * 1.2), 2.2));
+      // gentle lift: the field stays readable in the blacks and comes alive
+      // in the highlights, capped below the bloom threshold so it never
+      // blooms into a haze
+      const b = Math.min(0.55, Math.pow(Math.min(1, v * 1.05), 1.6));
       bright[i] = b;
-      // world-space radius — the shader converts it to pixels
-      sizes[i] = 0.0022 + b * 0.0042;
+      // world-space radius — the shader converts it to pixels. A sample is a
+      // couple of pixels across, so the field reads as a scatter of points.
+      sizes[i] = 0.0062 + b * 0.007;
     }
     this.points.geometry.attributes.aBright.needsUpdate = true;
     this.points.geometry.attributes.aSize.needsUpdate = true;
