@@ -3,8 +3,9 @@ fab-src/dist/
 fab-src/node_modules/
 fab-src/tools/node_modules/
 
-# the binary model is regenerated from fab-src/src/assets/model/*.b64
-fab-src/src/assets/fab-tool.glb
+# the model parts are staged into fab-src/public/model by the prebuild hook;
+# the canonical copy lives in model/ at the repository root
+fab-src/public/model/
 
 # local scratch
 _site/
