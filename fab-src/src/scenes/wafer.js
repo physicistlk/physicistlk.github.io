@@ -1,10 +1,12 @@
 import * as THREE from 'three';
 
 /**
- * The "massive glowing wafer silhouette / diffraction pattern disk" that sits
- * behind the fab tool. Two layers:
- *  - a cold metallic wafer body (reads as a 300 mm silicon disc)
- *  - an additive diffraction overlay: rings, radial spokes, die grid, traces
+ * The backdrop behind the device: a silicon wafer map.
+ *
+ * A 300 mm wafer seen face-on — a grid of dies with scribe lanes, fine
+ * interconnect inside each one, the polished rim and the orientation flat.
+ * It is the substrate the devices are grown on, which is where the work
+ * actually starts, so it replaces what used to be a star field.
  */
 export function createWafer({ radius = 64, segments = 192 } = {}) {
   const group = new THREE.Group();
@@ -14,9 +16,9 @@ export function createWafer({ radius = 64, segments = 192 } = {}) {
   const body = new THREE.Mesh(
     new THREE.CircleGeometry(radius, segments),
     new THREE.MeshStandardMaterial({
-      color: 0x0a0d12,
-      metalness: 0.95,
-      roughness: 0.38,
+      color: 0x080c11,
+      metalness: 0.9,
+      roughness: 0.42,
       side: THREE.DoubleSide,
       fog: false,
     })
@@ -24,11 +26,11 @@ export function createWafer({ radius = 64, segments = 192 } = {}) {
   body.position.z = -0.6;
   group.add(body);
 
-  // --- diffraction overlay ---------------------------------------------
+  // --- the die map ------------------------------------------------------
   const overlay = new THREE.Mesh(
     new THREE.CircleGeometry(radius * 0.995, segments),
     new THREE.MeshBasicMaterial({
-      map: makeDiffractionTexture(),
+      map: makeWaferMapTexture(),
       transparent: true,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
@@ -66,7 +68,7 @@ export function createWafer({ radius = 64, segments = 192 } = {}) {
   state.update = (p, reveal) => {
     const grow = THREE.MathUtils.smoothstep(reveal, 0, 1);
     overlay.material.opacity = 1.0 * grow;
-    halo.material.opacity = 0.35 * grow;
+    halo.material.opacity = 0.28 * grow;
     body.material.opacity = 1;
     // the wafer drifts and tilts as the narrative descends
     group.rotation.z = p * 0.5;
@@ -79,10 +81,10 @@ export function createWafer({ radius = 64, segments = 192 } = {}) {
 }
 
 /**
- * Procedural wafer diffraction pattern drawn on a 2D canvas:
- * concentric interference rings + radial spokes + a ring of dies + circuit traces.
+ * A silicon wafer map drawn on a 2D canvas: a grid of dies with scribe
+ * lanes, interconnect inside each die, the polished rim and the flat.
  */
-function makeDiffractionTexture(size = 2048) {
+function makeWaferMapTexture(size = 2048) {
   const cv = document.createElement('canvas');
   cv.width = cv.height = size;
   const g = cv.getContext('2d');
@@ -91,106 +93,104 @@ function makeDiffractionTexture(size = 2048) {
   g.fillStyle = '#000000';
   g.fillRect(0, 0, size, size);
 
-  // --- concentric interference rings ------------------------------------
+  // --- the die array -----------------------------------------------------
+  const die = size * 0.072;
+  const lane = size * 0.016;
+  const pitch = die + lane;
+  const cols = 13;
+  const rows = 13;
+  const startX = c - (cols * pitch) / 2 + lane / 2;
+  const startY = c - (rows * pitch) / 2 + lane / 2;
+
+  for (let r = 0; r < rows; r++) {
+    for (let col = 0; col < cols; col++) {
+      const x = startX + col * pitch;
+      const y = startY + r * pitch;
+      // dies only exist inside the wafer circle
+      const cx = x + die / 2;
+      const cy = y + die / 2;
+      const edge = Math.hypot(cx - c, cy - c);
+      if (edge > c * 0.93) continue;
+
+      // die outline
+      g.strokeStyle = `rgba(120,205,235,${0.16 + Math.random() * 0.12})`;
+      g.lineWidth = 2;
+      g.strokeRect(x, y, die, die);
+
+      // interconnect inside the die
+      g.strokeStyle = 'rgba(90,190,225,0.13)';
+      g.lineWidth = 1;
+      for (let k = 1; k < 6; k++) {
+        const yy = y + (k * die) / 6;
+        g.beginPath();
+        g.moveTo(x + 3, yy);
+        g.lineTo(x + die - 3, yy);
+        g.stroke();
+      }
+      for (let k = 0; k < 3; k++) {
+        const xx = x + die * (0.22 + 0.28 * k);
+        g.beginPath();
+        g.moveTo(xx, y + die * 0.2);
+        g.lineTo(xx, y + die * 0.82);
+        g.stroke();
+      }
+      // a lit pad at one corner
+      if (Math.random() > 0.7) {
+        g.fillStyle = 'rgba(150,235,255,0.3)';
+        g.fillRect(x + die - lane * 0.9, y + lane * 0.5, lane * 0.6, lane * 0.6);
+      }
+    }
+  }
+
+  // --- scribe lanes catching the light ----------------------------------
+  g.strokeStyle = 'rgba(70,150,185,0.07)';
+  g.lineWidth = 1;
+  for (let i = 0; i <= cols; i++) {
+    const x = startX - lane / 2 + i * pitch;
+    g.beginPath();
+    g.moveTo(x, startY - pitch);
+    g.lineTo(x, startY + rows * pitch);
+    g.stroke();
+  }
+  for (let i = 0; i <= rows; i++) {
+    const y = startY - lane / 2 + i * pitch;
+    g.beginPath();
+    g.moveTo(startX - pitch, y);
+    g.lineTo(startX + cols * pitch, y);
+    g.stroke();
+  }
+
+  // --- the orientation flat ---------------------------------------------
   g.globalCompositeOperation = 'lighter';
-  for (let i = 0; i < 46; i++) {
-    const r = (i / 46) * c * 0.97 + 6;
-    const a = 0.16 + 0.42 * Math.pow(1 - i / 46, 1.4);
-    const grd = g.createRadialGradient(c, c, Math.max(0, r - 14), c, c, r + 14);
-    grd.addColorStop(0, 'rgba(0,0,0,0)');
-    grd.addColorStop(0.5, `rgba(150,225,255,${a})`);
-    grd.addColorStop(1, 'rgba(0,0,0,0)');
-    g.fillStyle = grd;
-    g.beginPath();
-    g.arc(c, c, r + 14, 0, Math.PI * 2);
-    g.fill();
-  }
-
-  // --- radial spokes (diffraction blades) --------------------------------
-  const spokes = 96;
-  for (let i = 0; i < spokes; i++) {
-    const a = (i / spokes) * Math.PI * 2;
-    const len = c * (0.28 + 0.7 * Math.abs(Math.sin(i * 2.399)));
-    const alpha = 0.1 + 0.16 * Math.random();
-    g.strokeStyle = `rgba(120,215,255,${alpha})`;
-    g.lineWidth = 1.4;
-    g.beginPath();
-    g.moveTo(c + Math.cos(a) * c * 0.1, c + Math.sin(a) * c * 0.1);
-    g.lineTo(c + Math.cos(a) * len, c + Math.sin(a) * len);
-    g.stroke();
-  }
-
-  // --- die grid ring -----------------------------------------------------
-  const dieCount = 46;
-  for (let i = 0; i < dieCount; i++) {
-    const a = (i / dieCount) * Math.PI * 2;
-    const rr = c * 0.66;
-    const x = c + Math.cos(a) * rr;
-    const y = c + Math.sin(a) * rr;
-    const w = c * 0.075;
-    const h = c * 0.045;
-    g.save();
-    g.translate(x, y);
-    g.rotate(a + Math.PI / 2);
-    g.strokeStyle = `rgba(160,235,255,${0.22 + 0.18 * Math.random()})`;
-    g.lineWidth = 2;
-    g.strokeRect(-w / 2, -h / 2, w, h);
-    // die circuitry
-    g.strokeStyle = 'rgba(120,225,255,0.2)';
-    g.lineWidth = 1;
-    for (let k = 0; k < 4; k++) {
-      const yy = -h / 2 + ((k + 1) * h) / 5;
-      g.beginPath();
-      g.moveTo(-w / 2 + 4, yy);
-      g.lineTo(w / 2 - 4, yy);
-      g.stroke();
-    }
-    g.restore();
-  }
-
-  // --- radial circuit traces from the centre -----------------------------
-  for (let i = 0; i < 40; i++) {
-    const a = (i / 40) * Math.PI * 2 + Math.random() * 0.08;
-    g.strokeStyle = `rgba(90,210,255,${0.13 + 0.14 * Math.random()})`;
-    g.lineWidth = 1 + Math.random() * 2;
-    g.beginPath();
-    let r = c * 0.12;
-    let ang = a;
-    g.moveTo(c + Math.cos(ang) * r, c + Math.sin(ang) * r);
-    while (r < c * 0.94) {
-      r += c * (0.03 + Math.random() * 0.05);
-      ang += (Math.random() - 0.5) * 0.22;
-      g.lineTo(c + Math.cos(ang) * r, c + Math.sin(ang) * r);
-    }
-    g.stroke();
-  }
-
-  // --- bright core (the illuminated centre) ------------------------------
-  const core = g.createRadialGradient(c, c, 0, c, c, c * 0.34);
-  core.addColorStop(0, 'rgba(150,210,245,0.07)');
-  core.addColorStop(0.28, 'rgba(70,155,215,0.05)');
-  core.addColorStop(1, 'rgba(0,0,0,0)');
-  g.fillStyle = core;
+  g.fillStyle = '#000000';
+  g.fillRect(0, c - lane * 1.6, size, lane * 3.2);
+  g.strokeStyle = 'rgba(150,225,255,0.35)';
+  g.lineWidth = 3;
   g.beginPath();
-  g.arc(c, c, c * 0.3, 0, Math.PI * 2);
-  g.fill();
+  g.moveTo(0, c - lane * 1.6);
+  g.lineTo(c, c - lane * 1.6);
+  g.moveTo(0, c + lane * 1.6);
+  g.lineTo(c, c + lane * 1.6);
+  g.stroke();
+
+  // --- polished rim ------------------------------------------------------
+  g.strokeStyle = 'rgba(130,215,245,0.6)';
+  g.lineWidth = 5;
+  g.beginPath();
+  g.arc(c, c, c * 0.985, 0, Math.PI * 2);
+  g.stroke();
+  g.strokeStyle = 'rgba(90,175,215,0.18)';
+  g.lineWidth = 14;
+  g.beginPath();
+  g.arc(c, c, c * 0.96, 0, Math.PI * 2);
+  g.stroke();
 
   // --- clip to the wafer disc --------------------------------------------
-  // destination-in keeps what has been drawn inside the circle and erases
-  // the corners of the square canvas
   g.globalCompositeOperation = 'destination-in';
   g.fillStyle = '#fff';
   g.beginPath();
   g.arc(c, c, c * 0.995, 0, Math.PI * 2);
   g.fill();
-
-  // --- polished rim -------------------------------------------------------
-  g.globalCompositeOperation = 'lighter';
-  g.strokeStyle = 'rgba(140,225,255,0.7)';
-  g.lineWidth = 5;
-  g.beginPath();
-  g.arc(c, c, c * 0.985, 0, Math.PI * 2);
-  g.stroke();
 
   const tex = new THREE.CanvasTexture(cv);
   tex.colorSpace = THREE.SRGBColorSpace;

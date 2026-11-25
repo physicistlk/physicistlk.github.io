@@ -45,14 +45,6 @@ const html = readFileSync(path.join(dist, 'index.html'), 'utf8');
 check(html.includes('app.js.gz.b64'), 'the page boots from the packed bundle');
 check(!/\ssrc="[^"]*index-[^"]*\.js"/.test(html), 'the page does not reference a raw bundle');
 
-const model = path.join(dist, 'model');
-check(existsSync(path.join(model, 'manifest.json')), 'the model manifest was staged');
-if (existsSync(path.join(model, 'manifest.json'))) {
-  const manifest = JSON.parse(readFileSync(path.join(model, 'manifest.json'), 'utf8'));
-  const missing = manifest.parts.filter((p) => !existsSync(path.join(model, p)));
-  check(missing.length === 0, `all ${manifest.parts.length} model parts were staged`);
-}
-
 if (problems.length) {
   console.error(`\n${problems.length} problem(s) with the build`);
   process.exit(1);

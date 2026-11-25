@@ -108,11 +108,9 @@ export const EPILOGUE = {
   kicker: 'EPILOGUE',
   quote: 'We built this machine to etch silicon. Somewhere along the way, we taught it to read a body.',
   credits: [
-    { role: 'MODEL', value: '“Space Station 4” by re1monsen' },
-    { role: 'SOURCE', value: 'sketchfab.com/3d-models/space-station-4-cf80075368174bf9895f4fd266cf17e3' },
-    { role: 'LICENCE', value: 'CC BY 4.0 — attribution required, commercial use permitted' },
-    { role: 'REINTERPRETATION', value: 'Materials, lighting, camera and the tunnel sequence — created for this site' },
     { role: 'SUBJECT', value: 'Organic electrochemical transistors · oxide semiconductors · bioelectronic sensors' },
+    { role: 'METHOD', value: 'Charge, ions and atoms — the same physics, from wafer to sensor' },
+    { role: 'VISUALS', value: 'Everything on this page is procedural: geometry, materials and simulation' },
     { role: 'SITE', value: 'Lokesh Kumar, PhD — Department of Physics, NIT Calicut' },
   ],
 };

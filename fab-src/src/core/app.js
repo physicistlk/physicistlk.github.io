@@ -8,7 +8,7 @@ import { ScrollController } from './scroll.js';
 import { createEnvironment } from './environment.js';
 import { Pointer } from './pointer.js';
 import { createWafer } from '../scenes/wafer.js';
-import { loadFabTool } from '../scenes/fabtool.js';
+import { createDevice } from '../scenes/device.js';
 import { createTheory } from '../scenes/theory.js';
 import { createTunnel } from '../scenes/tunnel.js';
 import { ContrastField } from '../scenes/contrast.js';
@@ -153,19 +153,10 @@ export class Narrative {
     };
     progress(0.05);
 
-    const manager = new THREE.LoadingManager();
-    manager.onProgress = (_url, loaded, total) => {
-      progress(0.05 + 0.8 * (total ? loaded / total : 0));
-    };
-
-    try {
-      this.fab = await loadFabTool(import.meta.env.BASE_URL);
-      this.scene.add(this.fab.group);
-      progress(0.9);
-    } catch (err) {
-      console.error('[cascade] model failed to load', err);
-      progress(1);
-    }
+    // the device is procedural — there is nothing to download
+    this.fab = createDevice();
+    this.scene.add(this.fab.group);
+    progress(0.9);
 
     // pre-warm the shader compile so the first scroll is smooth
     this.renderer.compile(this.scene, this.camera);
@@ -407,7 +398,7 @@ export class Narrative {
     if (this.fab) {
       const dim = 1 - 0.55 * THREE.MathUtils.smoothstep(p, 0.305, 0.37) *
                         (1 - THREE.MathUtils.smoothstep(p, 0.52, 0.565));
-      this.fab.coreLight.intensity = 9 * dim;
+      this.fab.coreLight.intensity = 1.5 * dim;
     }
 
     // -------------------------------------------------------- the film --
