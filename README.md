@@ -70,9 +70,12 @@ built with Vite and Three.js. It runs in four movements:
 2. **The Cascade** — the lithography chapter. Type cascades word by word in
    parallax over the model as it decomposes into a process-flow diagram:
    deposition, lithography, etch, encapsulation, integration, biosensing.
-3. **The cinema** — a scroll-locked 30-second descent through the optics, the
-   reticle, the plasma and the silicon lattice. The footage is rendered live,
-   and a dot-and-line field samples its own contrast frame by frame.
+3. **The cinema** — a scroll-locked sixteen-second descent: a brief flash of
+   light on the optical path, the mask aligning, the plasma, the silicon
+   lattice — and then the landing, where the light falls on photoresist over
+   an array of silicon atoms and the CMOS circuit comes out of it. The
+   footage is rendered live, and a dot-and-line field samples its own contrast
+   frame by frame.
 4. **Epilogue** — credits and a closing line.
 
 The thread running through it is the route from a fab process to the
