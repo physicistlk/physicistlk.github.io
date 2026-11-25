@@ -14,13 +14,30 @@ import * as THREE from 'three';
  */
 
 const SEG = 16;
-const OPTICAL_END = -175;   // the light path is deliberately short
+const WAFER_Z = -72;        // the silicon wafer the laser strikes
+const CORRIDOR_Z = -230;    // where the tunnel corridor begins
 const RETICLE_END = -560;
 const PLASMA_END = -1000;
 const TRAVEL_END = -1420;
 const CHIP_Z = -1455;       // the die sits just beyond the end of the flight
 const DIE_R = 12;
 const RESIST_R = 12.7;
+
+/**
+ * The opening of the flight. The laser comes in from the right and crosses
+ * the frame; the camera closes on the wafer it strikes, swings around it and
+ * pushes in, then dives into the corridor.
+ * `p` position, `l` look-at, `f` field of view.
+ */
+const OPTICAL_KEYS = [
+  { t: 0.000, p: [0, 2.0, 40], l: [0, 0, -60], f: 42 },
+  { t: 0.060, p: [-6.5, 2.6, -16], l: [0, 0, -70], f: 38 },
+  { t: 0.110, p: [-9.5, 2.2, -46], l: [0, 0, -72], f: 31 },
+  { t: 0.150, p: [-5.0, 1.4, -58], l: [0, 0, -72], f: 24 },
+  { t: 0.190, p: [4.5, 2.4, -74], l: [0, 0, -72], f: 26 },
+  { t: 0.230, p: [3.0, 3.0, -160], l: [0, 0, -250], f: 36 },
+  { t: 0.260, p: [0, 2.0, -292], l: [0, 0, -340], f: 42 },
+];
 
 export function createTunnel() {
   const group = new THREE.Group();
@@ -326,35 +343,84 @@ export function createTunnel() {
     depthWrite: false,
     side: THREE.DoubleSide,
   });
+  // the laser comes in from the right and strikes the wafer
   const optBeam = makeRayBundle({
     count: 7,
-    fromRadius: 5.0,
-    fromZ: 30,
+    fromRadius: 1.9,
+    fromZ: 6,
     toRadius: 0.35,
-    toZ: -215,
+    toZ: WAFER_Z + 0.4,
     radius: 0.032,
     material: optBeamMat,
+    origin: new THREE.Vector3(34, 3.5, 14),
   });
   group.add(optBeam);
+
+  // the silicon wafer it lands on
+  const waferMat = new THREE.MeshStandardMaterial({
+    color: 0x1b2a38,
+    metalness: 0.92,
+    roughness: 0.22,
+    emissive: new THREE.Color(0x0a2233),
+    emissiveIntensity: 0.4,
+    transparent: true,
+    opacity: 0,
+    side: THREE.DoubleSide,
+  });
+  const wafer = new THREE.Mesh(new THREE.CircleGeometry(4.6, 64), waferMat);
+  wafer.position.set(0, 0, WAFER_Z);
+  wafer.rotation.set(-0.22, 0, 0.1);
+  group.add(wafer);
+
+  // its rim catches the light
+  const waferRimMat = new THREE.MeshBasicMaterial({
+    color: 0x8fe6ff,
+    transparent: true,
+    opacity: 0,
+    toneMapped: false,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+    side: THREE.DoubleSide,
+  });
+  const waferRim = new THREE.Mesh(new THREE.RingGeometry(4.45, 4.68, 64), waferRimMat);
+  waferRim.position.copy(wafer.position);
+  waferRim.rotation.copy(wafer.rotation);
+  group.add(waferRim);
+
+  // where the beam lands
+  const hitMat = new THREE.SpriteMaterial({
+    map: makeGlowTexture(),
+    color: 0xdff4ff,
+    transparent: true,
+    opacity: 0,
+    toneMapped: false,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+    depthTest: false,
+    fog: false,
+  });
+  const hit = new THREE.Sprite(hitMat);
+  hit.position.set(0, 0, WAFER_Z + 0.6);
+  hit.scale.setScalar(9);
+  hit.renderOrder = 5;
+  group.add(hit);
 
   // --------------------------------------------------------------- layout --
   // Fill the ring / rib instances for the whole run.
   let ringIdx = 0;
   let ribIdx = 0;
   const ringRadius = (z) => {
-    if (z > OPTICAL_END) return THREE.MathUtils.lerp(7.2, 4.2, (z - 0) / (0 - OPTICAL_END));
-    if (z > RETICLE_END) return THREE.MathUtils.lerp(4.2, 5.4, (OPTICAL_END - z) / (OPTICAL_END - RETICLE_END));
+    if (z > RETICLE_END) return THREE.MathUtils.lerp(4.2, 5.4, (CORRIDOR_Z - z) / (CORRIDOR_Z - RETICLE_END));
     if (z > PLASMA_END) return 5.4 + Math.sin((z - RETICLE_END) * 0.05) * 0.6;
     return THREE.MathUtils.lerp(5.4, 9.5, (PLASMA_END - z) / (PLASMA_END - TRAVEL_END));
   };
   const ringTint = (z) => {
-    if (z > OPTICAL_END) return new THREE.Color(0x7fe0ff);
     if (z > RETICLE_END) return new THREE.Color(0xbfe6ff);
     if (z > PLASMA_END) return new THREE.Color(0xa07bff);
     return new THREE.Color(0x6fa8d8);
   };
 
-  for (let z = 0; z > TRAVEL_END; z -= SEG) {
+  for (let z = CORRIDOR_Z; z > TRAVEL_END; z -= SEG) {
     const r = ringRadius(z);
     dummy.position.set(0, 0, z);
     dummy.rotation.set(0, 0, 0);
@@ -386,7 +452,7 @@ export function createTunnel() {
 
   // reticle plates inside the reticle section
   for (let i = 0; i < 6; i++) {
-    const z = -195 - i * 70;
+    const z = -110 - i * 45;
     dummy.position.set(0, 0, z);
     dummy.rotation.set(0, 0, 0);
     dummy.scale.set(9, 9, 1);
@@ -412,19 +478,38 @@ export function createTunnel() {
       const sway = Math.sin(elapsed * 0.8) * 0.32 + Math.sin(elapsed * 0.37) * 0.2;
       const swayY = Math.cos(elapsed * 0.62) * 0.28;
 
-      camera.position.set(sway, swayY, z);
-      // look slightly ahead down the tunnel, with a slow roll
-      camera.rotation.set(0, 0, 0);
-      camera.rotation.z = Math.sin(elapsed * 0.45) * 0.09;
-      camera.rotation.x = Math.sin(elapsed * 0.29) * 0.035;
-      camera.rotation.y = Math.sin(elapsed * 0.51) * 0.05;
+      const opt = sampleOpticalKeys(t);
+      if (opt) {
+        // the opening: the camera closes on the wafer the laser strikes,
+        // swings around it and pushes in
+        camera.position.set(opt.p[0], opt.p[1], opt.p[2]);
+        camera.lookAt(opt.l[0], opt.l[1], opt.l[2]);
+        camera.rotation.z += Math.sin(elapsed * 0.45) * 0.07;
+        camera.rotation.x += Math.sin(elapsed * 0.29) * 0.03;
+        if (camera.fov !== opt.f) {
+          camera.fov = opt.f;
+          camera.updateProjectionMatrix();
+        }
+      } else {
+        camera.position.set(sway, swayY, z);
+        // look slightly ahead down the tunnel, with a slow roll
+        camera.rotation.set(0, 0, 0);
+        camera.rotation.z = Math.sin(elapsed * 0.45) * 0.09;
+        camera.rotation.x = Math.sin(elapsed * 0.29) * 0.035;
+        camera.rotation.y = Math.sin(elapsed * 0.51) * 0.05;
+        if (camera.fov !== 42) {
+          camera.fov = 42;
+          camera.updateProjectionMatrix();
+        }
+      }
 
       // section-driven material states (distance travelled, always increasing)
       const dist = -z;
       const inLattice = dist >= -PLASMA_END;
       const nearPlasma = THREE.MathUtils.smoothstep(dist, -RETICLE_END - 20, -PLASMA_END - 40);
       const plasmaFade = 1 - THREE.MathUtils.smoothstep(dist, -PLASMA_END + 20, -PLASMA_END + 200);
-      const inReticle = dist > -OPTICAL_END && dist < -RETICLE_END;
+      const inReticle = dist > -RETICLE_END && dist < -PLASMA_END;
+      const inOptical = dist < 300;
 
       ringMat.opacity = 0.75 * state.presence * (inLattice ? 0.12 : 1);
       ribMat.opacity = 0.5 * state.presence * (inLattice ? 0.05 : 1);
@@ -440,7 +525,13 @@ export function createTunnel() {
 
       // --- the light path is brief: it is gone by the time the mask lands --
       optBeamMat.opacity =
-        (1 - THREE.MathUtils.smoothstep(dist, 110, 200)) * 0.34 * state.presence;
+        (1 - THREE.MathUtils.smoothstep(dist, 90, 230)) * 0.5 * state.presence;
+      // the wafer the laser lands on, and the light on its surface
+      const waferVis = 1 - THREE.MathUtils.smoothstep(dist, 110, 250);
+      waferMat.opacity = waferVis * state.presence;
+      waferRimMat.opacity = waferVis * 0.85 * state.presence;
+      hitMat.opacity =
+        (1 - THREE.MathUtils.smoothstep(dist, 170, 300)) * 0.95 * state.presence;
 
       // --- the landing: light on resist, resist burning off, circuit left --
       const nearChip = THREE.MathUtils.smoothstep(dist, 1150, 1360);
@@ -687,13 +778,41 @@ function makeRay(from, to, radius, material) {
 }
 
 /** A bundle of rays converging from a ring onto a point. */
-function makeRayBundle({ count, fromRadius, fromZ, toRadius, toZ, radius, material }) {
+function makeRayBundle({ count, fromRadius, fromZ, toRadius, toZ, radius, material, origin }) {
   const bundle = new THREE.Group();
+  const ox = origin ? origin.x : 0;
+  const oy = origin ? origin.y : 0;
+  const oz = origin ? origin.z : fromZ;
   for (let i = 0; i < count; i++) {
     const a = (i / count) * Math.PI * 2 + 0.2;
-    const from = new THREE.Vector3(Math.cos(a) * fromRadius, Math.sin(a) * fromRadius, fromZ);
+    const from = new THREE.Vector3(ox + Math.cos(a) * fromRadius, oy + Math.sin(a) * fromRadius, oz);
     const to = new THREE.Vector3(Math.cos(a) * toRadius, Math.sin(a) * toRadius, toZ);
     bundle.add(makeRay(from, to, radius, material));
   }
   return bundle;
+}
+
+/** Interpolates the opening camera move: close on the wafer, swing round it, zoom. */
+function sampleOpticalKeys(t) {
+  const K = OPTICAL_KEYS;
+  if (t <= K[0].t) return { p: K[0].p, l: K[0].l, f: K[0].f };
+  for (let i = 0; i < K.length - 1; i++) {
+    const a = K[i];
+    const b = K[i + 1];
+    if (t <= b.t) {
+      const u = (t - a.t) / (b.t - a.t);
+      const e = u * u * (3 - 2 * u);
+      const mix = (p, q) => [
+        THREE.MathUtils.lerp(p[0], q[0], e),
+        THREE.MathUtils.lerp(p[1], q[1], e),
+        THREE.MathUtils.lerp(p[2], q[2], e),
+      ];
+      return {
+        p: mix(a.p, b.p),
+        l: mix(a.l, b.l),
+        f: THREE.MathUtils.lerp(a.f, b.f, e),
+      };
+    }
+  }
+  return null;
 }

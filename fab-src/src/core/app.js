@@ -140,6 +140,23 @@ export class Narrative {
     this.loaderPct = document.getElementById('loader-pct');
 
     document.getElementById('film-skip')?.addEventListener('click', () => this._endFilm(true));
+
+    // the menu — one tap from the front page to any page of the site
+    const menu = document.getElementById('menu');
+    const menuToggle = document.getElementById('menu-toggle');
+    const setMenu = (open) => {
+      menu?.classList.toggle('is-open', open);
+      menu?.setAttribute('aria-hidden', String(!open));
+      menuToggle?.setAttribute('aria-expanded', String(open));
+      menuToggle?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      document.body.classList.toggle('is-menu-open', open);
+    };
+    menuToggle?.addEventListener('click', () =>
+      setMenu(!menu?.classList.contains('is-open'))
+    );
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setMenu(false);
+    });
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && this.film.active) this._endFilm(true);
     });
@@ -246,7 +263,7 @@ export class Narrative {
     this.sceneLabel.classList.toggle('is-visible', visible);
     this.chapterRail.classList.toggle('is-visible', p > 0.03 && p < 0.6);
     this.chapterFill.style.height = `${Math.min(100, p * 100)}%`;
-    this.nav.classList.toggle('is-visible', p > 0.035);
+    this.nav.classList.add('is-visible');
   }
 
   // -------------------------------------------------------------- film ---
