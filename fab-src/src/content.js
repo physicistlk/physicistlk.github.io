@@ -86,14 +86,22 @@ export const PROCESS_FLOW = [
   { id: 'biosense', label: 'BIOSENSING', detail: 'enzyme · receptor' },
 ];
 
+/**
+ * The cinema. The flight is deliberately brisk — the light path is a short,
+ * bright beat, and the sequence lands on the chip.
+ * `at` values are fractions of the film and line up with the tunnel's
+ * geometry: the optical path ends at z = -175, the reticle at -560, the
+ * plasma at -1000, and the die at -1455.
+ */
 export const FILM = {
   sections: [
     { at: 0.00, code: 'OPTICAL PATH', note: 'λ = 13.5 nm · NA 0.35' },
-    { at: 0.26, code: 'RETICLE ALIGNMENT', note: 'stage X/Y ± 2 nm' },
-    { at: 0.52, code: 'PLASMA ETCH', note: 'Ar/CF₄ · 300 W · 20 mTorr' },
-    { at: 0.76, code: 'SILICON LATTICE', note: 'diamond cubic · a = 5.43 Å' },
+    { at: 0.18, code: 'RETICLE ALIGNMENT', note: 'stage X/Y ± 2 nm' },
+    { at: 0.43, code: 'PLASMA ETCH', note: 'Ar/CF₄ · 300 W · 20 mTorr' },
+    { at: 0.68, code: 'SILICON LATTICE', note: 'diamond cubic · a = 5.43 Å' },
+    { at: 0.89, code: 'CMOS ON CHIP', note: 'photoresist · 4 metal layers · 6T' },
   ],
-  duration: 30,
+  duration: 16,
 };
 
 export const EPILOGUE = {

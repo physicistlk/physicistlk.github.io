@@ -4,7 +4,9 @@ import * as THREE from 'three';
  * Scene 3 — "Into the Wafer".
  *
  * A first-person flight through the inside of a fab, rendered procedurally:
- *   optical path → reticle alignment → plasma etch chamber → silicon lattice.
+ *   optical path → reticle alignment → plasma etch chamber → silicon lattice
+ *   → the die itself, where the light lands on photoresist over silicon and
+ *   the CMOS circuit comes out of it.
  *
  * The tunnel is rendered into a small off-screen target each frame; its
  * luminance is read back and drives an interactive dot-and-line overlay, so
@@ -12,10 +14,13 @@ import * as THREE from 'three';
  */
 
 const SEG = 16;
-const OPTICAL_END = -300;
-const RETICLE_END = -620;
-const PLASMA_END = -980;
+const OPTICAL_END = -175;   // the light path is deliberately short
+const RETICLE_END = -560;
+const PLASMA_END = -1000;
 const TRAVEL_END = -1420;
+const CHIP_Z = -1455;       // the die sits just beyond the end of the flight
+const DIE_R = 12;
+const RESIST_R = 12.7;
 
 export function createTunnel() {
   const group = new THREE.Group();
@@ -207,6 +212,131 @@ export function createTunnel() {
     latticeGroup.add(p);
   }
 
+  // ------------------------------------------------------------------ chip --
+  // The landing: a substrate of silicon atoms, a sheet of photoresist, and
+  // the CMOS die that the light prints onto it.
+  const chipGroup = new THREE.Group();
+  group.add(chipGroup);
+
+  // --- substrate: a dense array of silicon atoms --------------------------
+  const siGeo = new THREE.IcosahedronGeometry(0.25, 0);
+  const siMat = new THREE.MeshBasicMaterial({
+    color: 0x9fd0f2,
+    transparent: true,
+    opacity: 0,
+    toneMapped: false,
+  });
+  const SI_SPACING = 0.8;
+  const SI_R = 15.0;
+  const siPos = [];
+  for (let ix = -17; ix <= 17; ix++) {
+    for (let iy = -17; iy <= 17; iy++) {
+      const x = ix * SI_SPACING;
+      const y = iy * SI_SPACING;
+      if (Math.hypot(x, y) > SI_R) continue;
+      // stagger alternate rows so the array reads as a crystal, not a sheet
+      const z = CHIP_Z - 1.5 - (ix % 2 === 0 ? 0 : 0.3);
+      siPos.push(x, y, z);
+    }
+  }
+  const si = new THREE.InstancedMesh(siGeo, siMat, siPos.length / 3);
+  si.frustumCulled = false;
+  for (let i = 0; i < siPos.length / 3; i++) {
+    dummy.position.set(siPos[i * 3], siPos[i * 3 + 1], siPos[i * 3 + 2]);
+    dummy.rotation.set(Math.random(), Math.random(), Math.random());
+    dummy.scale.setScalar(0.75 + Math.random() * 0.45);
+    dummy.updateMatrix();
+    si.setMatrixAt(i, dummy.matrix);
+  }
+  si.instanceMatrix.needsUpdate = true;
+  chipGroup.add(si);
+
+  // --- the die: the CMOS layout, lit --------------------------------------
+  const dieMat = new THREE.MeshBasicMaterial({
+    map: makeCmosTexture('chip'),
+    transparent: true,
+    opacity: 0,
+    toneMapped: false,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+    side: THREE.DoubleSide,
+  });
+  const die = new THREE.Mesh(new THREE.CircleGeometry(DIE_R, 96), dieMat);
+  die.position.z = CHIP_Z;
+  chipGroup.add(die);
+
+  // --- the resist: the mask sheet, waiting to be burned off ---------------
+  const resistMat = new THREE.MeshBasicMaterial({
+    map: makeCmosTexture('mask'),
+    transparent: true,
+    opacity: 0,
+    toneMapped: false,
+    depthWrite: false,
+    side: THREE.DoubleSide,
+  });
+  const resist = new THREE.Mesh(new THREE.CircleGeometry(RESIST_R, 96), resistMat);
+  resist.position.z = CHIP_Z + 0.5;
+  chipGroup.add(resist);
+
+  // --- the light that lands on it ----------------------------------------
+  const landBeamMat = new THREE.MeshBasicMaterial({
+    color: 0xbfe6ff,
+    transparent: true,
+    opacity: 0,
+    toneMapped: false,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+    side: THREE.DoubleSide,
+  });
+  const landBeam = makeRayBundle({
+    count: 9,
+    fromRadius: 5.5,
+    fromZ: CHIP_Z + 80,
+    toRadius: 0.5,
+    toZ: CHIP_Z,
+    radius: 0.022,
+    material: landBeamMat,
+  });
+  chipGroup.add(landBeam);
+
+  const impactMat = new THREE.SpriteMaterial({
+    map: makeGlowTexture(),
+    color: 0xe8f6ff,
+    transparent: true,
+    opacity: 0,
+    toneMapped: false,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+    depthTest: false,
+    fog: false,
+  });
+  const impact = new THREE.Sprite(impactMat);
+  impact.position.set(0, 0, CHIP_Z + 0.2);
+  impact.scale.setScalar(14);
+  impact.renderOrder = 6;
+  chipGroup.add(impact);
+
+  // --- the light path itself: short, focused, gone by the reticle --------
+  const optBeamMat = new THREE.MeshBasicMaterial({
+    color: 0xd8f2ff,
+    transparent: true,
+    opacity: 0,
+    toneMapped: false,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+    side: THREE.DoubleSide,
+  });
+  const optBeam = makeRayBundle({
+    count: 7,
+    fromRadius: 5.0,
+    fromZ: 30,
+    toRadius: 0.35,
+    toZ: -215,
+    radius: 0.032,
+    material: optBeamMat,
+  });
+  group.add(optBeam);
+
   // --------------------------------------------------------------- layout --
   // Fill the ring / rib instances for the whole run.
   let ringIdx = 0;
@@ -256,7 +386,7 @@ export function createTunnel() {
 
   // reticle plates inside the reticle section
   for (let i = 0; i < 6; i++) {
-    const z = RETICLE_END + 40 + i * 52;
+    const z = -195 - i * 70;
     dummy.position.set(0, 0, z);
     dummy.rotation.set(0, 0, 0);
     dummy.scale.set(9, 9, 1);
@@ -307,6 +437,20 @@ export function createTunnel() {
       sparkMat.uniforms.uTime.value = elapsed;
       latMat.opacity = THREE.MathUtils.smoothstep(dist, -PLASMA_END - 30, -PLASMA_END + 70) * 0.8 * state.presence;
       planeMat.opacity = THREE.MathUtils.smoothstep(dist, -PLASMA_END - 30, -PLASMA_END + 180) * 0.22 * state.presence;
+
+      // --- the light path is brief: it is gone by the time the mask lands --
+      optBeamMat.opacity =
+        (1 - THREE.MathUtils.smoothstep(dist, 110, 200)) * 0.34 * state.presence;
+
+      // --- the landing: light on resist, resist burning off, circuit left --
+      const nearChip = THREE.MathUtils.smoothstep(dist, 1150, 1360);
+      const burn = THREE.MathUtils.smoothstep(dist, 1360, 1425);
+      siMat.opacity = nearChip * 0.5 * state.presence;
+      dieMat.opacity = nearChip * (0.22 + 0.78 * burn) * state.presence;
+      resistMat.opacity = nearChip * (1 - burn) * 0.9 * state.presence;
+      landBeamMat.opacity = nearChip * (0.1 + 0.32 * burn) * state.presence;
+      impactMat.opacity = nearChip * (0.1 + 0.42 * burn) * state.presence;
+      impact.scale.setScalar(8 + 9 * burn);
       return z;
     },
 
@@ -346,6 +490,9 @@ function makeReticleTexture(size = 512) {
   const g = cv.getContext('2d');
   g.clearRect(0, 0, size, size);
   const c = size / 2;
+
+  // the mask itself — the circuit that is about to be printed
+  drawCmosLayout(g, size, 'mask', 0.5);
 
   g.strokeStyle = 'rgba(150,225,255,0.85)';
   g.lineWidth = 2;
@@ -403,4 +550,150 @@ function makeReticleTexture(size = 512) {
   const tex = new THREE.CanvasTexture(cv);
   tex.colorSpace = THREE.SRGBColorSpace;
   return tex;
+}
+
+/**
+ * A CMOS layout, drawn as a repeating array of standard cells.
+ *
+ * Each cell carries a complementary PMOS / NMOS pair — source and drain
+ * diffusion, a poly gate across them, metal-1 routing, the metal-2 power
+ * rails, contacts and vias — so the pattern reads as a real chip rather than
+ * as decoration. `mode` picks the palette: 'mask' is the chrome on the
+ * photoresist, 'chip' is the finished die.
+ */
+function drawCmosLayout(g, size, mode, fade = 1) {
+  const C = {
+    mask: {
+      diff: `rgba(255,198,124,${0.92 * fade})`,
+      poly: `rgba(255,160,98,${0.8 * fade})`,
+      m1: `rgba(255,230,180,${0.95 * fade})`,
+      m2: `rgba(255,244,218,${0.85 * fade})`,
+      ring: `rgba(255,204,146,${0.45 * fade})`,
+      grid: `rgba(255,190,120,${0.07 * fade})`,
+      wash: `rgba(255,178,98,${0.17 * fade})`,
+    },
+    chip: {
+      diff: `rgba(92,208,192,${0.95 * fade})`,
+      poly: `rgba(198,128,222,${0.95 * fade})`,
+      m1: `rgba(236,182,100,${0.98 * fade})`,
+      m2: `rgba(255,216,146,${0.9 * fade})`,
+      ring: `rgba(110,190,220,${0.4 * fade})`,
+      grid: `rgba(96,170,210,${0.1 * fade})`,
+      wash: null,
+    },
+  }[mode];
+
+  let seed = 20260925;
+  const rnd = () => {
+    seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+    return seed / 0x7fffffff;
+  };
+
+  // substrate grid
+  g.strokeStyle = C.grid;
+  g.lineWidth = 1;
+  for (let i = 0; i <= 26; i++) {
+    const p = (i / 26) * size;
+    g.beginPath();
+    g.moveTo(p, 0);
+    g.lineTo(p, size);
+    g.stroke();
+    g.beginPath();
+    g.moveTo(0, p);
+    g.lineTo(size, p);
+    g.stroke();
+  }
+
+  const cols = 6;
+  const rows = 6;
+  const cw = size / cols;
+  const ch = size / rows;
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const ox = c * cw + cw * 0.07;
+      const oy = r * ch + ch * 0.11;
+      const w = cw * 0.86;
+      const h = ch * 0.78;
+      const flip = rnd() > 0.5;
+
+      // --- diffusion: source and drain of the PMOS and the NMOS ----------
+      g.fillStyle = C.diff;
+      g.fillRect(ox + w * 0.16, oy + h * 0.05, w * 0.22, h * 0.28);
+      g.fillRect(ox + w * 0.62, oy + h * 0.05, w * 0.22, h * 0.28);
+      g.fillRect(ox + w * 0.16, oy + h * 0.64, w * 0.22, h * 0.28);
+      g.fillRect(ox + w * 0.62, oy + h * 0.64, w * 0.22, h * 0.28);
+
+      // --- poly gates across the channels ---------------------------------
+      g.fillStyle = C.poly;
+      g.fillRect(ox + w * 0.43, oy + h * 0.03, w * 0.14, h * 0.32);
+      g.fillRect(ox + w * 0.43, oy + h * 0.62, w * 0.14, h * 0.32);
+
+      // --- metal 1: the local routing --------------------------------------
+      g.fillStyle = C.m1;
+      g.fillRect(ox, oy + h * 0.45, w, h * 0.065);
+      g.fillRect(ox + w * (flip ? 0.22 : 0.28), oy + h * 0.2, h * 0.055, h * 0.25);
+      g.fillRect(ox + w * (flip ? 0.7 : 0.64), oy + h * 0.2, h * 0.055, h * 0.25);
+
+      // --- metal 2: the power rails ---------------------------------------
+      g.fillStyle = C.m2;
+      g.fillRect(ox, oy, w, h * 0.032);
+      g.fillRect(ox, oy + h * 0.955, w, h * 0.032);
+
+      // --- contacts and vias ----------------------------------------------
+      g.fillStyle = C.m1;
+      for (let k = 0; k < 3; k++) {
+        const vx = ox + w * (0.1 + 0.34 * k);
+        g.fillRect(vx, oy + h * 0.43, h * 0.042, h * 0.042);
+        if (rnd() > 0.25) g.fillRect(vx, oy + h * 0.9, h * 0.042, h * 0.042);
+      }
+
+      // --- guard ring ------------------------------------------------------
+      g.strokeStyle = C.ring;
+      g.lineWidth = 2;
+      g.strokeRect(ox - 5, oy - 5, w + 10, h + 10);
+    }
+  }
+
+  // the resist coats the whole die
+  if (C.wash) {
+    g.fillStyle = C.wash;
+    g.fillRect(0, 0, size, size);
+  }
+}
+
+/** The CMOS layout as a texture — 'mask' for the resist, 'chip' for the die. */
+function makeCmosTexture(mode, size = 1024) {
+  const cv = document.createElement('canvas');
+  cv.width = cv.height = size;
+  const g = cv.getContext('2d');
+  g.clearRect(0, 0, size, size);
+  drawCmosLayout(g, size, mode);
+  const tex = new THREE.CanvasTexture(cv);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = 4;
+  return tex;
+}
+
+/** One thin ray of light, from a point to a point. */
+function makeRay(from, to, radius, material) {
+  const dir = new THREE.Vector3().subVectors(to, from);
+  const len = dir.length();
+  const geo = new THREE.CylinderGeometry(radius, radius, len, 6, 1, true);
+  const mesh = new THREE.Mesh(geo, material);
+  mesh.position.copy(from).addScaledVector(dir, 0.5);
+  mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir.normalize());
+  return mesh;
+}
+
+/** A bundle of rays converging from a ring onto a point. */
+function makeRayBundle({ count, fromRadius, fromZ, toRadius, toZ, radius, material }) {
+  const bundle = new THREE.Group();
+  for (let i = 0; i < count; i++) {
+    const a = (i / count) * Math.PI * 2 + 0.2;
+    const from = new THREE.Vector3(Math.cos(a) * fromRadius, Math.sin(a) * fromRadius, fromZ);
+    const to = new THREE.Vector3(Math.cos(a) * toRadius, Math.sin(a) * toRadius, toZ);
+    bundle.add(makeRay(from, to, radius, material));
+  }
+  return bundle;
 }
