@@ -1,0 +1,11 @@
+# build output
+fab-src/dist/
+fab-src/node_modules/
+fab-src/tools/node_modules/
+
+# the binary model is regenerated from fab-src/src/assets/model/*.b64
+fab-src/src/assets/fab-tool.glb
+
+# local scratch
+_site/
+.DS_Store
