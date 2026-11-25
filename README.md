@@ -16,13 +16,12 @@ https://physicistlk.github.io/
 | `/publications.html` | Publication list |
 | `/contact.html` | Contact and links |
 | `fab-src/` | Source of the front page — Vite + Three.js. See [`fab-src/README.md`](fab-src/README.md) |
-| `model/` | The 3D model as base64 text parts (see below) |
 | `fab-assets/` | Built front-page assets (packed bundle + stylesheet) |
 
 The front page is a **built artifact committed to the repository root**: the
-Pages workflow publishes the repository as it stands, so `index.html`,
-`fab-assets/` and `model/` at the root are exactly what the browser downloads.
-The academic pages remain plain HTML and can be edited directly.
+Pages workflow publishes the repository as it stands, so `index.html` and
+`fab-assets/` at the root are exactly what the browser downloads. The
+academic pages remain plain HTML and can be edited directly.
 
 To change the front page, edit `fab-src/`, rebuild, and copy the output to the
 repository root:
@@ -35,8 +34,8 @@ cp dist/index.html dist/fab-assets dist/fab-favicon.svg ../
 ```
 
 `npm run build` also runs `npm run verify`, which checks that the published
-page has everything it needs: the packed bundle, the stylesheet, no leftover
-raw bundle, and all sixteen model parts.
+page has everything it needs: the packed bundle, the stylesheet, and no
+leftover raw bundle.
 
 ## Working on the front page
 
@@ -46,29 +45,20 @@ npm ci
 npm run dev       # http://127.0.0.1:5173
 ```
 
-The dev server stages the model parts into `fab-src/public/model/` on start
-(`npm run prepare`) and serves them at `/model/`, so the browser resolves them
-exactly as it does on the published site. All narrative copy — the title card,
-the seven theory beats, the process flow, the film sections and the credits —
-lives in `fab-src/src/content.js`.
-
-### Why the model is stored as text
-
-The 3D model is a binary `.glb`, but it travels through this repository as
-sixteen base64 parts in `model/` so that it survives any text-oriented
-transport intact. The site fetches the parts at runtime, joins and decodes
-them in the browser, and parses the result with `GLTFLoader` — the binary is
-never committed.
+All narrative copy — the title card, the seven theory beats, the process flow,
+the film sections and the credits — lives in `fab-src/src/content.js`.
 
 ## The Cascade — the front page
 
 A scroll-driven 3D narrative set inside a semiconductor fabrication facility,
 built with Vite and Three.js. It runs in four movements:
 
-1. **Entry** — the tool assembles itself from a wireframe draw-in, lit against
-   a glowing wafer backdrop, and drifts under an inertial mouse orbit.
+1. **Entry** — a thin-film transistor assembles itself from a wireframe
+   draw-in: silicon substrate, back gate, gate dielectric, an organic
+   semiconductor channel with source and drain, and an electrolyte gel where
+   cations drift down toward the channel and are captured by receptor sites.
 2. **The Cascade** — the lithography chapter. Type cascades word by word in
-   parallax over the model as it decomposes into a process-flow diagram:
+   parallax over the device as it decomposes into a process-flow diagram:
    deposition, lithography, etch, encapsulation, integration, biosensing.
 3. **The cinema** — a scroll-locked sixteen-second descent: a brief flash of
    light on the optical path, the mask aligning, the plasma, the silicon
@@ -81,7 +71,11 @@ built with Vite and Three.js. It runs in four movements:
 The thread running through it is the route from a fab process to the
 electrochemical transistors and biosensors that come out of it.
 
+Every element on the page — geometry, materials, textures and simulation — is
+generated in the browser. There is no third-party model or image asset.
+
 ## Attribution
 
-The 3D model on the front page is *"Space Station 4" by re1monsen*, used under
-CC BY 4.0 — see [`ATTRIBUTION.md`](ATTRIBUTION.md).
+The typefaces (Hanken Grotesk, Inter, JetBrains Mono) are used under the SIL
+Open Font License and served from Google Fonts. Everything else is original —
+see [`ATTRIBUTION.md`](ATTRIBUTION.md).
