@@ -25,10 +25,11 @@ fab-src/
 npm ci          # install
 npm run dev     # dev server on http://127.0.0.1:5173
 npm run build   # -> dist/  (bundle + packed copy + stylesheet + favicon)
+npm run verify  # check a finished build
 npm run preview # serve dist/
 ```
 
-`npm run build` runs two steps:
+`npm run build` runs three steps:
 
 1. **`prepare-model.mjs`** copies the base64 model parts from the
    repository-root `model/` directory into `public/model/`, verifies that they
@@ -40,6 +41,20 @@ npm run preview # serve dist/
    it in the browser and import it as a blob module. This keeps the site
    self-contained — no CDN, no import map — while the bundle stays small
    enough to move through a text-only transport.
+3. **`verify-build.mjs`** checks that the published page has everything it
+   needs: the packed bundle, the stylesheet, no leftover raw bundle, and all
+   sixteen model parts.
+
+## The narrative
+
+| Movement | Scroll | What happens |
+|----------|--------|--------------|
+| Entry | 0 – 0.30 | The tool draws itself in as a wireframe, then materialises into brushed steel against a glowing wafer. Inertial mouse orbit. |
+| The Cascade | 0.30 – 0.56 | Type cascades word by word in parallax while the model decomposes into a six-stage process flow: deposition, lithography, etch, encapsulation, integration, biosensing. |
+| The cinema | 0.56 – 0.62 | Scroll locks for a 30-second descent — optics, reticle, plasma, silicon lattice. Rendered live; a dot-and-line field samples its own contrast. |
+| Epilogue | 0.62 – 1.0 | Credits roll, then the closing quote. |
+
+All copy lives in `src/content.js`.
 
 ## The model
 
