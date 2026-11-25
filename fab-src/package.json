@@ -9,8 +9,9 @@
     "predev": "node scripts/prepare-model.mjs",
     "dev": "vite",
     "prebuild": "node scripts/prepare-model.mjs",
-    "build": "vite build && node scripts/pack-app.mjs",
-    "preview": "vite preview --port 4173 --host 127.0.0.1"
+    "build": "vite build && node scripts/pack-app.mjs && node scripts/verify-build.mjs",
+    "preview": "vite preview --port 4173 --host 127.0.0.1",
+    "verify": "node scripts/verify-build.mjs"
   },
   "dependencies": {
     "three": "^0.180.0"
