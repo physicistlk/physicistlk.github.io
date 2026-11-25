@@ -34,6 +34,24 @@ npm run build
 cp dist/index.html dist/fab-assets dist/fab-favicon.svg ../
 ```
 
+`npm run build` also runs `npm run verify`, which checks that the published
+page has everything it needs: the packed bundle, the stylesheet, no leftover
+raw bundle, and all sixteen model parts.
+
+## Working on the front page
+
+```bash
+cd fab-src
+npm ci
+npm run dev       # http://127.0.0.1:5173
+```
+
+The dev server stages the model parts into `fab-src/public/model/` on start
+(`npm run prepare`) and serves them at `/model/`, so the browser resolves them
+exactly as it does on the published site. All narrative copy — the title card,
+the seven theory beats, the process flow, the film sections and the credits —
+lives in `fab-src/src/content.js`.
+
 ### Why the model is stored as text
 
 The 3D model is a binary `.glb`, but it travels through this repository as
