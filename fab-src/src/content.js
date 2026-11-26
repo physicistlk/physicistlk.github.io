@@ -94,11 +94,12 @@ export const PROCESS_FLOW = [
  * plasma at -1000, and the die at -1455.
  */
 /**
- * The cinema runs as one continuous descent — no chapter cards, no cuts.
- * The length is the length of the move; the pacing is carried by the camera.
+ * The cinema runs as one continuous descent — no chapter cards, no cuts, no
+ * letterbox. Five seconds: the pacing is carried by the camera, not by
+ * chapters.
  */
 export const FILM = {
-  duration: 16,
+  duration: 5,
 };
 
 /**
