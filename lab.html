@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neuromorphic Bioelectronics Lab (NBL) | Neuromorphic Bioelectronics &amp; Semiconductor Physics | NIT Calicut</title>
+  <meta name="description" content="The Neuromorphic Bioelectronics Lab (NBL) at NIT Calicut, led by Dr. Lokesh Kumar: neuromorphic bioelectronics and semiconductor physics — synaptic transistors, OECT biosensors, printed electronics and green graphene.">
+  <meta name="author" content="Dr. Lokesh Kumar">
+  <meta name="theme-color" content="#090b10">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Neuromorphic Bioelectronics Lab (NBL) — NIT Calicut">
+  <meta property="og:description" content="Neuromorphic Bioelectronics &amp; Semiconductor Physics. Synaptic transistors, OECT biosensors, printed electronics.">
+  <meta property="og:image" content="assets/profile.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/nbl.css">
+  <script>
+    if (/[?&]embed/.test(location.search)) document.documentElement.classList.add("embed");
+    (function () { try { if (localStorage.getItem("nbl_theme") === "light") document.documentElement.classList.add("light"); } catch (e) {} })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">
+        <div class="brand-icon"><span class="material-symbols-outlined">memory</span></div>
+        <div class="brand-text">
+          <span class="brand-lab">Neuromorphic Bioelectronics Lab (NBL)</span>
+          <span class="brand-affil">NIT Calicut · Department of Physics</span>
+        </div>
+      </a>
+      <div class="nav-actions">
+        <nav class="nav-links" aria-label="Primary Navigation">
+          <a class="nav-link" href="index.html" aria-current="page">Home</a>
+          <a class="nav-link" href="research.html">Research</a>
+          <a class="nav-link" href="publications.html">Publications</a>
+          <a class="nav-link" href="about.html">About</a>
+          <a class="nav-link" href="contact.html">Contact</a>
+        </nav>
+        <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle dark/light theme" title="Toggle theme">
+          <span class="material-symbols-outlined icon-dark">dark_mode</span>
+          <span class="material-symbols-outlined icon-light">light_mode</span>
+        </button>
+        <a class="btn btn-outline btn-sm" href="#join">Join NBL</a>
+        <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-expanded="false" aria-label="Open mobile menu">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" data-mobile-menu aria-hidden="true">
+    <a href="index.html" aria-current="page">Home</a>
+    <a href="research.html">Research</a>
+    <a href="publications.html">Publications</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a class="btn btn-primary" href="#join">Join NBL</a>
+  </div>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <canvas class="hero-canvas" data-synapse-canvas aria-hidden="true"></canvas>
+      <div class="container hero-grid">
+        <div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;margin-bottom:0.5rem">
+            <span class="badge">NIT Calicut · Department of Physics</span>
+            <div class="status-pill"><span class="pulse-dot" aria-hidden="true"></span><span>Lab status: active device characterization</span></div>
+          </div>
+          <h1 class="hero-wordmark">
+            <span class="text-gradient">NBL</span>
+            <span>Neuromorphic Bioelectronics Lab<br>for Neuromorphic Bioelectronics &amp; Semiconductor Physics</span>
+          </h1>
+          <p class="hero-lead" style="margin-top:1.4rem">
+            We build <strong>artificial synapses</strong> and <strong>bioelectronic sensors</strong> from organic electrochemical transistors, oxide and 2D semiconductors — printed on flexible substrates, driven below 2&nbsp;V, and tuned to listen to biology.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="research.html">Explore research <span class="material-symbols-outlined" style="font-size:1.15rem">arrow_forward</span></a>
+            <a class="btn btn-outline" href="publications.html">Publications &amp; patents</a>
+            <a class="btn btn-outline" href="index.html"><span class="material-symbols-outlined" style="font-size:1.1rem">play_circle</span> Replay the fab story</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="portrait-card">
+            <img class="portrait-img" src="assets/profile.jpg" alt="Dr. Lokesh Kumar, Principal Investigator of NBL" width="800" height="1067">
+            <div class="portrait-info">
+              <h2 class="pi-name">Dr. Lokesh Kumar</h2>
+              <p class="pi-title">Principal Investigator · Asst. Professor (Grade II)</p>
+              <p class="pi-affil">
+                <span class="material-symbols-outlined" style="font-size:1rem;vertical-align:-2px;color:var(--accent-cyan)">school</span> PhD, Semiconductor Physics, IIT Bombay<br>
+                <span class="material-symbols-outlined" style="font-size:1rem;vertical-align:-2px;color:var(--accent-cyan)">handshake</span> IGSTC collaborator · KIT, Germany
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- METRICS -->
+    <section class="metrics-section">
+      <div class="container">
+        <div class="metrics-bar">
+          <div class="metric-item"><span class="metric-num">4<span class="accent">+</span></span><span class="metric-label">Granted Indian patents</span></div>
+          <div class="metric-item"><span class="metric-num">&lt;2<span class="accent">V</span></span><span class="metric-label">Low-voltage devices</span></div>
+          <div class="metric-item"><span class="metric-num">~24<span class="accent">nJ</span></span><span class="metric-label">Per synaptic event</span></div>
+          <div class="metric-item"><span class="metric-num">IF 11.6</span><span class="metric-label">Carbon, 2025</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PILLARS -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-subtitle">What NBL does</span>
+          <h2 class="section-title">Four research pillars</h2>
+          <p class="section-desc">From charge transport in thin films to chips that learn and sense.</p>
+        </div>
+        <div class="pillar-grid">
+          <a class="pillar" href="research.html">
+            <span class="material-symbols-outlined pillar-ic" style="color:var(--accent-cyan)">neurology</span>
+            <span class="pillar-num">01 · NEUROMORPHIC</span>
+            <h3>Synaptic transistors</h3>
+            <p>STDP, paired-pulse facilitation and the Ebbinghaus forgetting curve in screen-printed OECTs at ~24&nbsp;nJ.</p>
+          </a>
+          <a class="pillar" href="research.html">
+            <span class="material-symbols-outlined pillar-ic" style="color:var(--accent-emerald)">biotech</span>
+            <span class="pillar-num">02 · BIOELECTRONICS</span>
+            <h3>OECT biosensors</h3>
+            <p>Protein-immobilised gates for phenolic water pollutants and DNA-binding proteins, at sub-nanomolar levels.</p>
+          </a>
+          <a class="pillar" href="research.html">
+            <span class="material-symbols-outlined pillar-ic" style="color:var(--accent-amber)">recycling</span>
+            <span class="pillar-num">03 · GREEN MATERIALS</span>
+            <h3>Printed electronics &amp; graphene</h3>
+            <p>Ion-gel rGO transistors and microwave-assisted green graphene on flexible, printable platforms.</p>
+          </a>
+          <a class="pillar" href="research.html">
+            <span class="material-symbols-outlined pillar-ic" style="color:var(--accent-cyan)">sensors</span>
+            <span class="pillar-num">04 · SENSING</span>
+            <h3>Piezoresistive sensors</h3>
+            <p>RGO-CNT-melamine foam transducers for pulse, strain and speech recognition with machine learning.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAB STORY -->
+    <section class="section">
+      <div class="container">
+        <div class="experience-card">
+          <div>
+            <span class="section-subtitle">Interactive</span>
+            <h2 class="section-title" style="font-size:2rem">Watch a transistor get made</h2>
+            <p style="color:var(--text-secondary);line-height:1.7">
+              A 3D scroll story through lithography, etch and deposition — and the thin-film transistors and biosensors that come out of them. It runs in your browser in about a minute.
+            </p>
+            <div class="ticker">
+              <span class="tag">Lithography</span><span class="tag">Etch</span><span class="tag">Deposition</span><span class="tag">OECT</span><span class="tag">Biosensing</span>
+            </div>
+            <div style="margin-top:1.6rem"><a class="btn btn-primary" href="index.html">Replay the fab story <span class="material-symbols-outlined" style="font-size:1.15rem">arrow_forward</span></a></div>
+          </div>
+          <div class="exp-visual"><canvas data-synapse-canvas data-density="dense" aria-hidden="true"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FLAGSHIPS -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-subtitle">Flagship output</span>
+          <h2 class="section-title">Recent breakthroughs</h2>
+        </div>
+        <div class="grid-2">
+          <div class="card" style="border-left:4px solid var(--accent-cyan)">
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.75rem"><span class="badge">Journal article</span><span class="badge badge-emerald">2026</span></div>
+            <h3 style="font-size:1.2rem;line-height:1.4;margin-bottom:0.5rem">Bio-realistic emulation of complex synaptic plasticity and logic via a fully screen-printed flexible neuromorphic transistor</h3>
+            <p class="pub-authors"><strong>L. Kumar</strong>, S. Kurup, B. B. Bhatt, D. Gupta</p>
+            <div class="pub-meta" style="margin:0.5rem 0 1rem"><span class="pub-journal">Applied Materials Today</span></div>
+            <a class="pub-btn" href="publications.html"><span class="material-symbols-outlined" style="font-size:1rem">article</span> All publications</a>
+          </div>
+          <div class="card" style="border-left:4px solid var(--accent-amber)">
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.75rem"><span class="badge badge-amber">Granted patent</span><span class="font-mono" style="font-size:0.75rem;color:var(--accent-amber)">No. 586571</span></div>
+            <h3 style="font-size:1.2rem;line-height:1.4;margin-bottom:0.5rem">Low-voltage photo-thermally reduced graphene oxide transistor device</h3>
+            <p style="font-size:0.875rem;color:var(--text-muted)">An organic electrochemical transistor (OECT) and a method of fabricating thereof.</p>
+            <a class="pub-btn" href="https://patents.google.com/?q=586571" target="_blank" rel="noopener noreferrer"><span class="material-symbols-outlined" style="font-size:1rem">verified</span> Google Patents</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FACILITIES -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-subtitle">Infrastructure</span>
+          <h2 class="section-title">Fabricate · print · characterise</h2>
+        </div>
+        <div class="grid-3">
+          <div class="instrument-item"><div class="instrument-icon"><span class="material-symbols-outlined">analytics</span></div><div><h3 class="instrument-title">Keithley 4200-SCS</h3><p class="instrument-sub">Parameter analyzer</p><p class="instrument-desc">DC I-V, C-V, pulsed and low-frequency noise measurements.</p></div></div>
+          <div class="instrument-item"><div class="instrument-icon"><span class="material-symbols-outlined">center_focus_strong</span></div><div><h3 class="instrument-title">SUSS MJB4</h3><p class="instrument-sub">Photolithography</p><p class="instrument-desc">Sub-micron mask alignment and channel definition.</p></div></div>
+          <div class="instrument-item"><div class="instrument-icon"><span class="material-symbols-outlined">print</span></div><div><h3 class="instrument-title">JetLab 4 · Optomec 5X</h3><p class="instrument-sub">Additive printing</p><p class="instrument-desc">Inkjet and aerosol-jet deposition on flexible substrates.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOIN -->
+    <section class="section" id="join">
+      <div class="container">
+        <div class="join-card">
+          <span class="section-subtitle">Opportunities</span>
+          <h2 class="section-title" style="font-size:2rem;margin-bottom:1rem">Join the Neuromorphic Bioelectronics Lab</h2>
+          <p style="font-size:1.05rem;line-height:1.7;color:var(--text-secondary);max-width:780px">
+            We welcome motivated students and collaborators interested in experimental device physics, cleanroom nanofabrication, artificial synapses and bioelectronic sensors.
+          </p>
+          <div class="grid-3" style="margin:2rem 0;gap:1.25rem">
+            <div class="card"><h3 style="font-size:1.05rem;color:var(--accent-cyan);margin-bottom:0.35rem">PhD positions</h3><p style="font-size:0.875rem;color:var(--text-muted);margin:0">Candidates with CSIR-UGC NET (JRF) or GATE in Physics, Materials or ECE.</p></div>
+            <div class="card"><h3 style="font-size:1.05rem;color:var(--accent-emerald);margin-bottom:0.35rem">MSc projects</h3><p style="font-size:0.875rem;color:var(--text-muted);margin:0">Thin-film transistors, instrumentation and neuromorphic data fitting.</p></div>
+            <div class="card"><h3 style="font-size:1.05rem;color:var(--accent-amber);margin-bottom:0.35rem">Collaboration</h3><p style="font-size:0.875rem;color:var(--text-muted);margin:0">Printed biosensors, neuromorphic hardware and green 2D materials.</p></div>
+          </div>
+          <a class="btn btn-primary" href="contact.html">Contact Dr. Lokesh Kumar <span class="material-symbols-outlined">send</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <button type="button" class="back-to-top" data-back-to-top aria-label="Back to top"><span class="material-symbols-outlined">arrow_upward</span></button>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand" style="margin-bottom:0.5rem"><div class="brand-icon" style="width:1.85rem;height:1.85rem"><span class="material-symbols-outlined" style="font-size:1.15rem">memory</span></div><span class="brand-lab">Neuromorphic Bioelectronics Lab (NBL)</span></div>
+          <p class="footer-brand-desc">Department of Physics, National Institute of Technology Calicut<br>Kozhikode – 673601, Kerala, India.<br>Led by Dr. Lokesh Kumar (PhD, IIT Bombay).</p>
+        </div>
+        <div>
+          <h4 class="footer-heading">Navigate</h4>
+          <ul class="footer-links">
+            <li><a href="research.html">Research</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html">Replay the fab story</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Profiles</h4>
+          <ul class="footer-links">
+            <li><a href="https://scholar.google.com/citations?user=B5zMjo4AAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a></li>
+            <li><a href="https://orcid.org/0000-0001-7667-8422" target="_blank" rel="noopener noreferrer">ORCID</a></li>
+            <li><a href="https://www.linkedin.com/in/lokesh-kumar-phd-09920079" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="https://nitc.ac.in/department/physics/faculty-and-staff/faculty/5566ed19-19e4-4a1f-b4d2-89456e2442d5" target="_blank" rel="noopener noreferrer">NITC faculty profile</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 Neuromorphic Bioelectronics Lab (NBL) · Dr. Lokesh Kumar</p><p class="font-mono">NIT Calicut · Department of Physics</p></div>
+    </div>
+  </footer>
+
+  <script src="js/nbl.js" defer></script>
+</body>
+</html>

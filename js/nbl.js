@@ -314,3 +314,23 @@
     frame();
   });
 })();
+
+/* Embedded mode: this page is the last chapter of the film home page. */
+(function () {
+  if (!document.documentElement.classList.contains('embed')) return;
+  document.querySelectorAll('a[href]').forEach(function (a) {
+    var h = a.getAttribute('href');
+    if (h.charAt(0) === '#') {
+      a.addEventListener('click', function (e) {
+        var t = document.querySelector(h);
+        if (!t || !window.parent) return;
+        e.preventDefault();
+        var top = window.frameElement.getBoundingClientRect().top + window.parent.scrollY +
+          t.getBoundingClientRect().top;
+        window.parent.scrollTo({ top: top, behavior: 'smooth' });
+      });
+    } else if (!a.target) {
+      a.target = '_top';
+    }
+  });
+})();

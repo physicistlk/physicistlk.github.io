@@ -11,7 +11,7 @@ export const TITLE_CARD = {
   hint: 'SCROLL TO DESCEND',
   ctas: [
     { href: 'research.html', label: 'Research' },
-    { href: 'index.html', label: 'NBL Home' },
+    { href: '#lab', label: 'Enter the lab' },
   ],
 };
 
@@ -30,52 +30,52 @@ export const SECTION_LABELS = [
  */
 export const BEATS = [
   {
-    start: 0.305, dur: 0.030, side: 'left', depth: 220, kicker: '01 — RESOLUTION',
-    words: [['Every chip begins as ', ''], ['light', 'mono'], [' striking a mask.', '']],
+    start: 0.305, dur: 0.030, side: 'left', depth: 220, kicker: '01 — LIGHT',
+    words: [['Every device begins as ', ''], ['light', 'mono'], [' striking a mask — the same step that prints a CMOS chip.', '']],
   },
   {
-    start: 0.337, dur: 0.030, side: 'right', depth: -180, kicker: '02 — LITHOGRAPHY',
+    start: 0.337, dur: 0.030, side: 'right', depth: -180, kicker: '02 — PRINTED SYNAPSES',
     words: [
-      ['EUV lithography prints at ', ''], ['13.5 nm', 'mono'],
-      [' — patterns narrower than a ribosome, on a wafer the size of a dinner plate.', ''],
+      ['At NBL the channel is printed, not etched away: a fully ', ''], ['screen-printed OECT', 'mono'],
+      [' on flexible film that reproduces the memory of a biological synapse — ', ''],
+      ['paired-pulse facilitation', 'mono'], [', short- and long-term plasticity, even logic.', ''],
     ],
   },
   {
-    start: 0.369, dur: 0.030, side: 'left', depth: 320, kicker: '03 — DEPOSITION',
+    start: 0.369, dur: 0.030, side: 'left', depth: 320, kicker: '03 — ION GEL',
     words: [
-      ['Then layers. A dielectric a few atoms thick, then the channel itself: ', ''],
-      ['PEDOT:PSS', 'mono'], [' printed in microdrops, or ', ''], ['P3HT', 'mono'],
-      [' evaporated under vacuum.', ''],
+      ['A solid ', ''], ['ion-gel', 'mono'],
+      [' replaces the oxide, so ions do the gating. Photo-thermally reduced graphene oxide, written by light, switches at ', ''],
+      ['low voltage', 'mono'], ['.', ''],
     ],
   },
   {
-    start: 0.401, dur: 0.030, side: 'right', depth: -260, kicker: '04 — ETCH',
+    start: 0.401, dur: 0.030, side: 'right', depth: -260, kicker: '04 — INTERFACE',
     words: [
-      ['Plasma etch strips everything the light did not protect — anisotropic, ', ''],
-      ['300 W', 'mono'], [', ', ''], ['20 mTorr', 'mono'],
-      [' — leaving a channel ', ''], ['20 µm', 'mono'], [' long.', ''],
+      ['The organic electrochemical transistor swells as ', ''], ['ions', 'mono'],
+      [' drift into the channel — a body-compatible volume transistor, and a natural artificial synapse.', ''],
     ],
   },
   {
-    start: 0.433, dur: 0.030, side: 'left', depth: 180, kicker: '05 — INTERFACE',
+    start: 0.433, dur: 0.030, side: 'left', depth: 180, kicker: '05 — PHD · IIT BOMBAY',
     words: [
-      ['The organic electrochemical transistor replaces the oxide gate with an electrolyte gel. ', ''],
-      ['Ions', 'mono'], [' drift in, the channel swells, the drain current answers.', ''],
+      ['The thread began in a PhD on ', ''], ['OECTs for neuromorphic devices and sensors', 'mono'],
+      [': one device family, two jobs — compute and sense.', ''],
     ],
   },
   {
     start: 0.465, dur: 0.030, side: 'right', depth: -200, kicker: '06 — BIOSENSING',
     words: [
-      ['Functionalise that same channel with ', ''], ['glucose oxidase', 'mono'],
-      [' — or with a receptor protein — and the transistor becomes a biosensor, reading a body in ', ''],
-      ['picoamperes', 'mono'], ['.', ''],
+      ['Immobilise a ', ''], ['protein', 'mono'],
+      [' on the same channel and the transistor detects aromatic pollutants in water — and DNA-binding proteins — at ', ''],
+      ['ultra-low concentrations', 'mono'], ['.', ''],
     ],
   },
   {
-    start: 0.497, dur: 0.032, side: 'center', depth: 260, kicker: '07 — THE SAME FAB',
+    start: 0.497, dur: 0.032, side: 'center', depth: 260, kicker: '07 — ONE PLATFORM',
     words: [
-      ['Same fab. Same sequence of light, etch and layer. A different question: not how fast it switches, ', ''],
-      ['but what it can hear', 'mono'], ['.', ''],
+      ['One fab. One device. Neuromorphic computing and biosensing on the same thin film: ', ''],
+      ['a lab for what a transistor can hear, and learn', 'mono'], ['.', ''],
     ],
   },
 ];
@@ -103,7 +103,7 @@ export const PROCESS_FLOW = [
  * chapters.
  */
 export const FILM = {
-  duration: 4,
+  duration: 5,
 };
 
 /**
@@ -116,7 +116,7 @@ export const END = {
     { href: 'about.html', label: 'About', note: 'Profile, expertise, education' },
     { href: 'research.html', label: 'Research', note: 'Themes, milestones, the group' },
     { href: 'publications.html', label: 'Publications', note: 'Papers, preprints, posters' },
-    { href: 'index.html', label: 'NBL Home', note: 'Neuromorphic Bioelectronics Lab' },
+    { href: '#lab', label: 'The Lab', note: 'Neuromorphic Bioelectronics Lab (NBL)' },
     { href: 'contact.html', label: 'Contact', note: 'Email, links, collaboration' },
     { href: 'assets/Lokesh_Kumar_CV.pdf', label: 'Download CV', note: 'PDF' },
   ],

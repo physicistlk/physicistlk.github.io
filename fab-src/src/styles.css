@@ -775,3 +775,17 @@ body.is-filming { overflow: hidden; }
   padding: 2rem;
 }
 .noscript a { color: var(--cyan); }
+
+/* ------------------------------------------------- the lab (last chapter) -- */
+.lab-embed {
+  position: relative;
+  z-index: 5;
+  background: #090b10;
+}
+.lab-embed iframe {
+  display: block;
+  width: 100%;
+  height: 100vh;
+  border: 0;
+  background: #090b10;
+}

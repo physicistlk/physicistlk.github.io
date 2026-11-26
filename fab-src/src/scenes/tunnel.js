@@ -471,12 +471,12 @@ export function createTunnel() {
 
     /** Place the camera on the tunnel path for film time t (0..1). */
     placeCamera(camera, t, elapsed) {
-      const eased = t * t * (3 - 2 * t) * 0.35 + t * 0.65; // ease-in at the start
+      const eased = t * t * t * (t * (t * 6 - 15) + 10) * 0.5 + t * 0.5; // gentle ease in and out
       const z = THREE.MathUtils.lerp(40, TRAVEL_END, eased);
       state.camZ = z;
 
-      const sway = Math.sin(elapsed * 0.8) * 0.32 + Math.sin(elapsed * 0.37) * 0.2;
-      const swayY = Math.cos(elapsed * 0.62) * 0.28;
+      const sway = Math.sin(elapsed * 0.4) * 0.12 + Math.sin(elapsed * 0.19) * 0.08;
+      const swayY = Math.cos(elapsed * 0.31) * 0.1;
 
       const opt = sampleOpticalKeys(t);
       if (opt) {
@@ -484,8 +484,8 @@ export function createTunnel() {
         // swings around it and pushes in
         camera.position.set(opt.p[0], opt.p[1], opt.p[2]);
         camera.lookAt(opt.l[0], opt.l[1], opt.l[2]);
-        camera.rotation.z += Math.sin(elapsed * 0.45) * 0.07;
-        camera.rotation.x += Math.sin(elapsed * 0.29) * 0.03;
+        camera.rotation.z += Math.sin(elapsed * 0.2) * 0.015;
+        camera.rotation.x += Math.sin(elapsed * 0.15) * 0.008;
         if (camera.fov !== opt.f) {
           camera.fov = opt.f;
           camera.updateProjectionMatrix();
@@ -494,9 +494,9 @@ export function createTunnel() {
         camera.position.set(sway, swayY, z);
         // look slightly ahead down the tunnel, with a slow roll
         camera.rotation.set(0, 0, 0);
-        camera.rotation.z = Math.sin(elapsed * 0.45) * 0.09;
-        camera.rotation.x = Math.sin(elapsed * 0.29) * 0.035;
-        camera.rotation.y = Math.sin(elapsed * 0.51) * 0.05;
+        camera.rotation.z = Math.sin(elapsed * 0.2) * 0.02;
+        camera.rotation.x = Math.sin(elapsed * 0.15) * 0.01;
+        camera.rotation.y = Math.sin(elapsed * 0.22) * 0.015;
         if (camera.fov !== 42) {
           camera.fov = 42;
           camera.updateProjectionMatrix();

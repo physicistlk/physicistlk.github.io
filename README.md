@@ -11,7 +11,7 @@ https://physicistlk.github.io/
 | Path | What it is |
 |------|------------|
 | `/` | **NBL landing page** — Neuromorphic Bioelectronics Lab (NBL): hero, research pillars, flagships, facilities, join-the-lab |
-| `/channel.html` | **Fab story** — a scroll-driven 3D narrative set inside a semiconductor fabrication facility |
+| `/index.html` | **Fab story** — a scroll-driven 3D narrative set inside a semiconductor fabrication facility |
 | `/about.html` | Profile, expertise and education |
 | `/research.html` | Research themes and group |
 | `/publications.html` | Publication list |
@@ -31,7 +31,7 @@ repository root:
 cd fab-src
 npm ci
 npm run build
-cp dist/index.html ../channel.html && cp -r dist/fab-assets/. ../fab-assets/ && cp dist/fab-favicon.svg ../
+cp dist/index.html ../index.html && cp -r dist/fab-assets/. ../fab-assets/ && cp dist/fab-favicon.svg ../
 ```
 
 `npm run build` also runs `npm run verify`, which checks that the published

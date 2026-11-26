@@ -21,7 +21,11 @@ export class ScrollController {
   }
 
   get maxScroll() {
-    return Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    // progress is measured over the film runway only; the lab landing page
+    // that follows it scrolls as an ordinary document
+    const runway = document.getElementById('runway');
+    const h = runway ? runway.offsetHeight : document.documentElement.scrollHeight;
+    return Math.max(1, h - window.innerHeight);
   }
 
   get progress() {

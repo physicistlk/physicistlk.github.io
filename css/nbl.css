@@ -1456,3 +1456,13 @@ html.light .icon-light { display: inline-block; }
   .experience-card { grid-template-columns: 1fr; padding: 1.75rem; }
 }
 @media (max-width: 560px) { .pillar-grid { grid-template-columns: 1fr; } }
+
+/* ---- embedded as the closing chapter of the film home page ---- */
+html.embed .site-header,
+html.embed .mobile-menu,
+html.embed .skip-link,
+html.embed .scroll-progress,
+html.embed .back-to-top { display: none !important; }
+html.embed body { min-height: 0; }
+html.embed, html.embed body { overflow: hidden; }
+html.embed .hero { padding-top: 4.5rem; }

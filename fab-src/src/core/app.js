@@ -37,6 +37,7 @@ export class Narrative {
   constructor() {
     this.canvas = document.getElementById('stage');
     this.overlay = document.getElementById('overlay');
+    this.stage = this.canvas;
     this.elapsed = 0;
     this.loadedAt = performance.now();
     // visitors who ask for reduced motion never get the scroll-locked cinema
@@ -57,6 +58,7 @@ export class Narrative {
     this._onResize = this._onResize.bind(this);
     window.addEventListener('resize', this._onResize);
     this._onResize();
+    this._initLab();
 
     this.clock = new THREE.Clock();
     this._raf = requestAnimationFrame(this._loop.bind(this));
@@ -171,6 +173,28 @@ export class Narrative {
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && this.film.active) this._endFilm(true);
     });
+  }
+
+  /** The lab landing page is the film's last chapter: keep its frame as tall as its content. */
+  _initLab() {
+    const frame = document.getElementById('lab-frame');
+    if (!frame) return;
+    const fit = () => {
+      try {
+        const d = frame.contentDocument;
+        if (!d || !d.documentElement) return;
+        const h = Math.max(d.documentElement.scrollHeight, d.body ? d.body.scrollHeight : 0);
+        if (h > 100) frame.style.height = `${h}px`;
+      } catch (e) { /* cross-origin: leave at default height */ }
+    };
+    frame.addEventListener('load', () => {
+      fit();
+      try {
+        new ResizeObserver(fit).observe(frame.contentDocument.body);
+      } catch (e) { /* no ResizeObserver */ }
+    });
+    window.addEventListener('resize', fit);
+    window.addEventListener('load', fit);
   }
 
   // ------------------------------------------------------------ assets ---
@@ -429,6 +453,7 @@ export class Narrative {
     }
 
     // -------------------------------------------------------- the film --
+    if (!this.film.played && this.scroll.raw >= 0.8) this.film.played = true; // jumped to the lab
     if (!this.film.played && p >= GATE && !this.scroll.locked) {
       this._startFilm();
     }
@@ -439,7 +464,10 @@ export class Narrative {
       // sample the tunnel's own contrast, then draw it with the bloom pass
       this.contrast.sample(this.renderer, this.scene, this.camera, [this.contrast.group]);
     }
-    this.composer.render();
+    // once the lab page has fully taken over the screen there is nothing to draw
+    const pastFilm = window.scrollY > this.scroll.maxScroll + window.innerHeight * 0.6;
+    this.stage.style.visibility = pastFilm ? 'hidden' : 'visible';
+    if (!pastFilm) this.composer.render();
 
     if (this.film.active) this.contrast.setPixelScale(this.renderer);
   }
