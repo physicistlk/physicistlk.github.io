@@ -16,9 +16,9 @@ import * as THREE from 'three';
 
 const GLASS = 0x0e1620;
 const METAL = 0xb99a68;
-const OXIDE = 0x3fd8e8;
-const CHANNEL = 0x2fbf9a;
-const GEL = 0x7a5cff;
+const OXIDE = 0x38bdf8;
+const CHANNEL = 0x34d399;
+const GEL = 0xa78bfa;
 
 /** Builds the thin-film transistor stack. */
 export function createDevice() {

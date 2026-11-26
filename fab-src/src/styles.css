@@ -1,13 +1,14 @@
 :root {
-  --black: #000000;
-  --ink: #f4f7fa;
-  --dim: rgba(244, 247, 250, 0.74);
-  --faint: rgba(244, 247, 250, 0.46);
-  --cyan: #7fe9ff;
-  --violet: #9b8cff;
-  --amber: #ffb46b;
-  --hair: rgba(244, 247, 250, 0.12);
-  --display: "Hanken Grotesk", "Inter", system-ui, sans-serif;
+  --black: #090b10;
+  --ink: #f8fafc;
+  --dim: rgba(248, 250, 252, 0.74);
+  --faint: rgba(248, 250, 252, 0.46);
+  --cyan: #38bdf8;
+  --emerald: #34d399;
+  --violet: #a78bfa;
+  --amber: #fbbf24;
+  --hair: rgba(248, 250, 252, 0.12);
+  --display: "Space Grotesk", "Inter", system-ui, sans-serif;
   --sans: "Inter", "Hanken Grotesk", system-ui, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
@@ -32,7 +33,7 @@ body {
 body.is-loading { overflow: hidden; }
 body.is-filming { overflow: hidden; }
 
-::selection { background: rgba(127, 233, 255, 0.25); }
+::selection { background: rgba(56, 189, 248, 0.28); }
 
 /* --------------------------------------------------------------- stage -- */
 #stage {
@@ -77,8 +78,11 @@ body.is-filming { overflow: hidden; }
   z-index: 2;
   pointer-events: none;
   background:
-    radial-gradient(120% 90% at 50% 45%, transparent 35%, rgba(0, 0, 0, 0.55) 100%),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent 22%, transparent 78%, rgba(0, 0, 0, 0.6));
+    radial-gradient(120% 90% at 50% 45%, transparent 35%, rgba(9, 11, 16, 0.6) 100%),
+    linear-gradient(to bottom, rgba(9, 11, 16, 0.55), transparent 22%, transparent 78%, rgba(9, 11, 16, 0.65)),
+    linear-gradient(to right, rgba(248, 250, 252, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(248, 250, 252, 0.035) 1px, transparent 1px);
+  background-size: auto, auto, 40px 40px, 40px 40px;
 }
 
 /* --------------------------------------------------------- navigation -- */
@@ -125,7 +129,7 @@ body.is-filming { overflow: hidden; }
 }
 
 .hud-nav__links a {
-  color: rgba(244, 247, 250, 0.86);
+  color: rgba(248, 250, 252, 0.86);
   text-decoration: none;
   padding: 0.35rem 0.1rem;
   border-bottom: 1px solid transparent;
@@ -135,7 +139,7 @@ body.is-filming { overflow: hidden; }
 .hud-nav__links a:hover,
 .hud-nav__links a:focus-visible {
   color: var(--cyan);
-  border-bottom-color: rgba(127, 233, 255, 0.6);
+  border-bottom-color: rgba(56, 189, 248, 0.6);
 }
 
 /* --------------------------------------------------------- title card -- */
@@ -182,7 +186,7 @@ body.is-filming { overflow: hidden; }
   font-weight: 400;
   font-size: clamp(1rem, 1.6vw, 1.2rem);
   line-height: 1.6;
-  color: rgba(244, 247, 250, 0.86);
+  color: rgba(248, 250, 252, 0.86);
   opacity: 0;
 }
 
@@ -215,7 +219,7 @@ body.is-filming { overflow: hidden; }
   font-size: 0.78rem;
   font-weight: 500;
   letter-spacing: 0.22em;
-  color: rgba(244, 247, 250, 0.72);
+  color: rgba(248, 250, 252, 0.72);
   text-indent: 0.22em;
 }
 
@@ -229,7 +233,7 @@ body.is-filming { overflow: hidden; }
   font-size: 0.78rem;
   font-weight: 500;
   letter-spacing: 0.2em;
-  color: rgba(244, 247, 250, 0.6);
+  color: rgba(248, 250, 252, 0.6);
   opacity: 0;
   transition: opacity 0.6s ease;
   pointer-events: none;
@@ -269,7 +273,7 @@ body.is-filming { overflow: hidden; }
   display: block;
   width: 1px;
   height: 0%;
-  background: linear-gradient(to bottom, var(--cyan), var(--violet));
+  background: linear-gradient(to bottom, var(--cyan), var(--emerald));
 }
 
 /* ---------------------------------------------------------- theory DOM -- */
@@ -348,7 +352,7 @@ body.is-filming { overflow: hidden; }
   letter-spacing: 0.02em;
   color: var(--cyan);
   padding: 0 0.12em;
-  border-bottom: 1px solid rgba(127, 233, 255, 0.28);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.28);
 }
 
 /* --------------------------------------------------------- the way out -- */
@@ -394,7 +398,7 @@ body.is-filming { overflow: hidden; }
   justify-content: space-between;
   gap: 2rem;
   padding: clamp(0.35rem, 1.1vh, 0.7rem) 0;
-  border-bottom: 1px solid rgba(244, 247, 250, 0.1);
+  border-bottom: 1px solid rgba(248, 250, 252, 0.1);
   text-decoration: none;
   color: var(--ink);
   transition: color 0.3s ease, padding-left 0.35s ease, border-color 0.35s ease;
@@ -413,7 +417,7 @@ body.is-filming { overflow: hidden; }
   font-size: 0.84rem;
   font-weight: 500;
   letter-spacing: 0.14em;
-  color: rgba(244, 247, 250, 0.6);
+  color: rgba(248, 250, 252, 0.6);
   white-space: nowrap;
   transition: color 0.3s ease;
 }
@@ -422,7 +426,7 @@ body.is-filming { overflow: hidden; }
 .endlink:focus-visible {
   color: var(--cyan);
   padding-left: 0.7rem;
-  border-bottom-color: rgba(127, 233, 255, 0.45);
+  border-bottom-color: rgba(56, 189, 248, 0.45);
 }
 
 .endlink:hover .endlink__note,
@@ -438,7 +442,7 @@ body.is-filming { overflow: hidden; }
   font-size: 0.82rem;
   font-weight: 500;
   letter-spacing: 0.14em;
-  color: rgba(244, 247, 250, 0.66);
+  color: rgba(248, 250, 252, 0.66);
 }
 
 @media (max-width: 720px) {
@@ -468,7 +472,7 @@ body.is-filming { overflow: hidden; }
   font-size: 0.86rem;
   font-weight: 500;
   letter-spacing: 0.16em;
-  color: rgba(244, 247, 250, 0.8);
+  color: rgba(248, 250, 252, 0.8);
   text-shadow: 0 1px 14px rgba(0, 0, 0, 0.8);
 }
 
@@ -481,7 +485,7 @@ body.is-filming { overflow: hidden; }
   font-size: 0.76rem;
   font-weight: 500;
   letter-spacing: 0.22em;
-  color: rgba(244, 247, 250, 0.7);
+  color: rgba(248, 250, 252, 0.7);
   text-indent: 0.22em;
   animation: breathe 2.6s ease-in-out infinite;
 }
@@ -497,7 +501,7 @@ body.is-filming { overflow: hidden; }
   right: clamp(1rem, 4vw, 3.2rem);
   appearance: none;
   background: transparent;
-  border: 1px solid rgba(244, 247, 250, 0.18);
+  border: 1px solid rgba(248, 250, 252, 0.18);
   color: var(--dim);
   font-family: var(--mono);
   font-size: 0.78rem;
@@ -511,7 +515,7 @@ body.is-filming { overflow: hidden; }
 
 .film__skip:hover {
   color: var(--cyan);
-  border-color: rgba(127, 233, 255, 0.5);
+  border-color: rgba(56, 189, 248, 0.5);
 }
 
 /* ------------------------------------------------------------- loader -- */
@@ -524,7 +528,7 @@ body.is-filming { overflow: hidden; }
   align-items: center;
   justify-content: center;
   gap: 1.3rem;
-  background: #000;
+  background: #090b10;
   transition: opacity 0.9s ease, visibility 0.9s ease;
 }
 
@@ -537,7 +541,7 @@ body.is-filming { overflow: hidden; }
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  border: 1px solid rgba(127, 233, 255, 0.18);
+  border: 1px solid rgba(56, 189, 248, 0.18);
   border-top-color: var(--cyan);
   animation: spin 1.15s linear infinite;
 }
@@ -550,14 +554,14 @@ body.is-filming { overflow: hidden; }
   font-size: 0.76rem;
   font-weight: 500;
   letter-spacing: 0.24em;
-  color: rgba(244, 247, 250, 0.7);
+  color: rgba(248, 250, 252, 0.7);
   text-indent: 0.24em;
 }
 
 .loader__bar {
   width: min(220px, 52vw);
   height: 1px;
-  background: rgba(244, 247, 250, 0.1);
+  background: rgba(248, 250, 252, 0.1);
 }
 
 .loader__bar i {
@@ -597,7 +601,7 @@ body.is-filming { overflow: hidden; }
   display: flex;
   appearance: none;
   background: transparent;
-  border: 1px solid rgba(244, 247, 250, 0.24);
+  border: 1px solid rgba(248, 250, 252, 0.24);
   border-radius: 2px;
   padding: 0.55rem 0.6rem;
   cursor: pointer;
@@ -622,7 +626,7 @@ body.is-filming { overflow: hidden; }
   justify-content: center;
   gap: 2.4rem;
   padding: clamp(2rem, 8vh, 5rem) clamp(1.4rem, 7vw, 6rem);
-  background: rgba(3, 5, 9, 0.94);
+  background: rgba(9, 11, 16, 0.94);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   opacity: 0;
@@ -654,7 +658,7 @@ body.is-filming { overflow: hidden; }
   font-size: clamp(1.6rem, 6vw, 3rem);
   letter-spacing: 0.01em;
   text-decoration: none;
-  border-bottom: 1px solid rgba(244, 247, 250, 0.09);
+  border-bottom: 1px solid rgba(248, 250, 252, 0.09);
   transition: color 0.3s ease, padding-left 0.3s ease;
 }
 
@@ -685,3 +689,89 @@ body.is-filming { overflow: hidden; }
   .hud-nav__links { display: none; }
   body.is-menu-open { overflow: hidden; }
 }
+
+
+/* ------------------------------------------------- lab theme additions -- */
+.hud-nav__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.hud-nav__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 6px;
+  background: linear-gradient(135deg, var(--cyan), var(--emerald));
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.35);
+}
+
+.hud-nav__mark svg { width: 1rem; height: 1rem; }
+
+.title-card__title {
+  background: linear-gradient(135deg, #f8fafc 30%, var(--cyan) 70%, var(--emerald));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.title-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 2.2rem;
+  opacity: 0;
+  pointer-events: auto;
+}
+
+.title-card__cta {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  padding: 0.7rem 1.2rem;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  border-radius: 999px;
+  background: rgba(17, 22, 33, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.title-card__cta:hover,
+.title-card__cta:focus-visible {
+  color: #050b14;
+  background: linear-gradient(135deg, var(--cyan), var(--emerald));
+  border-color: transparent;
+  transform: translateY(-1px);
+}
+
+.film__skip {
+  border-radius: 999px;
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
+.noscript {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: var(--black);
+  font-family: var(--mono);
+  letter-spacing: 0.1em;
+  text-align: center;
+  padding: 2rem;
+}
+.noscript a { color: var(--cyan); }

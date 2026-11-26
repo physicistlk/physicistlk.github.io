@@ -9,6 +9,10 @@ export const TITLE_CARD = {
   title: 'THE CHANNEL',
   subtitle: 'Light, etch and layer — and the sensors they become.',
   hint: 'SCROLL TO DESCEND',
+  ctas: [
+    { href: 'research.html', label: 'Research' },
+    { href: 'https://physicistlk.github.io/neuromorphic-bioelectronics-lab/', label: 'Neuromorphic Bioelectronics Lab' },
+  ],
 };
 
 export const SECTION_LABELS = [
@@ -95,11 +99,11 @@ export const PROCESS_FLOW = [
  */
 /**
  * The cinema runs as one continuous descent — no chapter cards, no cuts, no
- * letterbox. Five seconds: the pacing is carried by the camera, not by
+ * letterbox. Four seconds: the pacing is carried by the camera, not by
  * chapters.
  */
 export const FILM = {
-  duration: 5,
+  duration: 4,
 };
 
 /**
@@ -112,6 +116,7 @@ export const END = {
     { href: 'about.html', label: 'About', note: 'Profile, expertise, education' },
     { href: 'research.html', label: 'Research', note: 'Themes, milestones, the group' },
     { href: 'publications.html', label: 'Publications', note: 'Papers, preprints, posters' },
+    { href: 'https://physicistlk.github.io/neuromorphic-bioelectronics-lab/', label: 'The Lab', note: 'Neuromorphic Bioelectronics Lab' },
     { href: 'contact.html', label: 'Contact', note: 'Email, links, collaboration' },
     { href: 'assets/Lokesh_Kumar_CV.pdf', label: 'Download CV', note: 'PDF' },
   ],

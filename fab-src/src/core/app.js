@@ -39,7 +39,9 @@ export class Narrative {
     this.overlay = document.getElementById('overlay');
     this.elapsed = 0;
     this.loadedAt = performance.now();
-    this.film = { active: false, played: false, t: 0, duration: FILM.duration };
+    // visitors who ask for reduced motion never get the scroll-locked cinema
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.film = { active: false, played: reduceMotion, t: 0, duration: FILM.duration };
     this.inertia = { yaw: 0, pitch: 0 };
 
     this._initRenderer();
@@ -68,7 +70,7 @@ export class Narrative {
       powerPreference: 'high-performance',
       alpha: false,
     });
-    this.renderer.setClearColor(0x000000, 1);
+    this.renderer.setClearColor(0x090b10, 1);
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1.05;
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -76,8 +78,8 @@ export class Narrative {
 
   _initScene() {
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0x000000);
-    this.scene.fog = new THREE.FogExp2(0x000000, 0.0085);
+    this.scene.background = new THREE.Color(0x090b10);
+    this.scene.fog = new THREE.FogExp2(0x090b10, 0.0085);
 
     this.camera = new THREE.PerspectiveCamera(42, 1, 0.1, 900);
     this.camera.position.set(0, 2.4, 44);
@@ -124,6 +126,17 @@ export class Narrative {
     set('tc-subtitle', TITLE_CARD.subtitle);
     const hint = document.querySelector('.title-card__hint-text');
     if (hint) hint.textContent = TITLE_CARD.hint;
+
+    const actions = document.getElementById('tc-actions');
+    if (actions) {
+      for (const c of TITLE_CARD.ctas || []) {
+        const a = document.createElement('a');
+        a.className = 'title-card__cta';
+        a.href = c.href;
+        a.textContent = c.label;
+        actions.appendChild(a);
+      }
+    }
 
     this.titleCard = document.getElementById('title-card');
     this.sceneLabel = document.getElementById('scene-label');
@@ -241,6 +254,7 @@ export class Narrative {
     const title = card.querySelector('.title-card__title');
     const sub = card.querySelector('.title-card__subtitle');
     const hint = card.querySelector('.title-card__hint');
+    const actions = card.querySelector('.title-card__actions');
 
     eyebrow.style.opacity = String(fadeIn);
     eyebrow.style.transform = `translate3d(0, ${(1 - fadeIn) * 14}px, 0)`;
@@ -251,6 +265,11 @@ export class Narrative {
     sub.style.opacity = String(fadeIn * 0.95);
     sub.style.transform = `translate3d(0, ${(1 - fadeIn) * 18}px, 0)`;
     hint.style.opacity = String(fadeIn * (1 - THREE.MathUtils.clamp((p - 0.006) / 0.02, 0, 1)));
+    if (actions) {
+      actions.style.opacity = String(fadeIn);
+      actions.style.transform = `translate3d(0, ${(1 - fadeIn) * 18}px, 0)`;
+      actions.style.pointerEvents = v > 0.6 ? 'auto' : 'none';
+    }
   }
 
   _updateLabel(p) {
@@ -306,7 +325,7 @@ export class Narrative {
     const raw = this.clock.getDelta();
     const dt = Math.min(0.05, raw);
     // the cinema is a timed cut, not a scroll-driven scene: it has to last
-    // thirty seconds of wall time even when the renderer is slow, so it runs
+    // its full few seconds of wall time even when the renderer is slow, so it runs
     // on a looser clamp than the scroll choreography
     const filmDt = Math.min(0.25, raw);
     this.elapsed += dt;
