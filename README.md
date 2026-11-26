@@ -60,13 +60,14 @@ built with Vite and Three.js. It runs in four movements:
 2. **The Channel** — the lithography chapter. Type cascades word by word in
    parallax over the device as it decomposes into a process-flow diagram:
    deposition, lithography, etch, encapsulation, integration, biosensing.
-3. **The cinema** — a scroll-locked five-second descent: a brief flash of
-   light on the optical path, the mask aligning, the plasma, the silicon
-   lattice — and then the landing, where the light falls on photoresist over
-   an array of silicon atoms and the CMOS circuit comes out of it. The
-   footage is rendered live, and a dot-and-line field samples its own contrast
-   frame by frame.
-4. **Epilogue** — credits and a closing line.
+3. **The cinema** — a scroll-locked sixteen-second descent, played as one
+   continuous move with no chapter cards: a flash of light on the optical
+   path, the mask aligning, the plasma, the silicon lattice — and then the
+   landing, where the light falls on photoresist over an array of silicon
+   atoms and the CMOS circuit comes out of it. The footage is rendered live,
+   and a dot-and-line field samples its own contrast frame by frame.
+4. **The way out** — the rest of the site, set large: About, Research,
+   Publications, Contact and the CV.
 
 The thread running through it is the route from a fab process to the
 electrochemical transistors and biosensors that come out of it.

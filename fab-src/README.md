@@ -11,7 +11,7 @@ fab-src/
 │   ├── main.js         entry point
 │   ├── content.js      every string in the narrative (edit copy here)
 │   ├── core/           app loop, scroll, pointer, environment map
-│   └── scenes/         device, wafer, theory, tunnel, contrast, epilogue
+│   └── scenes/         device, wafer, theory, tunnel, contrast, endlinks
 ├── scripts/
 │   ├── pack-app.mjs        packs the built bundle for transport
 │   └── verify-build.mjs    checks a finished build
@@ -44,8 +44,8 @@ npm run preview # serve dist/
 |----------|--------|--------------|
 | Entry | 0 – 0.30 | A thin-film transistor draws itself in as a wireframe, then materialises: silicon substrate, back gate, gate dielectric, an organic semiconductor channel with source and drain, and an electrolyte gel where cations drift down and are captured by receptor sites. |
 | The Channel | 0.30 – 0.56 | Type cascades word by word in parallax while the device decomposes into a six-stage process flow: deposition, lithography, etch, encapsulation, integration, biosensing. |
-| The cinema | 0.56 – 0.62 | Scroll locks for a five-second descent — a short light path, the mask, the plasma, the lattice, and the landing on the die: silicon atoms under photoresist, printing a CMOS circuit. Rendered live; a dot-and-line field samples its own contrast. |
-| Epilogue | 0.62 – 1.0 | Credits roll, then the closing quote. |
+| The cinema | 0.56 – 0.62 | Scroll locks for a sixteen-second descent, played as one continuous move with no chapter cards — a short light path, the mask, the plasma, the lattice, and the landing on the die: silicon atoms under photoresist, printing a CMOS circuit. Rendered live; a dot-and-line field samples its own contrast. |
+| The way out | 0.62 – 1.0 | The rest of the site, set large: About, Research, Publications, Contact, the CV. |
 
 All copy lives in `src/content.js`.
 
