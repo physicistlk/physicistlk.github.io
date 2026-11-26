@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { BEATS, PROCESS_FLOW } from '../content.js';
 
 /**
- * Scene 2 — "The Lithography Cascade".
+ * Scene 2 — the lithography chapter.
  *  - Type cascades in word by word, each word at its own depth so the text
  *    parallaxes against the receding fab tool.
  *  - The tool dissolves into a wireframe and a process-flow diagram lights up.

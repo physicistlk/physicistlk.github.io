@@ -1,19 +1,19 @@
 /**
- * Narrative copy for "THE CASCADE".
+ * Narrative copy for "THE CHANNEL".
  * `mono` spans render as technical monospace accents inside a beat.
  * Beats are anchored to the global scroll progress [0..1].
  */
 
 export const TITLE_CARD = {
   eyebrow: 'SEMICONDUCTOR FABRICATION — AN INTERACTIVE NARRATIVE',
-  title: 'THE CASCADE',
+  title: 'THE CHANNEL',
   subtitle: 'Light, etch and layer — and the sensors they become.',
   hint: 'SCROLL TO DESCEND',
 };
 
 export const SECTION_LABELS = [
   { at: 0.02, text: 'I · ENTRY' },
-  { at: 0.31, text: 'II · THE CASCADE' },
+  { at: 0.31, text: 'II · THE CHANNEL' },
   { at: 0.62, text: 'IV · EPILOGUE' },
 ];
 
@@ -70,7 +70,7 @@ export const BEATS = [
   {
     start: 0.497, dur: 0.032, side: 'center', depth: 260, kicker: '07 — THE SAME FAB',
     words: [
-      ['Same fab. Same cascade of light, etch and layer. A different question: not how fast it switches, ', ''],
+      ['Same fab. Same sequence of light, etch and layer. A different question: not how fast it switches, ', ''],
       ['but what it can hear', 'mono'], ['.', ''],
     ],
   },
@@ -101,7 +101,7 @@ export const FILM = {
     { at: 0.68, code: 'SILICON LATTICE', note: 'diamond cubic · a = 5.43 Å' },
     { at: 0.89, code: 'CMOS ON CHIP', note: 'photoresist · 4 metal layers · 6T' },
   ],
-  duration: 16,
+  duration: 5,
 };
 
 export const EPILOGUE = {
