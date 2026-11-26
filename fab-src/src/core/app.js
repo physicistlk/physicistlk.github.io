@@ -12,7 +12,7 @@ import { createDevice } from '../scenes/device.js';
 import { createTheory } from '../scenes/theory.js';
 import { createTunnel } from '../scenes/tunnel.js';
 import { ContrastField } from '../scenes/contrast.js';
-import { createEpilogue } from '../scenes/epilogue.js';
+import { createEndLinks } from '../scenes/endlinks.js';
 import { TITLE_CARD, SECTION_LABELS, FILM } from '../content.js';
 
 const GATE = 0.565;          // scroll progress where the cinema takes over
@@ -96,7 +96,7 @@ export class Narrative {
     this.camera.add(this.wafer.group);
 
     this.theory = createTheory(this.overlay, this.scene);
-    this.epilogue = createEpilogue(this.overlay);
+    this.endLinks = createEndLinks(this.overlay);
 
     this.tunnel = createTunnel();
     this.scene.add(this.tunnel.group);
@@ -131,8 +131,6 @@ export class Narrative {
     this.chapterRail = document.getElementById('chapter-rail');
     this.chapterFill = this.chapterRail.querySelector('.chapter-rail__fill');
     this.filmEl = document.getElementById('film');
-    this.filmCode = document.getElementById('film-code');
-    this.filmNote = document.getElementById('film-note');
     this.filmTime = document.getElementById('film-time');
     this.nav = document.getElementById('hud-nav');
     this.loader = document.getElementById('loader');
@@ -299,13 +297,6 @@ export class Narrative {
     const ff = String(Math.floor((t * this.film.duration * 24) % 24)).padStart(2, '0');
     this.filmTime.textContent = `00:${mm}:${ss}:${ff}`;
 
-    let sec = FILM.sections[0];
-    for (const s of FILM.sections) if (t >= s.at) sec = s;
-    if (this.filmCode.textContent !== sec.code) {
-      this.filmCode.textContent = sec.code;
-      this.filmNote.textContent = sec.note;
-    }
-
     if (t >= 1) this._endFilm();
   }
 
@@ -406,7 +397,7 @@ export class Narrative {
     this.wafer.update(p, waferReveal);
     this.theory.setHidden(this.film.active);
     this.theory.update(p);
-    this.epilogue.update(p);
+    this.endLinks.update(p);
     this._updateTitleCard(p);
     this._updateLabel(p);
     this.tunnel.update(dt, this.elapsed);

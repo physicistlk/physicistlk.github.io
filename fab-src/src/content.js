@@ -93,24 +93,26 @@ export const PROCESS_FLOW = [
  * geometry: the optical path ends at z = -175, the reticle at -560, the
  * plasma at -1000, and the die at -1455.
  */
+/**
+ * The cinema runs as one continuous descent — no chapter cards, no cuts.
+ * The length is the length of the move; the pacing is carried by the camera.
+ */
 export const FILM = {
-  sections: [
-    { at: 0.00, code: 'OPTICAL PATH', note: 'λ = 13.5 nm · NA 0.35' },
-    { at: 0.18, code: 'RETICLE ALIGNMENT', note: 'stage X/Y ± 2 nm' },
-    { at: 0.43, code: 'PLASMA ETCH', note: 'Ar/CF₄ · 300 W · 20 mTorr' },
-    { at: 0.68, code: 'SILICON LATTICE', note: 'diamond cubic · a = 5.43 Å' },
-    { at: 0.89, code: 'CMOS ON CHIP', note: 'photoresist · 4 metal layers · 6T' },
-  ],
-  duration: 5,
+  duration: 16,
 };
 
-export const EPILOGUE = {
-  kicker: 'EPILOGUE',
-  quote: 'We built this machine to etch silicon. Somewhere along the way, we taught it to read a body.',
-  credits: [
-    { role: 'SUBJECT', value: 'Organic electrochemical transistors · oxide semiconductors · bioelectronic sensors' },
-    { role: 'METHOD', value: 'Charge, ions and atoms — the same physics, from wafer to sensor' },
-    { role: 'VISUALS', value: 'Everything on this page is procedural: geometry, materials and simulation' },
-    { role: 'SITE', value: 'Lokesh Kumar, PhD — Department of Physics, NIT Calicut' },
+/**
+ * The last movement: not an epilogue but a way out — the rest of the site,
+ * set large.
+ */
+export const END = {
+  kicker: 'MORE FROM THIS SITE',
+  links: [
+    { href: 'about.html', label: 'About', note: 'Profile, expertise, education' },
+    { href: 'research.html', label: 'Research', note: 'Themes, milestones, the group' },
+    { href: 'publications.html', label: 'Publications', note: 'Papers, preprints, posters' },
+    { href: 'contact.html', label: 'Contact', note: 'Email, links, collaboration' },
+    { href: 'assets/Lokesh_Kumar_CV.pdf', label: 'Download CV', note: 'PDF' },
   ],
+  foot: 'Lokesh Kumar, PhD — Department of Physics, NIT Calicut',
 };
