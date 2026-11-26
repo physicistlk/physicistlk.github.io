@@ -10,7 +10,7 @@ https://physicistlk.github.io/
 
 | Path | What it is |
 |------|------------|
-| `/` | **The Cascade** — a scroll-driven 3D narrative set inside a semiconductor fabrication facility |
+| `/` | **The Channel** — a scroll-driven 3D narrative set inside a semiconductor fabrication facility |
 | `/about.html` | Profile, expertise and education |
 | `/research.html` | Research themes and group |
 | `/publications.html` | Publication list |
@@ -48,7 +48,7 @@ npm run dev       # http://127.0.0.1:5173
 All narrative copy — the title card, the seven theory beats, the process flow,
 the film sections and the credits — lives in `fab-src/src/content.js`.
 
-## The Cascade — the front page
+## The Channel — the front page
 
 A scroll-driven 3D narrative set inside a semiconductor fabrication facility,
 built with Vite and Three.js. It runs in four movements:
@@ -57,10 +57,10 @@ built with Vite and Three.js. It runs in four movements:
    draw-in: silicon substrate, back gate, gate dielectric, an organic
    semiconductor channel with source and drain, and an electrolyte gel where
    cations drift down toward the channel and are captured by receptor sites.
-2. **The Cascade** — the lithography chapter. Type cascades word by word in
+2. **The Channel** — the lithography chapter. Type cascades word by word in
    parallax over the device as it decomposes into a process-flow diagram:
    deposition, lithography, etch, encapsulation, integration, biosensing.
-3. **The cinema** — a scroll-locked sixteen-second descent: a brief flash of
+3. **The cinema** — a scroll-locked five-second descent: a brief flash of
    light on the optical path, the mask aligning, the plasma, the silicon
    lattice — and then the landing, where the light falls on photoresist over
    an array of silicon atoms and the CMOS circuit comes out of it. The

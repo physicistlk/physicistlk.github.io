@@ -1,4 +1,4 @@
-# The Cascade — source
+# The Channel — source
 
 The front page of [physicistlk.github.io](https://physicistlk.github.io/): a
 scroll-driven 3D narrative set inside a semiconductor fabrication facility.
@@ -43,8 +43,8 @@ npm run preview # serve dist/
 | Movement | Scroll | What happens |
 |----------|--------|--------------|
 | Entry | 0 – 0.30 | A thin-film transistor draws itself in as a wireframe, then materialises: silicon substrate, back gate, gate dielectric, an organic semiconductor channel with source and drain, and an electrolyte gel where cations drift down and are captured by receptor sites. |
-| The Cascade | 0.30 – 0.56 | Type cascades word by word in parallax while the device decomposes into a six-stage process flow: deposition, lithography, etch, encapsulation, integration, biosensing. |
-| The cinema | 0.56 – 0.62 | Scroll locks for a sixteen-second descent — a short light path, the mask, the plasma, the lattice, and the landing on the die: silicon atoms under photoresist, printing a CMOS circuit. Rendered live; a dot-and-line field samples its own contrast. |
+| The Channel | 0.30 – 0.56 | Type cascades word by word in parallax while the device decomposes into a six-stage process flow: deposition, lithography, etch, encapsulation, integration, biosensing. |
+| The cinema | 0.56 – 0.62 | Scroll locks for a five-second descent — a short light path, the mask, the plasma, the lattice, and the landing on the die: silicon atoms under photoresist, printing a CMOS circuit. Rendered live; a dot-and-line field samples its own contrast. |
 | Epilogue | 0.62 – 1.0 | Credits roll, then the closing quote. |
 
 All copy lives in `src/content.js`.
