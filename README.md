@@ -60,7 +60,7 @@ built with Vite and Three.js. It runs in four movements:
 2. **The Channel** — the lithography chapter. Type cascades word by word in
    parallax over the device as it decomposes into a process-flow diagram:
    deposition, lithography, etch, encapsulation, integration, biosensing.
-3. **The cinema** — a scroll-locked sixteen-second descent, played as one
+3. **The cinema** — a scroll-locked five-second descent, played as one
    continuous move with no chapter cards: a flash of light on the optical
    path, the mask aligning, the plasma, the silicon lattice — and then the
    landing, where the light falls on photoresist over an array of silicon
