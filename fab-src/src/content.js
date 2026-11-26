@@ -5,13 +5,13 @@
  */
 
 export const TITLE_CARD = {
-  eyebrow: 'SEMICONDUCTOR FABRICATION — AN INTERACTIVE NARRATIVE',
-  title: 'THE CHANNEL',
-  subtitle: 'Light, etch and layer — and the sensors they become.',
+  eyebrow: 'NEUROMORPHIC BIOELECTRONICS & SEMICONDUCTOR PHYSICS',
+  title: 'NBL',
+  subtitle: 'Neuromorphic Bioelectronics Lab — light, etch and layer, and the sensors they become.',
   hint: 'SCROLL TO DESCEND',
   ctas: [
     { href: 'research.html', label: 'Research' },
-    { href: 'https://physicistlk.github.io/neuromorphic-bioelectronics-lab/', label: 'Neuromorphic Bioelectronics Lab' },
+    { href: 'index.html', label: 'NBL Home' },
   ],
 };
 
@@ -116,9 +116,9 @@ export const END = {
     { href: 'about.html', label: 'About', note: 'Profile, expertise, education' },
     { href: 'research.html', label: 'Research', note: 'Themes, milestones, the group' },
     { href: 'publications.html', label: 'Publications', note: 'Papers, preprints, posters' },
-    { href: 'https://physicistlk.github.io/neuromorphic-bioelectronics-lab/', label: 'The Lab', note: 'Neuromorphic Bioelectronics Lab' },
+    { href: 'index.html', label: 'NBL Home', note: 'Neuromorphic Bioelectronics Lab' },
     { href: 'contact.html', label: 'Contact', note: 'Email, links, collaboration' },
     { href: 'assets/Lokesh_Kumar_CV.pdf', label: 'Download CV', note: 'PDF' },
   ],
-  foot: 'Lokesh Kumar, PhD — Department of Physics, NIT Calicut',
+  foot: 'Neuromorphic Bioelectronics Lab (NBL) — Dr. Lokesh Kumar, Department of Physics, NIT Calicut',
 };
