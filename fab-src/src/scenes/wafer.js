@@ -1,14 +1,14 @@
 import * as THREE from 'three';
 
+const FLAT_HALF_ANGLE = 0.34; // SEMI primary orientation flat (~39° arc, chord ≈ 0.66R)
+
 /**
- * Builds a 2D circular wafer Shape with a SEMI-standard V-notch at 6 o'clock (-PI/2).
+ * Builds a 2D circular wafer Shape with a straight primary orientation flat at 6 o'clock.
  */
 export function makeNotchedWaferShape(radius, segments = 192) {
   const shape = new THREE.Shape();
-  const notchHalfAngle = 0.042; // angular half-width of the V-notch
-  const notchDepth = radius * 0.048; // depth of the V-notch
-  const startAngle = -Math.PI / 2 + notchHalfAngle;
-  const endAngle = Math.PI * 1.5 - notchHalfAngle;
+  const startAngle = -Math.PI / 2 + FLAT_HALF_ANGLE;
+  const endAngle = Math.PI * 1.5 - FLAT_HALF_ANGLE;
 
   for (let i = 0; i <= segments; i++) {
     const a = THREE.MathUtils.lerp(startAngle, endAngle, i / segments);
@@ -17,8 +17,7 @@ export function makeNotchedWaferShape(radius, segments = 192) {
     if (i === 0) shape.moveTo(x, y);
     else shape.lineTo(x, y);
   }
-  // V-notch apex at bottom (6 o'clock)
-  shape.lineTo(0, -(radius - notchDepth));
+  // closePath draws the straight chord forming the primary orientation flat
   shape.closePath();
   return shape;
 }
@@ -126,17 +125,14 @@ export function createWafer({ radius = 64, segments = 192 } = {}) {
 }
 
 /**
- * Helper: trace the notched wafer perimeter on a 2D canvas.
+ * Helper: trace the wafer perimeter with a straight primary orientation flat at 6 o'clock.
  * Note: Canvas Y points downward, so 6 o'clock (bottom) is angle = +PI/2.
  */
 function traceNotchedWaferPath(g, c, r) {
-  const notchHalfAngle = 0.042;
-  const notchDepth = r * 0.048;
-  const startAngle = Math.PI / 2 + notchHalfAngle;
-  const endAngle = Math.PI * 2.5 - notchHalfAngle;
+  const startAngle = Math.PI / 2 + FLAT_HALF_ANGLE;
+  const endAngle = Math.PI * 2.5 - FLAT_HALF_ANGLE;
   g.beginPath();
   g.arc(c, c, r, startAngle, endAngle, false);
-  g.lineTo(c, c + (r - notchDepth));
   g.closePath();
 }
 
@@ -189,8 +185,9 @@ function makeWaferMapTexture(size = 2048) {
       const cy = y + die / 2;
       const dist = Math.hypot(cx - c, cy - c);
       if (dist > usableR) continue;
-      // keep clear of the bottom V-notch zone
-      if (cy > c + c * 0.86 && Math.abs(cx - c) < c * 0.1) continue;
+      // keep clear of the straight orientation flat edge exclusion zone at bottom
+      const flatLimitY = c + c * Math.cos(FLAT_HALF_ANGLE) * 0.945;
+      if (cy + die * 0.45 > flatLimitY) continue;
 
       // subtle thin-film interference hue per die (cyan / emerald / violet)
       const angle = Math.atan2(cy - c, cx - c);

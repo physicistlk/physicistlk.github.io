@@ -67,7 +67,7 @@ export function createLithography() {
       const x = ix * spacing;
       const y = iy * spacing;
       if (Math.hypot(x, y) > WAFER_R * 0.9) continue;
-      if (y < -WAFER_R * 0.82 && Math.abs(x) < 1.0) continue; // clear of V-notch
+      if (y < -WAFER_R * Math.cos(0.34) * 0.92) continue; // clear of orientation flat
       atomPositions.push(x, y, -0.18 - (ix % 2 === 0 ? 0 : 0.08));
     }
   }
