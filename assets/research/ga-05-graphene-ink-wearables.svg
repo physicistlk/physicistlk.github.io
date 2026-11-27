@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="Placeholder graphical abstract for Sustainable Microwave-Assisted Synthesis and Rheological Engineering of Screen-Printable Graphene Ink for Flexible Wearable Devices">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b101b"/>
+      <stop offset="100%" stop-color="#111a2c"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="55%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#fbbf24"/>
+    </linearGradient>
+    <pattern id="hex" width="48" height="41.57" patternUnits="userSpaceOnUse">
+      <path d="M24 0 L48 13.86 L48 27.71 L24 41.57 L0 27.71 L0 13.86 Z" fill="none" stroke="rgba(56,189,248,0.12)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="960" height="540" fill="url(#bg)"/>
+  <rect width="960" height="540" fill="url(#hex)"/>
+  <rect x="28" y="28" width="904" height="484" rx="18" fill="none" stroke="rgba(56,189,248,0.28)" stroke-width="1.5" stroke-dasharray="8 8"/>
+
+  <!-- Schematic flow: Microwave -> Graphene Ink -> Screen-Printed Wearable -->
+  <g transform="translate(120, 165)" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="0" y="0" width="180" height="120" rx="14" fill="rgba(56,189,248,0.08)" stroke="#38bdf8" stroke-width="2"/>
+    <path d="M45 60 Q65 30 90 60 T135 60" fill="none" stroke="#38bdf8" stroke-width="3"/>
+    <text x="90" y="98" text-anchor="middle" fill="#e2e8f0" font-family="Inter, sans-serif" font-size="13" font-weight="600">Microwave Exfoliation</text>
+
+    <path d="M198 60 L248 60" stroke="url(#accent)" stroke-width="2.5" marker-end="none"/>
+    <polygon points="248,54 260,60 248,66" fill="#34d399"/>
+
+    <rect x="270" y="0" width="180" height="120" rx="14" fill="rgba(52,211,153,0.08)" stroke="#34d399" stroke-width="2"/>
+    <circle cx="360" cy="48" r="22" fill="none" stroke="#34d399" stroke-width="2.5"/>
+    <circle cx="360" cy="48" r="8" fill="#34d399" opacity="0.6"/>
+    <text x="360" y="98" text-anchor="middle" fill="#e2e8f0" font-family="Inter, sans-serif" font-size="13" font-weight="600">Rheological Graphene Ink</text>
+
+    <path d="M468 60 L518 60" stroke="url(#accent)" stroke-width="2.5"/>
+    <polygon points="518,54 530,60 518,66" fill="#fbbf24"/>
+
+    <rect x="540" y="0" width="180" height="120" rx="14" fill="rgba(251,191,36,0.08)" stroke="#fbbf24" stroke-width="2"/>
+    <path d="M570 58 L600 58 L612 34 L626 78 L640 46 L652 58 L690 58" fill="none" stroke="#fbbf24" stroke-width="3"/>
+    <text x="630" y="98" text-anchor="middle" fill="#e2e8f0" font-family="Inter, sans-serif" font-size="13" font-weight="600">Flexible Wearables</text>
+  </g>
+
+  <text x="480" y="92" text-anchor="middle" fill="#38bdf8" font-family="JetBrains Mono, monospace" font-size="15" letter-spacing="3">MATERIALS HORIZONS (2026) · DOI: 10.1039/D6MH01891B</text>
+  <text x="480" y="375" text-anchor="middle" fill="#f8fafc" font-family="Space Grotesk, Inter, sans-serif" font-size="22" font-weight="700">Graphical Abstract Placeholder</text>
+  <text x="480" y="408" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono, monospace" font-size="13">Replace assets/research/ga-05-graphene-ink-wearables.svg with final figure</text>
+</svg>
