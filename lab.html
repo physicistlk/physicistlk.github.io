@@ -18,8 +18,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/nbl.css">
   <script>
-    if (/[?&]embed/.test(location.search)) document.documentElement.classList.add("embed");
-    (function () { try { if (localStorage.getItem("nbl_theme") === "light") document.documentElement.classList.add("light"); } catch (e) {} })();
+    (function () {
+      var isEmbed = /[?&]embed/.test(location.search);
+      if (isEmbed) {
+        document.documentElement.classList.add("embed");
+        return;
+      }
+      try { if (localStorage.getItem("nbl_theme") === "light") document.documentElement.classList.add("light"); } catch (e) {}
+    })();
   </script>
 </head>
 <body>
@@ -154,7 +160,7 @@
     </section>
 
     <!-- FAB STORY -->
-    <section class="section">
+    <section class="section embed-hide">
       <div class="container">
         <div class="experience-card">
           <div>

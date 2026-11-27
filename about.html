@@ -3,163 +3,178 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About — Lokesh Kumar, PhD | Experimental Semiconductor Physics</title>
-  <meta name="description" content="Lokesh Kumar is an Assistant Professor of Physics at NIT Calicut. Research in organic electrochemical transistors, neuromorphic devices, oxide semiconductors, and bioelectronic sensors.">
-  <meta name="author" content="Lokesh Kumar">
-  <meta name="theme-color" content="#131315">
+  <title>About PI — Dr. Lokesh Kumar | Neuromorphic Bioelectronics Lab (NBL)</title>
+  <meta name="description" content="Dr. Lokesh Kumar is an Assistant Professor of Physics at NIT Calicut and Principal Investigator of the Neuromorphic Bioelectronics Lab (NBL). Research in OECTs, neuromorphic devices, oxide semiconductors, and bioelectronic sensors.">
+  <meta name="author" content="Dr. Lokesh Kumar">
+  <meta name="theme-color" content="#090b10">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Lokesh Kumar, PhD | Experimental Semiconductor Physics">
+  <meta property="og:title" content="Dr. Lokesh Kumar — Principal Investigator | NBL, NIT Calicut">
   <meta property="og:description" content="Assistant Professor of Physics at NIT Calicut. OECTs, neuromorphic devices, and bioelectronic sensors.">
   <meta property="og:image" content="assets/profile.jpg">
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="canonical" href="./">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/nbl.css">
   <script>
     (function () {
-      var t = localStorage.getItem("color-theme");
-      if (t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-        document.documentElement.classList.add("dark");
-      }
+      try {
+        if (localStorage.getItem("nbl_theme") === "light") document.documentElement.classList.add("light");
+      } catch (e) {}
     })();
   </script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
 
   <header class="site-header">
     <div class="container nav-inner">
-      <a class="brand" href="about.html">Lokesh Kumar, PhD</a>
+      <a class="brand" href="index.html">
+        <div class="brand-icon"><span class="material-symbols-outlined">memory</span></div>
+        <div class="brand-text">
+          <span class="brand-lab">Neuromorphic Bioelectronics Lab (NBL)</span>
+          <span class="brand-affil">NIT Calicut · Department of Physics</span>
+        </div>
+      </a>
       <div class="nav-actions">
-        <nav class="nav-links" aria-label="Primary">
-          <a href="about.html">Home</a>
-          <a href="about.html" aria-current="page">About</a>
-          <a href="research.html">Research</a>
-          <a href="publications.html">Publications</a>
-          <a href="contact.html">Contact</a>
-    <a href="index.html">Home</a>
-          <a href="index.html">Home</a>
+        <nav class="nav-links" aria-label="Primary Navigation">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link" href="research.html">Research</a>
+          <a class="nav-link" href="publications.html">Publications</a>
+          <a class="nav-link" href="about.html" aria-current="page">About</a>
+          <a class="nav-link" href="contact.html">Contact</a>
         </nav>
-        <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle color theme">
-          <span class="material-symbols-outlined icon-dark" aria-hidden="true">dark_mode</span>
-          <span class="material-symbols-outlined icon-light" aria-hidden="true">light_mode</span>
+        <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle dark/light theme" title="Toggle theme">
+          <span class="material-symbols-outlined icon-dark">dark_mode</span>
+          <span class="material-symbols-outlined icon-light">light_mode</span>
         </button>
-        <a class="btn btn-primary btn-sm" href="assets/Lokesh_Kumar_CV.pdf">Download CV</a>
-        <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
-          <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+        <a class="btn btn-outline btn-sm" href="assets/Lokesh_Kumar_CV.pdf">Download CV</a>
+        <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-expanded="false" aria-label="Open mobile menu">
+          <span class="material-symbols-outlined">menu</span>
         </button>
       </div>
     </div>
   </header>
 
-  <div class="mobile-menu" id="mobile-menu" data-mobile-menu aria-hidden="true">
-    <a href="about.html">Home</a>
-    <a href="about.html" aria-current="page">About</a>
+  <div class="mobile-menu" data-mobile-menu aria-hidden="true">
+    <a href="index.html">Home</a>
     <a href="research.html">Research</a>
     <a href="publications.html">Publications</a>
+    <a href="about.html" aria-current="page">About</a>
     <a href="contact.html">Contact</a>
     <a class="btn btn-primary" href="assets/Lokesh_Kumar_CV.pdf">Download CV</a>
   </div>
 
   <main id="main">
+    <!-- HERO -->
     <section class="hero">
-      <div class="container grid-2">
+      <div class="container hero-grid">
         <div>
-          <span class="badge">Experimental Semiconductor Physics</span>
-          <h1 class="display font-display">Assistant Professor <br><span class="accent">of Physics</span></h1>
-          <p class="lead">Department of Physics, NIT Calicut. Pioneering the next generation of flexible electronics through advanced semiconductor fabrication and precision characterization.</p>
-          <div class="hero-actions">
+          <div style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;margin-bottom:0.75rem">
+            <span class="badge">Principal Investigator · NBL</span>
+            <div class="status-pill"><span class="pulse-dot" aria-hidden="true"></span><span>Investigating thin-film transport dynamics</span></div>
+          </div>
+          <h1 class="hero-title" style="font-size:clamp(2.4rem,5vw,3.8rem);line-height:1.1;margin:0.5rem 0 1rem">
+            Dr. Lokesh Kumar<br><span class="text-gradient">Assistant Professor of Physics</span>
+          </h1>
+          <p class="hero-desc" style="color:var(--text-secondary);font-size:1.08rem;line-height:1.7;max-width:60ch;margin-bottom:1.75rem">
+            Department of Physics, National Institute of Technology Calicut. Pioneering the next generation of flexible bioelectronics and neuromorphic hardware through semiconductor fabrication and precision characterization.
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.85rem">
             <a class="btn btn-primary" href="research.html">
               View Research
               <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
             </a>
-            <a class="btn btn-outline" href="contact.html">Collaborate</a>
-            <a class="btn btn-outline" href="index.html">Home — the fab story</a>
+            <a class="btn btn-outline" href="contact.html#inquiry">Collaborate</a>
+            <a class="btn btn-outline" href="assets/Lokesh_Kumar_CV.pdf">Download CV</a>
           </div>
         </div>
-        <div class="portrait-wrap">
-          <div class="portrait">
-            <img
-              src="assets/profile.jpg"
-              srcset="assets/profile-sm.jpg 400w, assets/profile.jpg 800w"
-              sizes="(max-width: 768px) 288px, 384px"
-              width="800"
-              height="1067"
-              alt="Dr. Lokesh Kumar, professional portrait"
-              fetchpriority="high">
-          </div>
-          <div class="lab-status">
-            <div class="label">
-              <span class="material-symbols-outlined" aria-hidden="true">science</span>
-              LAB STATUS
-            </div>
-            <p>Currently investigating thin-film transport dynamics.</p>
+
+        <div class="portrait-card">
+          <img
+            class="portrait-img"
+            src="assets/profile.jpg"
+            srcset="assets/profile-sm.jpg 400w, assets/profile.jpg 800w"
+            sizes="(max-width: 768px) 288px, 384px"
+            width="800"
+            height="1067"
+            alt="Dr. Lokesh Kumar, Principal Investigator"
+            fetchpriority="high">
+          <div class="portrait-info">
+            <div class="pi-name">Dr. Lokesh Kumar</div>
+            <div class="pi-title">PhD, Semiconductor Physics (IIT Bombay)</div>
+            <div class="pi-affil">Assistant Professor · NIT Calicut</div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container grid-2 bio">
-        <div>
-          <h2 class="section-title font-headline">Professional <span class="accent">Bio</span></h2>
-          <div class="accent-bar" aria-hidden="true"></div>
-        </div>
-        <div>
-          <p class="muted">
-            Lokesh Kumar is an experimental physicist dedicated to bridging the gap between fundamental semiconductor physics and scalable industrial applications. His work focuses on Organic Electrochemical Transistors (OECTs), oxide semiconductors (ZnO, IGZO), printed flexible neuromorphic devices, and bioelectronic sensors for environmental and health monitoring.
-          </p>
-          <p class="muted">
-            Currently serving as an Assistant Professor of Physics at NIT Calicut, he leads a multi-disciplinary team. His research career highlights include an IGSTC project collaboration with the Karlsruhe Institute of Technology (KIT), advancing sustainable manufacturing processes in microelectronics.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section bg-muted">
+    <!-- BIO -->
+    <section class="section section-alt">
       <div class="container">
-        <div style="text-align:center;margin-bottom:3rem">
-          <h2 class="section-title font-headline">Technical Expertise</h2>
-          <p class="font-mono muted">CORE COMPETENCIES &amp; DOMAIN KNOWLEDGE</p>
+        <div class="grid-2" style="gap:2.5rem;align-items:start">
+          <div>
+            <span class="section-subtitle">Biography</span>
+            <h2 class="section-title">Professional <span class="text-gradient">Profile</span></h2>
+            <p class="section-desc">Bridging fundamental semiconductor device physics with scalable printed bioelectronics.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:1.15rem;color:var(--text-secondary);line-height:1.75;font-size:1.02rem">
+            <p style="margin:0">
+              Lokesh Kumar is an experimental physicist dedicated to bridging the gap between fundamental semiconductor physics and scalable industrial applications. His work focuses on Organic Electrochemical Transistors (OECTs), oxide semiconductors (ZnO, IGZO), printed flexible neuromorphic devices, and bioelectronic sensors for environmental and health monitoring.
+            </p>
+            <p style="margin:0">
+              Currently serving as an Assistant Professor of Physics at NIT Calicut, he leads the Neuromorphic Bioelectronics Lab (NBL). His research career highlights include an IGSTC project collaboration with the Karlsruhe Institute of Technology (KIT), advancing sustainable manufacturing processes in microelectronics.
+            </p>
+          </div>
         </div>
-        <div class="grid-4">
-          <article class="card reveal">
-            <span class="material-symbols-outlined card-icon" aria-hidden="true">precision_manufacturing</span>
-            <h3 class="card-title">Fabrication</h3>
-            <p class="muted" style="font-size:0.875rem;margin:0">Cleanroom processing, photolithography, and thin-film deposition techniques.</p>
-            <ul>
+      </div>
+    </section>
+
+    <!-- TECHNICAL EXPERTISE -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-subtitle">Core Competencies</span>
+          <h2 class="section-title">Technical Expertise</h2>
+          <p class="section-desc">Cleanroom nanofabrication, additive printing, electrical/microscopic characterization, and device modeling.</p>
+        </div>
+        <div class="grid-4" style="gap:1.25rem">
+          <article class="card">
+            <span class="material-symbols-outlined" style="font-size:2rem;color:var(--accent-cyan);margin-bottom:0.75rem" aria-hidden="true">precision_manufacturing</span>
+            <h3 style="font-size:1.12rem;margin-bottom:0.4rem">Fabrication</h3>
+            <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.9rem">Cleanroom processing, photolithography, and thin-film deposition techniques.</p>
+            <ul style="padding-left:1.1rem;margin:0;color:var(--text-secondary);font-size:0.86rem;line-height:1.7">
               <li>Photolithography (SUSS MJB4)</li>
               <li>E-beam Evaporation</li>
               <li>Plasma Etching (Nordson AP-300)</li>
             </ul>
           </article>
-          <article class="card reveal">
-            <span class="material-symbols-outlined card-icon" aria-hidden="true">print</span>
-            <h3 class="card-title">Printed Electronics</h3>
-            <p class="muted" style="font-size:0.875rem;margin:0">Inkjet printing and roll-to-roll manufacturing for flexible substrates.</p>
-            <ul>
+          <article class="card">
+            <span class="material-symbols-outlined" style="font-size:2rem;color:var(--accent-emerald);margin-bottom:0.75rem" aria-hidden="true">print</span>
+            <h3 style="font-size:1.12rem;margin-bottom:0.4rem">Printed Electronics</h3>
+            <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.9rem">Inkjet printing and roll-to-roll manufacturing for flexible substrates.</p>
+            <ul style="padding-left:1.1rem;margin:0;color:var(--text-secondary);font-size:0.86rem;line-height:1.7">
               <li>Inkjet Printing (JetLab 4)</li>
               <li>Aerosol Jet Printing (Optomec 5X)</li>
             </ul>
           </article>
-          <article class="card reveal">
-            <span class="material-symbols-outlined card-icon" aria-hidden="true">analytics</span>
-            <h3 class="card-title">Characterization</h3>
-            <p class="muted" style="font-size:0.875rem;margin:0">Advanced microscopic and spectroscopic analysis of materials.</p>
-            <ul>
+          <article class="card">
+            <span class="material-symbols-outlined" style="font-size:2rem;color:var(--accent-amber);margin-bottom:0.75rem" aria-hidden="true">analytics</span>
+            <h3 style="font-size:1.12rem;margin-bottom:0.4rem">Characterization</h3>
+            <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.9rem">Advanced microscopic and spectroscopic analysis of materials and devices.</p>
+            <ul style="padding-left:1.1rem;margin:0;color:var(--text-secondary);font-size:0.86rem;line-height:1.7">
               <li>SEM / AFM</li>
               <li>XRD Analysis</li>
               <li>Keithley 4200-SCS</li>
             </ul>
           </article>
-          <article class="card reveal">
-            <span class="material-symbols-outlined card-icon" aria-hidden="true">terminal</span>
-            <h3 class="card-title">Software</h3>
-            <p class="muted" style="font-size:0.875rem;margin:0">Simulation, data modeling, and automated instrumentation control.</p>
-            <ul>
+          <article class="card">
+            <span class="material-symbols-outlined" style="font-size:2rem;color:var(--accent-violet);margin-bottom:0.75rem" aria-hidden="true">terminal</span>
+            <h3 style="font-size:1.12rem;margin-bottom:0.4rem">Software</h3>
+            <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.9rem">Simulation, data modeling, and automated instrumentation control.</p>
+            <ul style="padding-left:1.1rem;margin:0;color:var(--text-secondary);font-size:0.86rem;line-height:1.7">
               <li>Python / LabView</li>
               <li>COMSOL</li>
             </ul>
@@ -168,65 +183,89 @@
       </div>
     </section>
 
-    <section class="section">
-      <div class="container grid-2 timeline-layout">
-        <div>
-          <h2 class="section-title font-headline">Education <span class="accent">Timeline</span></h2>
-          <p class="muted">A chronological journey of academic excellence and research evolution.</p>
+    <!-- EDUCATION -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-subtitle">Academic Background</span>
+          <h2 class="section-title">Education Timeline</h2>
+          <p class="section-desc">Training in experimental semiconductor physics and nanoscale device engineering.</p>
         </div>
-        <div class="timeline">
-          <div class="timeline-item major reveal">
-            <span class="timeline-dot" aria-hidden="true"></span>
-            <span class="timeline-date">2018 — 2024</span>
-            <h3 class="card-title">PhD, Semiconductor Physics | IIT Bombay</h3>
-            <p class="muted" style="margin:0.25rem 0">Indian Institute of Technology, Bombay</p>
-            <p class="muted" style="font-size:0.875rem;font-style:italic;margin:0.75rem 0 0">Thesis: "Organic Electrochemical Transistors for Neuromorphic Devices and Sensors"</p>
-          </div>
-          <div class="timeline-item reveal">
-            <span class="timeline-dot" aria-hidden="true"></span>
-            <span class="timeline-date">2014 — 2016</span>
-            <h3 class="card-title">MSc, Semiconductor Physics | IIT Roorkee</h3>
-            <p class="muted" style="margin:0.25rem 0">Indian Institute of Technology, Roorkee</p>
-            <p class="muted" style="font-size:0.875rem;margin:0.75rem 0 0">1st Division. Project on 2D spin simulation in Python.</p>
-          </div>
-          <div class="timeline-item reveal">
-            <span class="timeline-dot" aria-hidden="true"></span>
-            <span class="timeline-date">2011 — 2014</span>
-            <h3 class="card-title">BSc, Physics | St. Stephen's College, Delhi University</h3>
-            <p class="muted" style="margin:0.25rem 0">St. Stephen's College, Delhi University</p>
-            <p class="muted" style="font-size:0.875rem;margin:0.75rem 0 0">1st Division.</p>
-          </div>
+        <div class="grid-3" style="gap:1.25rem">
+          <article class="card" style="border-color:rgba(56,189,248,0.35)">
+            <span class="badge" style="margin-bottom:0.75rem">2018 — 2024</span>
+            <h3 style="font-size:1.12rem;margin-bottom:0.35rem">PhD, Semiconductor Physics</h3>
+            <p style="font-size:0.9rem;color:var(--accent-cyan);margin-bottom:0.6rem">Indian Institute of Technology, Bombay</p>
+            <p style="font-size:0.86rem;color:var(--text-muted);font-style:italic;margin:0">Thesis: "Organic Electrochemical Transistors for Neuromorphic Devices and Sensors"</p>
+          </article>
+          <article class="card">
+            <span class="badge badge-emerald" style="margin-bottom:0.75rem">2014 — 2016</span>
+            <h3 style="font-size:1.12rem;margin-bottom:0.35rem">MSc, Semiconductor Physics</h3>
+            <p style="font-size:0.9rem;color:var(--accent-emerald);margin-bottom:0.6rem">Indian Institute of Technology, Roorkee</p>
+            <p style="font-size:0.86rem;color:var(--text-muted);margin:0">1st Division. Project on 2D spin simulation in Python.</p>
+          </article>
+          <article class="card">
+            <span class="badge badge-amber" style="margin-bottom:0.75rem">2011 — 2014</span>
+            <h3 style="font-size:1.12rem;margin-bottom:0.35rem">BSc, Physics</h3>
+            <p style="font-size:0.9rem;color:var(--accent-amber);margin-bottom:0.6rem">St. Stephen's College, Delhi University</p>
+            <p style="font-size:0.86rem;color:var(--text-muted);margin:0">1st Division.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="section-sm bg-muted" style="border-top:1px solid var(--border)">
-      <div class="container tag-cloud">
-        <span class="tag">Organic Electrochemical Transistors (OECTs)</span>
-        <span class="tag">Oxide Semiconductors (ZnO, IGZO)</span>
-        <span class="tag">Printed Flexible Neuromorphic Devices</span>
-        <span class="tag">Bioelectronic Sensors</span>
+    <!-- RESEARCH FOCUS TAGS -->
+    <section class="section">
+      <div class="container">
+        <div class="tag-cloud" style="justify-content:center">
+          <span class="tag">Organic Electrochemical Transistors (OECTs)</span>
+          <span class="tag">Oxide Semiconductors (ZnO, IGZO)</span>
+          <span class="tag">Printed Flexible Neuromorphic Devices</span>
+          <span class="tag">Bioelectronic Sensors</span>
+        </div>
       </div>
     </section>
   </main>
 
+  <button type="button" class="back-to-top" data-back-to-top aria-label="Back to top"><span class="material-symbols-outlined">arrow_upward</span></button>
+
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <div>
-        <span class="footer-brand">LOKESH KUMAR</span>
-        <p class="footer-copy">© 2026 Lokesh Kumar · Experimental Semiconductor Physics. All rights reserved.</p>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand" style="margin-bottom:0.5rem">
+            <div class="brand-icon" style="width:1.85rem;height:1.85rem"><span class="material-symbols-outlined" style="font-size:1.15rem">memory</span></div>
+            <span class="brand-lab">Neuromorphic Bioelectronics Lab (NBL)</span>
+          </div>
+          <p class="footer-brand-desc">Department of Physics, National Institute of Technology Calicut<br>Kozhikode – 673601, Kerala, India.<br>Led by Dr. Lokesh Kumar (PhD, IIT Bombay).</p>
+        </div>
+        <div>
+          <h4 class="footer-heading">Navigate</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home (Fab Story)</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="publications.html">Publications &amp; Patents</a></li>
+            <li><a href="about.html">About PI</a></li>
+            <li><a href="contact.html">Contact &amp; Join</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Profiles</h4>
+          <ul class="footer-links">
+            <li><a href="https://scholar.google.com/citations?user=B5zMjo4AAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a></li>
+            <li><a href="https://orcid.org/0000-0001-7667-8422" target="_blank" rel="noopener noreferrer">ORCID</a></li>
+            <li><a href="https://www.linkedin.com/in/lokesh-kumar-phd-09920079" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="https://nitc.ac.in/department/physics/faculty-and-staff/faculty/5566ed19-19e4-4a1f-b4d2-89456e2442d5" target="_blank" rel="noopener noreferrer">NITC faculty profile</a></li>
+          </ul>
+        </div>
       </div>
-      <nav class="footer-links" aria-label="Footer">
-        <a href="mailto:lokesh@nitc.ac.in">Email</a>
-        <a href="https://www.linkedin.com/in/lokesh-kumar-phd-09920079" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="https://scholar.google.com/citations?user=B5zMjo4AAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Scholar</a>
-        <a href="https://orcid.org/0000-0001-7667-8422" target="_blank" rel="noopener noreferrer">ORCID</a>
-        <a href="https://nitc.ac.in/department/physics/faculty-and-staff/faculty/5566ed19-19e4-4a1f-b4d2-89456e2442d5" target="_blank" rel="noopener noreferrer">Affiliation</a>
-        <a href="index.html">Home</a>
-      </nav>
+      <div class="footer-bottom">
+        <p>© 2026 Neuromorphic Bioelectronics Lab (NBL) · Dr. Lokesh Kumar</p>
+        <p class="font-mono">NIT Calicut · Department of Physics</p>
+      </div>
     </div>
   </footer>
 
-  <script src="js/main.js" defer></script>
+  <script src="js/nbl.js" defer></script>
 </body>
 </html>

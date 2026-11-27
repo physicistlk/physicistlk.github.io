@@ -104,7 +104,8 @@ body.is-filming { overflow: hidden; }
   text-shadow: 0 1px 14px rgba(0, 0, 0, 0.75);
   opacity: 0;
   transform: translateY(-8px);
-  transition: opacity 0.9s ease, transform 0.9s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease, background 0.35s ease, border-color 0.35s ease;
+  border-bottom: 1px solid transparent;
   pointer-events: none;
 }
 
@@ -112,6 +113,18 @@ body.is-filming { overflow: hidden; }
   opacity: 1;
   transform: none;
   pointer-events: auto;
+}
+
+.hud-nav.is-over-lab {
+  background: rgba(9, 11, 16, 0.86);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom-color: rgba(248, 250, 252, 0.09);
+}
+
+body.is-filming .hud-nav {
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 .hud-nav__brand {
@@ -226,7 +239,7 @@ body.is-filming { overflow: hidden; }
 /* -------------------------------------------------------- scene label -- */
 .scene-label {
   position: fixed;
-  top: clamp(1.35rem, 3.2vw, 2.6rem);
+  bottom: clamp(1.35rem, 3.6vh, 2.5rem);
   left: clamp(1rem, 3.2vw, 2.75rem);
   z-index: 15;
   font-family: var(--mono);
@@ -456,7 +469,7 @@ body.is-filming { overflow: hidden; }
 .film {
   position: fixed;
   inset: 0;
-  z-index: 18;
+  z-index: 35;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.7s ease;
@@ -779,8 +792,9 @@ body.is-filming { overflow: hidden; }
 /* ------------------------------------------------- the lab (last chapter) -- */
 .lab-embed {
   position: relative;
-  z-index: 5;
+  z-index: 14;
   background: #090b10;
+  box-shadow: 0 -48px 90px #090b10;
 }
 .lab-embed iframe {
   display: block;
@@ -788,4 +802,41 @@ body.is-filming { overflow: hidden; }
   height: 100vh;
   border: 0;
   background: #090b10;
+}
+
+.fab-top-btn {
+  position: fixed;
+  right: clamp(1rem, 2.6vw, 2rem);
+  bottom: clamp(1rem, 2.6vh, 2rem);
+  z-index: 28;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  background: rgba(9, 11, 16, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s, border-color 0.25s ease, color 0.25s ease;
+}
+.fab-top-btn.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.fab-top-btn:hover,
+.fab-top-btn:focus-visible {
+  color: var(--cyan);
+  border-color: var(--cyan);
 }

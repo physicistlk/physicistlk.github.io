@@ -3,208 +3,218 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Research | Lokesh Kumar, PhD</title>
-  <meta name="description" content="Research highlights in semiconductor physics, neuromorphic computing, OECTs, and advanced materials by Dr. Lokesh Kumar.">
-  <meta name="author" content="Lokesh Kumar">
-  <meta name="theme-color" content="#131315">
-  <meta property="og:title" content="Research | Lokesh Kumar, PhD">
-  <meta property="og:description" content="Breakthroughs in semiconductor physics, neuromorphic computing, and advanced materials.">
+  <title>Research Thrusts &amp; Facilities | Neuromorphic Bioelectronics Lab | NIT Calicut</title>
+  <meta name="description" content="Research thrusts in neuromorphic transistors, OECTs, biosensors, 2D graphene electronics, and cleanroom instrumentation at the Neuromorphic Bioelectronics Laboratory, NIT Calicut.">
+  <meta name="author" content="Dr. Lokesh Kumar">
+  <meta name="theme-color" content="#090b10">
+
+  <!-- OpenGraph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Research Thrusts | Neuromorphic Bioelectronics Lab">
+  <meta property="og:description" content="Four core research thrusts spanning artificial synapses, OECT biosensing, green graphene synthesis, and cleanroom nanofabrication.">
   <meta property="og:image" content="assets/lab.jpg">
+
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/nbl.css">
+
   <script>
     (function () {
-      var t = localStorage.getItem("color-theme");
-      if (t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-        document.documentElement.classList.add("dark");
-      }
+      try {
+        var t = localStorage.getItem("nbl_theme");
+        if (t === "light") document.documentElement.classList.add("light");
+      } catch (e) {}
     })();
   </script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
 
+  <!-- Header -->
   <header class="site-header">
     <div class="container nav-inner">
-      <a class="brand" href="about.html">Lokesh Kumar, PhD</a>
+      <a class="brand" href="index.html">
+        <div class="brand-icon">
+          <span class="material-symbols-outlined">memory</span>
+        </div>
+        <div class="brand-text">
+          <span class="brand-lab">Neuromorphic Bioelectronics Lab (NBL)</span>
+          <span class="brand-affil">NIT Calicut · Department of Physics</span>
+        </div>
+      </a>
+
       <div class="nav-actions">
-        <nav class="nav-links" aria-label="Primary">
-          <a href="about.html">Home</a>
-          <a href="about.html">About</a>
-          <a href="research.html" aria-current="page">Research</a>
-          <a href="publications.html">Publications</a>
-          <a href="contact.html">Contact</a>
-    <a href="index.html">Home</a>
-          <a href="index.html">Home</a>
+        <nav class="nav-links" aria-label="Primary Navigation">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link" href="research.html" aria-current="page">Research</a>
+          <a class="nav-link" href="publications.html">Publications</a>
+          <a class="nav-link" href="about.html">About</a>
+          <a class="nav-link" href="contact.html">Contact</a>
         </nav>
-        <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle color theme">
-          <span class="material-symbols-outlined icon-dark" aria-hidden="true">dark_mode</span>
-          <span class="material-symbols-outlined icon-light" aria-hidden="true">light_mode</span>
+
+        <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle dark/light theme" title="Toggle theme">
+          <span class="material-symbols-outlined icon-dark">dark_mode</span>
+          <span class="material-symbols-outlined icon-light">light_mode</span>
         </button>
-        <a class="btn btn-primary btn-sm" href="assets/Lokesh_Kumar_CV.pdf">Download CV</a>
-        <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
-          <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+
+        <a class="btn btn-outline btn-sm" href="contact.html#join">Join Lab</a>
+
+        <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-expanded="false" aria-label="Open mobile menu">
+          <span class="material-symbols-outlined">menu</span>
         </button>
       </div>
     </div>
   </header>
 
-  <div class="mobile-menu" id="mobile-menu" data-mobile-menu aria-hidden="true">
-    <a href="about.html">Home</a>
-    <a href="about.html">About</a>
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-menu" data-mobile-menu aria-hidden="true">
+    <a href="index.html">Home</a>
     <a href="research.html" aria-current="page">Research</a>
     <a href="publications.html">Publications</a>
+    <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-    <a class="btn btn-primary" href="assets/Lokesh_Kumar_CV.pdf">Download CV</a>
+    <a class="btn btn-primary" href="contact.html#inquiry">Join NBL</a>
   </div>
 
   <main id="main">
-    <header class="page-hero container">
-      <div style="margin-bottom:2rem;border-radius:0.75rem;overflow:hidden;border:1px solid var(--border)">
-        <img
-          src="assets/lab.jpg"
-          srcset="assets/lab-sm.jpg 800w, assets/lab.jpg 1400w"
-          sizes="(max-width: 1024px) 100vw, 1024px"
-          width="1400"
-          height="781"
-          alt="Research laboratory for semiconductor and device fabrication"
-          style="width:100%;height:clamp(12rem,30vw,24rem);object-fit:cover">
+    <!-- Hero Banner with Lab Facility Visual -->
+    <section class="section" style="padding-top:2.5rem;padding-bottom:2rem">
+      <div class="container">
+        <div style="border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);margin-bottom:2.5rem;box-shadow:var(--shadow-lg);position:relative">
+          <img src="assets/lab.jpg" alt="Experimental Semiconductor Laboratory at NIT Calicut" style="width:100%;height:clamp(14rem,28vw,24rem);object-fit:cover;object-position:center">
+          <div style="position:absolute;bottom:0;left:0;width:100%;background:linear-gradient(to top, rgba(9,11,16,0.95), transparent);padding:2rem 2rem 1.25rem">
+            <span class="badge badge-emerald">Active Nanofabrication &amp; Characterization</span>
+          </div>
+        </div>
+
+        <div style="max-width:820px">
+          <span class="section-subtitle">Research Framework</span>
+          <h1 class="section-title" style="font-size:clamp(2.2rem,4vw,3.2rem)">
+            Experimental Device Physics &amp; <br>
+            <span class="text-gradient">Bioelectronic Architectures</span>
+          </h1>
+          <p class="hero-lead">
+            The lab investigates electronic and electrochemical interfacial phenomena to build intelligent hardware. Our research is structured across <strong>four integrated pillars</strong>, spanning fundamental charge transport to functional microelectronic chips.
+          </p>
+        </div>
       </div>
-      <h1 class="display font-display">Research Highlights</h1>
-      <p class="lead">A chronological record of breakthroughs in semiconductor physics, neuromorphic computing, and advanced materials.</p>
-    </header>
+    </section>
 
-    <section class="container" style="padding-bottom:5rem">
-      <div class="research-timeline">
+    <!-- The 4 Research Thrusts -->
+    <section class="section section-alt">
+      <div class="container" style="display:flex;flex-direction:column;gap:3.5rem">
 
-        <!-- 1. Printed neuromorphic OECT -->
-        <article class="milestone reveal">
-          <div class="milestone-card card">
-            <span class="badge" style="margin-bottom:0.75rem">Major Milestone</span>
-            <h3 class="card-title">Screen-Printed OECTs for Bio-Realistic Synaptic Plasticity</h3>
-            <figure class="ga-figure">
-              <img
-                class="ga-img"
-                src="assets/research/ga-01-printed-neuromorphic-oect.png"
-                width="1200"
-                height="675"
-                alt="Placeholder graphical abstract: screen-printed neuromorphic OECT"
-                loading="lazy">
-              <figcaption class="ga-caption">Graphical abstract · <code>assets/research/ga-01-printed-neuromorphic-oect.png</code></figcaption>
-            </figure>
-            <p class="muted">
-              Demonstrated bio-realistic emulation of complex synaptic plasticity and logic—including the Ebbinghaus forgetting curve, STDP, paired-pulse facilitation, and OR logic—in a low-energy (~24&nbsp;nJ), fully screen-printed organic electrochemical transistor (OECT).
+        <!-- Thrust 1 -->
+        <article class="thrust-card" style="display:grid;grid-template-columns:1fr 1.2fr;gap:2rem;align-items:center;padding:1.5rem">
+          <div class="thrust-media" style="height:320px;border-radius:var(--radius-md)" data-zoomable data-caption="Screen-Printed OECTs for Bio-Realistic Synaptic Plasticity — Applied Materials Today (2026)">
+            <img src="assets/research/ga-01-printed-neuromorphic-oect.png" alt="Graphical abstract for Neuromorphic Synaptic OECT">
+            <div class="zoom-overlay">
+              <span class="material-symbols-outlined" style="font-size:1rem">zoom_in</span> Click to Zoom
+            </div>
+          </div>
+          <div class="thrust-content" style="padding:1rem 0">
+            <span class="thrust-number">RESEARCH PILLAR 01</span>
+            <h2 class="thrust-title">Neuromorphic Computing &amp; Bio-Realistic Synaptic Transistors</h2>
+            <p class="thrust-desc">
+              Conventional von Neumann digital hardware suffers severe energy bottlenecks when running deep neural networks. We design and fabricate fully screen-printed organic electrochemical transistors (OECTs) that emulate biological synapses with <strong>ultra-low operating energy (~24 nJ)</strong>.
             </p>
-            <div class="chip-row">
-              <span class="chip">Neuromorphic</span>
-              <span class="chip">Printed Electronics</span>
-              <span class="chip">OECT</span>
-            </div>
-            <div class="meta-row">
-              <span class="material-symbols-outlined" aria-hidden="true" style="font-size:1rem">science</span>
-              <span>Applied Materials Today (Accepted 2026)</span>
-            </div>
-          </div>
-          <span class="milestone-dot" aria-hidden="true"></span>
-          <div class="milestone-meta">
-            <span class="chip">April 2026</span>
-          </div>
-        </article>
-
-        <!-- 2. Photo-thermal rGO transistor -->
-        <article class="milestone reveal">
-          <div class="milestone-meta">
-            <span class="chip">January 2025</span>
-          </div>
-          <span class="milestone-dot" aria-hidden="true"></span>
-          <div class="milestone-card card">
-            <h3 class="card-title">Low-Voltage Photo-Thermally Reduced Graphene Oxide Transistors</h3>
-            <figure class="ga-figure">
-              <img
-                class="ga-img"
-                src="assets/research/ga-02-photothermal-rgo-transistor.png"
-                width="1200"
-                height="675"
-                alt="Placeholder graphical abstract: photo-thermally reduced graphene oxide transistor"
-                loading="lazy">
-              <figcaption class="ga-caption">Graphical abstract · <code>assets/research/ga-02-photothermal-rgo-transistor.png</code></figcaption>
-            </figure>
-            <p class="muted">
-              Fabricated low-voltage photo-thermally reduced graphene oxide (rGO) transistors with an ion-gel dielectric. The photo-thermal route avoids toxic chemical reagents while delivering improved carrier mobility and device stability versus conventional reduction methods.
-            </p>
-            <div class="chip-row">
-              <span class="chip">Graphene</span>
-              <span class="chip">Ion Gel</span>
-              <span class="chip">Low Voltage</span>
-            </div>
-            <div class="meta-row">
-              <span class="material-symbols-outlined" aria-hidden="true" style="font-size:1rem">link</span>
-              <a href="https://doi.org/10.1016/j.carbon.2025.120946" target="_blank" rel="noopener noreferrer">Carbon (IF: 11.6) · DOI</a>
+            <ul style="margin-left:1.25rem;margin-bottom:1.25rem;color:var(--text-muted);font-size:0.925rem;line-height:1.7">
+              <li><strong>Biological Memory Curves:</strong> Successful hardware replication of the psychological Ebbinghaus forgetting curve.</li>
+              <li><strong>Plasticity Rules:</strong> Spike-Timing-Dependent Plasticity (STDP) and Paired-Pulse Facilitation (PPF).</li>
+              <li><strong>Integrated Logic:</strong> Demonstrating concurrent multi-input OR logic inside the conductive channel.</li>
+            </ul>
+            <div class="tag-cloud">
+              <span class="tag">OECT Transistors</span>
+              <span class="tag">Hebbian Learning</span>
+              <span class="tag">Edge AI Hardware</span>
+              <span class="tag">Applied Materials Today 2026</span>
             </div>
           </div>
         </article>
 
-        <!-- 3. OECT water-pollutant biosensor -->
-        <article class="milestone reveal">
-          <div class="milestone-card card">
-            <h3 class="card-title">Protein-Immobilized OECT Biosensors for Aromatic Water Pollutants</h3>
-            <figure class="ga-figure">
-              <img
-                class="ga-img"
-                src="assets/research/ga-03-oect-water-pollutant-sensor.png"
-                width="1200"
-                height="675"
-                alt="Placeholder graphical abstract: OECT biosensor for water pollutants"
-                loading="lazy">
-              <figcaption class="ga-caption">Graphical abstract · <code>assets/research/ga-03-oect-water-pollutant-sensor.png</code></figcaption>
-            </figure>
-            <p class="muted">
-              Developed an ultrasensitive OECT biosensor for aromatic water pollutants at parts-per-billion (ppb) levels via controlled protein immobilization—aimed at real-time environmental monitoring.
+        <!-- Thrust 2 -->
+        <article class="thrust-card" style="display:grid;grid-template-columns:1.2fr 1fr;gap:2rem;align-items:center;padding:1.5rem">
+          <div class="thrust-content" style="padding:1rem 0">
+            <span class="thrust-number">RESEARCH PILLAR 02</span>
+            <h2 class="thrust-title">Organic Electrochemical Transistors (OECTs) &amp; Biosensors</h2>
+            <p class="thrust-desc">
+              OECTs operate through volumetric ion penetration into a conjugated polymer channel (e.g., PEDOT:PSS), yielding extraordinary transconductance ($g_m$) orders of magnitude greater than conventional field-effect transistors. We exploit this amplification to detect biological and environmental analytes at sub-nanomolar thresholds.
             </p>
-            <div class="chip-row">
-              <span class="chip">Bioelectronics</span>
-              <span class="chip">Environmental Sensing</span>
-              <span class="chip">OECT</span>
-            </div>
-            <div class="meta-row">
-              <span class="material-symbols-outlined" aria-hidden="true" style="font-size:1rem">star</span>
-              <a href="https://doi.org/10.1039/d3sc03509c" target="_blank" rel="noopener noreferrer">Chemical Science (IF: 9.8) · DOI</a>
+            <ul style="margin-left:1.25rem;margin-bottom:1.25rem;color:var(--text-muted);font-size:0.925rem;line-height:1.7">
+              <li><strong>Water Contaminant Sensors:</strong> Protein-immobilized gates for ultrasensitive detection of phenolic and aromatic water pollutants.</li>
+              <li><strong>Genomic Recognition:</strong> OECT platforms specifically sensitive to DNA-binding protein complexes.</li>
+              <li><strong>Granted Patents:</strong> Protected under Indian Patent No. 474656 and Patent No. 431170.</li>
+            </ul>
+            <div class="tag-cloud">
+              <span class="tag">Chemical Science 2024</span>
+              <span class="tag">Indian Patent 474656</span>
+              <span class="tag">DNA-Binding Proteins</span>
+              <span class="tag">Volumetric Transconductance</span>
             </div>
           </div>
-          <span class="milestone-dot" aria-hidden="true"></span>
-          <div class="milestone-meta">
-            <span class="chip">September 2024</span>
+          <div class="thrust-media" style="height:320px;border-radius:var(--radius-md)" data-zoomable data-caption="Ultrasensitive Detection of Aromatic Water Pollutants — Chemical Science (2024)">
+            <img src="assets/research/ga-03-oect-water-pollutant-sensor.png" alt="Graphical abstract for Water Pollutant OECT Biosensor">
+            <div class="zoom-overlay">
+              <span class="material-symbols-outlined" style="font-size:1rem">zoom_in</span> Click to Zoom
+            </div>
           </div>
         </article>
 
-        <!-- 4. PhD research -->
-        <article class="milestone reveal">
-          <div class="milestone-meta">
-            <span class="chip">2018–2024</span>
+        <!-- Thrust 3 -->
+        <article class="thrust-card" style="display:grid;grid-template-columns:1fr 1.2fr;gap:2rem;align-items:center;padding:1.5rem">
+          <div class="thrust-media" style="height:320px;border-radius:var(--radius-md)" data-zoomable data-caption="Low Voltage Photo-Thermally Reduced Graphene Oxide Transistor Devices — Carbon (2025)">
+            <img src="assets/research/ga-02-photothermal-rgo-transistor.png" alt="Graphical abstract for Photo-thermal rGO Transistor">
+            <div class="zoom-overlay">
+              <span class="material-symbols-outlined" style="font-size:1rem">zoom_in</span> Click to Zoom
+            </div>
           </div>
-          <span class="milestone-dot" aria-hidden="true"></span>
-          <div class="milestone-card card">
-            <h3 class="card-title">OECTs for Neuromorphic Devices and Sensors — PhD, IIT Bombay</h3>
-            <figure class="ga-figure">
-              <img
-                class="ga-img"
-                src="assets/research/ga-04-phd-oect-neuromorphic.png"
-                width="1200"
-                height="675"
-                alt="Placeholder graphical abstract: PhD research on OECTs"
-                loading="lazy">
-              <figcaption class="ga-caption">Graphical abstract · <code>Connecting Organic Transistors; Neuromorphic, Sensing and Processing</code></figcaption>
-            </figure>
-            <p class="muted" style="margin:0">
-              Doctoral research establishing organic electrochemical transistors as a platform for neuromorphic hardware and bioelectronic sensing, spanning device physics, fabrication, and application-driven architectures.
+          <div class="thrust-content" style="padding:1rem 0">
+            <span class="thrust-number">RESEARCH PILLAR 03</span>
+            <h2 class="thrust-title">Sustainable Printed Electronics &amp; Green Graphene Synthesis</h2>
+            <p class="thrust-desc">
+              Industrial microelectronics manufacturing faces pressing environmental sustainability challenges. We developed a rapid, chemical-free microwave-assisted route to synthesize graphene flakes directly from natural graphite flakes.
             </p>
-            <div class="chip-row">
-              <span class="chip">Thesis</span>
-              <span class="chip">Device Physics</span>
-              <span class="chip">IIT Bombay</span>
+            <ul style="margin-left:1.25rem;margin-bottom:1.25rem;color:var(--text-muted);font-size:0.925rem;line-height:1.7">
+              <li><strong>Sub-2V Operating Transistors:</strong> Photo-thermally reduced graphene oxide (rGO) gated via high-capacitance room-temperature ion-gel dielectrics.</li>
+              <li><strong>Green Microwave Synthesis:</strong> Microwave-assisted transformation minimizing toxic acid oxidizers (Patent No. 596620).</li>
+              <li><strong>International Collaboration:</strong> Developed in synergy with the Indo-German Science &amp; Technology Centre (IGSTC) and Karlsruhe Institute of Technology (KIT).</li>
+            </ul>
+            <div class="tag-cloud">
+              <span class="tag">Carbon 2025 (IF: 11.6)</span>
+              <span class="tag">Indian Patent 586571</span>
+              <span class="tag">Green Microwave Synthesis</span>
+              <span class="tag">KIT Germany IGSTC</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Thrust 4 -->
+        <article class="thrust-card" style="display:grid;grid-template-columns:1.2fr 1fr;gap:2rem;align-items:center;padding:1.5rem">
+          <div class="thrust-content" style="padding:1rem 0">
+            <span class="thrust-number">RESEARCH PILLAR 04</span>
+            <h2 class="thrust-title">Piezoresistive Strain Sensors &amp; Smart Biomedical Sponges</h2>
+            <p class="thrust-desc">
+              Porous conductive elastomer composites provide unprecedented dynamic range for human biomechanical and physiological signal extraction. We engineer 3D reduced graphene oxide-carbon nanotube-melamine foam networks for highly compressible transducers.
+            </p>
+            <ul style="margin-left:1.25rem;margin-bottom:1.25rem;color:var(--text-muted);font-size:0.925rem;line-height:1.7">
+              <li><strong>Piezoresistive Microstructures:</strong> Porous 3D conductive skeletons exhibiting linear resistance modulation over large mechanical deformation regimes.</li>
+              <li><strong>Biomedical Monitoring:</strong> High-fidelity tracking of arterial pulse waveforms, vocal cord vibrations, and acoustic speech recognition using edge ML.</li>
+              <li><strong>Mechanical Robustness:</strong> Enduring thousands of loading/unloading cycles without hysteresis fatigue.</li>
+            </ul>
+            <div class="tag-cloud">
+              <span class="tag">Sensors &amp; Actuators A (2021)</span>
+              <span class="tag">Graphene Foam</span>
+              <span class="tag">Biomedical Pulse</span>
+              <span class="tag">Speech Recognition ML</span>
+            </div>
+          </div>
+          <div class="thrust-media" style="height:320px;border-radius:var(--radius-md)" data-zoomable data-caption="Porous Conductive Composite Transducers for Biomedical Sensing">
+            <img src="assets/research/ga-04-phd-oect-neuromorphic.png" alt="Graphical abstract for Piezoresistive Transistor Device">
+            <div class="zoom-overlay">
+              <span class="material-symbols-outlined" style="font-size:1rem">zoom_in</span> Click to Zoom
             </div>
           </div>
         </article>
@@ -212,47 +222,163 @@
       </div>
     </section>
 
-    <section class="section bg-muted">
+    <!-- Cleanroom & Experimental Facilities Section -->
+    <section class="section">
       <div class="container">
-        <h2 class="section-title font-headline" style="text-align:center;margin-bottom:2.5rem">Domain Expertise</h2>
+        <div class="section-head">
+          <span class="section-subtitle">Infrastructure</span>
+          <h2 class="section-title">Cleanroom, Printing &amp; Characterization Equipment</h2>
+          <p class="section-desc">Specialized instrumentation utilized across the fabrication and analysis pipeline.</p>
+        </div>
+
         <div class="grid-3">
-          <article class="card reveal">
-            <span class="material-symbols-outlined card-icon" aria-hidden="true">memory</span>
-            <h3 class="card-title">Semiconductor Physics</h3>
-            <p class="muted" style="margin:0">Advanced characterization of carrier mobility and lattice dynamics in wide-bandgap materials.</p>
-          </article>
-          <article class="card reveal">
-            <span class="material-symbols-outlined card-icon" aria-hidden="true">neurology</span>
-            <h3 class="card-title">Neuromorphic Systems</h3>
-            <p class="muted" style="margin:0">Developing bio-inspired hardware architectures using memristive devices and thin-film transistors.</p>
-          </article>
-          <article class="card reveal">
-            <span class="material-symbols-outlined card-icon" aria-hidden="true">biotech</span>
-            <h3 class="card-title">Nanotechnology</h3>
-            <p class="muted" style="margin:0">Precision synthesis and manipulation of 1D and 2D materials for ultra-sensitive detection devices.</p>
-          </article>
+          <!-- Item 1 -->
+          <div class="instrument-item">
+            <div class="instrument-icon">
+              <span class="material-symbols-outlined">analytics</span>
+            </div>
+            <div>
+              <h3 class="instrument-title">Keithley 4200-SCS</h3>
+              <p class="instrument-sub">Semiconductor Characterization System</p>
+              <p class="instrument-desc">Multi-channel SMU system with preamplifiers for sub-femtoamp leakage currents, pulsed I-V, quasistatic C-V, and transconductance curves.</p>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="instrument-item">
+            <div class="instrument-icon">
+              <span class="material-symbols-outlined">filter_center_focus</span>
+            </div>
+            <div>
+              <h3 class="instrument-title">SUSS MJB4</h3>
+              <p class="instrument-sub">Photolithography Mask Aligner</p>
+              <p class="instrument-desc">Sub-micron optical alignment with UV exposure optics for defining micro-gap transistor source/drain channels and interdigitated electrodes.</p>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="instrument-item">
+            <div class="instrument-icon">
+              <span class="material-symbols-outlined">grain</span>
+            </div>
+            <div>
+              <h3 class="instrument-title">Nordson AP-300</h3>
+              <p class="instrument-sub">Automated Plasma Treatment</p>
+              <p class="instrument-desc">Oxygen, argon, and air plasma surface cleaning and wettability tuning for cleanroom substrate preparation and hydrophilic surface functionalization.</p>
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="instrument-item">
+            <div class="instrument-icon">
+              <span class="material-symbols-outlined">print</span>
+            </div>
+            <div>
+              <h3 class="instrument-title">JetLab 4 Micro-Drop</h3>
+              <p class="instrument-sub">Piezoelectric Inkjet Printer</p>
+              <p class="instrument-desc">Drop-on-demand electronic printing of conjugated polymers, nanoparticle inks, and dielectrics with optical stroboscopic drop visualization.</p>
+            </div>
+          </div>
+
+          <!-- Item 5 -->
+          <div class="instrument-item">
+            <div class="instrument-icon">
+              <span class="material-symbols-outlined">spray</span>
+            </div>
+            <div>
+              <h3 class="instrument-title">Optomec 5X</h3>
+              <p class="instrument-sub">Aerosol Jet Printing System</p>
+              <p class="instrument-desc">High-resolution (10 μm) aerodynamic collimation of functional inks on 3D contoured, flexible, and planar substrates.</p>
+            </div>
+          </div>
+
+          <!-- Item 6 -->
+          <div class="instrument-item">
+            <div class="instrument-icon">
+              <span class="material-symbols-outlined">view_in_ar</span>
+            </div>
+            <div>
+              <h3 class="instrument-title">AFM &amp; Profilometry</h3>
+              <p class="instrument-sub">Surface Morphology &amp; Thickness</p>
+              <p class="instrument-desc">Tapping-mode atomic force microscopy (AFM) for nanometer-scale film roughness and stylus profilometry for step-height calibration.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:3rem">
+          <a class="btn btn-primary" href="publications.html">
+            View Research Publications &amp; Patents &rarr;
+          </a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div>
-        <span class="footer-brand">Lokesh Kumar, PhD</span>
-        <p class="footer-copy">© 2026 Lokesh Kumar · Experimental Semiconductor Physics</p>
+  <!-- Modal / Lightbox -->
+  <div class="modal-backdrop" data-modal aria-hidden="true">
+    <div class="modal-card">
+      <button type="button" class="modal-close" data-modal-close aria-label="Close image modal">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <div class="modal-body">
+        <img class="modal-img" data-modal-img src="" alt="Zoomed schematic">
+        <p class="modal-caption" data-modal-caption></p>
       </div>
-      <nav class="footer-links" aria-label="Footer">
-        <a href="mailto:lokesh@nitc.ac.in">Email</a>
-        <a href="https://www.linkedin.com/in/lokesh-kumar-phd-09920079" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="https://scholar.google.com/citations?user=B5zMjo4AAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Scholar</a>
-        <a href="https://orcid.org/0000-0001-7667-8422" target="_blank" rel="noopener noreferrer">ORCID</a>
-        <a href="https://nitc.ac.in/department/physics/faculty-and-staff/faculty/5566ed19-19e4-4a1f-b4d2-89456e2442d5" target="_blank" rel="noopener noreferrer">Affiliation</a>
-        <a href="index.html">Home</a>
-      </nav>
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button type="button" class="back-to-top" data-back-to-top aria-label="Back to top">
+    <span class="material-symbols-outlined">arrow_upward</span>
+  </button>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand" style="margin-bottom:0.5rem">
+            <div class="brand-icon" style="width:1.85rem;height:1.85rem;font-size:1rem">
+              <span class="material-symbols-outlined" style="font-size:1.15rem">memory</span>
+            </div>
+            <span class="brand-lab">Neuromorphic Bioelectronics Lab (NBL)</span>
+          </div>
+          <p class="footer-brand-desc">
+            Department of Physics, National Institute of Technology Calicut<br>
+            Kozhikode – 673601, Kerala, India.<br>
+            Led by Dr. Lokesh Kumar (PhD, IIT Bombay).
+          </p>
+        </div>
+
+        <div>
+                    <h4 class="footer-heading">Navigate</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home (Fab Story)</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="publications.html">Publications &amp; Patents</a></li>
+            <li><a href="about.html">About PI</a></li>
+            <li><a href="contact.html">Contact &amp; Join</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Academic Profiles</h4>
+          <ul class="footer-links">
+            <li><a href="https://scholar.google.com/citations?user=B5zMjo4AAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a></li>
+            <li><a href="https://orcid.org/0000-0001-7667-8422" target="_blank" rel="noopener noreferrer">ORCID (0000-0001-7667-8422)</a></li>
+            <li><a href="https://www.linkedin.com/in/lokesh-kumar-phd-09920079" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="https://nitc.ac.in/department/physics/faculty-and-staff/faculty/5566ed19-19e4-4a1f-b4d2-89456e2442d5" target="_blank" rel="noopener noreferrer">NITC Faculty Profile</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Neuromorphic Bioelectronics Lab (NBL) · Dr. Lokesh Kumar. All rights reserved.</p>
+        <p class="font-mono">NIT Calicut · Department of Physics</p>
+      </div>
     </div>
   </footer>
 
-  <script src="js/main.js" defer></script>
+  <script src="js/nbl.js" defer></script>
 </body>
 </html>

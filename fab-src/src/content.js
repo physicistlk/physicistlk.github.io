@@ -18,7 +18,7 @@ export const TITLE_CARD = {
 export const SECTION_LABELS = [
   { at: 0.02, text: 'I · ENTRY' },
   { at: 0.31, text: 'II · THE CHANNEL' },
-  { at: 0.62, text: 'IV · EPILOGUE' },
+  { at: 0.62, text: 'III · EPILOGUE' },
 ];
 
 /**

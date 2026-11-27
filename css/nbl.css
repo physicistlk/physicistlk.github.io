@@ -1462,7 +1462,8 @@ html.embed .site-header,
 html.embed .mobile-menu,
 html.embed .skip-link,
 html.embed .scroll-progress,
-html.embed .back-to-top { display: none !important; }
+html.embed .back-to-top,
+html.embed .embed-hide { display: none !important; }
 html.embed body { min-height: 0; }
 html.embed, html.embed body { overflow: hidden; }
-html.embed .hero { padding-top: 4.5rem; }
+html.embed .hero { padding-top: 6rem; }

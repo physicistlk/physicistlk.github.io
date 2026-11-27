@@ -148,11 +148,16 @@ export class Narrative {
     this.filmEl = document.getElementById('film');
     this.filmTime = document.getElementById('film-time');
     this.nav = document.getElementById('hud-nav');
+    this.topBtn = document.getElementById('fab-top-btn');
     this.loader = document.getElementById('loader');
     this.loaderFill = document.getElementById('loader-fill');
     this.loaderPct = document.getElementById('loader-pct');
 
     document.getElementById('film-skip')?.addEventListener('click', () => this._endFilm(true));
+
+    this.topBtn?.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
     // the menu — one tap from the front page to any page of the site
     const menu = document.getElementById('menu');
@@ -167,12 +172,35 @@ export class Narrative {
     menuToggle?.addEventListener('click', () =>
       setMenu(!menu?.classList.contains('is-open'))
     );
+    menu?.querySelectorAll('a').forEach((a) => {
+      a.addEventListener('click', () => setMenu(false));
+    });
+    // jumping directly to #lab should close the menu and skip any mid-runway flashes
+    document.addEventListener('click', (e) => {
+      const a = e.target?.closest?.('a[href="#lab"]');
+      if (!a) return;
+      e.preventDefault();
+      setMenu(false);
+      this.jumpToLab(true);
+    });
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') setMenu(false);
     });
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && this.film.active) this._endFilm(true);
     });
+  }
+
+  /** Jump cleanly to the NBL landing section without triggering the cinema or endlinks flash. */
+  jumpToLab(smooth = true) {
+    this.film.played = true;
+    if (this.film.active) this._endFilm(true);
+    this.scroll.raw = 1;
+    this.scroll.smooth = 1;
+    const lab = document.getElementById('lab');
+    if (lab) {
+      lab.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
+    }
   }
 
   /** The lab landing page is the film's last chapter: keep its frame as tall as its content. */
@@ -464,6 +492,11 @@ export class Narrative {
       // sample the tunnel's own contrast, then draw it with the bloom pass
       this.contrast.sample(this.renderer, this.scene, this.camera, [this.contrast.group]);
     }
+    // once the lab page enters the viewport, give the HUD nav a crisp backdrop
+    const overLab = window.scrollY > this.scroll.maxScroll - window.innerHeight * 0.15;
+    this.nav.classList.toggle('is-over-lab', overLab);
+    this.topBtn?.classList.toggle('is-visible', overLab);
+
     // once the lab page has fully taken over the screen there is nothing to draw
     const pastFilm = window.scrollY > this.scroll.maxScroll + window.innerHeight * 0.6;
     this.stage.style.visibility = pastFilm ? 'hidden' : 'visible';

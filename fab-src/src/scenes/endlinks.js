@@ -37,10 +37,20 @@ export function createEndLinks(root) {
      * @param {number} p global scroll progress
      */
     update(p) {
-      const inView = p > 0.605 && p < 0.995;
-      wrap.style.opacity = inView ? '1' : '0';
-      wrap.style.visibility = inView ? 'visible' : 'hidden';
-      if (!inView) return;
+      const inView = p > 0.605 && p < 0.965;
+      if (!inView) {
+        wrap.style.opacity = '0';
+        wrap.style.visibility = 'hidden';
+        wrap.style.pointerEvents = 'none';
+        return;
+      }
+
+      // fade out smoothly before the lab landing section rises into view
+      const fadeOut = 1 - THREE.MathUtils.smoothstep(p, 0.87, 0.96);
+      wrap.style.opacity = String(fadeOut);
+      wrap.style.visibility = fadeOut > 0.01 ? 'visible' : 'hidden';
+      const list = wrap.querySelector('.endlinks__list');
+      if (list) list.style.pointerEvents = fadeOut > 0.25 ? 'auto' : 'none';
 
       // the links arrive one after another
       const t = THREE.MathUtils.clamp((p - 0.625) / 0.17, 0, 1);

@@ -3,251 +3,470 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Publications &amp; Patents | Lokesh Kumar, PhD</title>
-  <meta name="description" content="Selected publications and patents by Dr. Lokesh Kumar on OECTs, graphene transistors, biosensors, and neuromorphic devices.">
-  <meta name="author" content="Lokesh Kumar">
-  <meta name="theme-color" content="#131315">
-  <meta property="og:title" content="Publications & Patents | Lokesh Kumar, PhD">
-  <meta property="og:description" content="Selected scholarly output and patents in semiconductor physics and bioelectronics.">
-  <meta property="og:image" content="assets/profile.jpg">
+  <title>Publications &amp; Patents | Neuromorphic Bioelectronics Lab | NIT Calicut</title>
+  <meta name="description" content="Peer-reviewed research publications, journal articles, and granted Indian patents by Dr. Lokesh Kumar and the Neuromorphic Bioelectronics Lab at NIT Calicut.">
+  <meta name="author" content="Dr. Lokesh Kumar">
+  <meta name="theme-color" content="#090b10">
+
+  <!-- Google Scholar & Highwire Press Meta Tags -->
+  <meta name="citation_title" content="Bio-Realistic Emulation of Complex Synaptic Plasticity and Logic via a Fully Screen-Printed Flexible Neuromorphic Transistor">
+  <meta name="citation_author" content="Kumar, Lokesh">
+  <meta name="citation_author" content="Kurup, S.">
+  <meta name="citation_author" content="Bhatt, Bharat Bhushan">
+  <meta name="citation_author" content="Gupta, Dipti">
+  <meta name="citation_journal_title" content="Applied Materials Today">
+  <meta name="citation_publication_date" content="2026">
+
+  <meta name="citation_title" content="Low Voltage Photo-Thermally Reduced Graphene Oxide Transistor Device Based on Ion Gel Dielectric">
+  <meta name="citation_author" content="Kumar, Lokesh">
+  <meta name="citation_author" content="Bhatt, Bharat Bhushan">
+  <meta name="citation_author" content="Gupta, Dipti">
+  <meta name="citation_journal_title" content="Carbon">
+  <meta name="citation_publication_date" content="2025">
+  <meta name="citation_doi" content="10.1016/j.carbon.2025.120946">
+
+  <meta name="citation_title" content="Ultrasensitive Detection of Aromatic Water Pollutants Through Protein Immobilization Driven OECTs">
+  <meta name="citation_author" content="Kumar, Lokesh">
+  <meta name="citation_author" content="Sahu, S.">
+  <meta name="citation_author" content="Das, S.">
+  <meta name="citation_author" content="Gupta, Dipti">
+  <meta name="citation_author" content="Ananda, R.">
+  <meta name="citation_journal_title" content="Chemical Science">
+  <meta name="citation_publication_date" content="2024">
+  <meta name="citation_doi" content="10.1039/d3sc03509c">
+
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/nbl.css">
+
   <script>
     (function () {
-      var t = localStorage.getItem("color-theme");
-      if (t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-        document.documentElement.classList.add("dark");
-      }
+      try {
+        var t = localStorage.getItem("nbl_theme");
+        if (t === "light") document.documentElement.classList.add("light");
+      } catch (e) {}
     })();
   </script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
 
+  <!-- Header -->
   <header class="site-header">
     <div class="container nav-inner">
-      <a class="brand" href="about.html">Lokesh Kumar, PhD</a>
+      <a class="brand" href="index.html">
+        <div class="brand-icon">
+          <span class="material-symbols-outlined">memory</span>
+        </div>
+        <div class="brand-text">
+          <span class="brand-lab">Neuromorphic Bioelectronics Lab (NBL)</span>
+          <span class="brand-affil">NIT Calicut · Department of Physics</span>
+        </div>
+      </a>
+
       <div class="nav-actions">
-        <nav class="nav-links" aria-label="Primary">
-          <a href="about.html">Home</a>
-          <a href="about.html">About</a>
-          <a href="research.html">Research</a>
-          <a href="publications.html" aria-current="page">Publications</a>
-          <a href="contact.html">Contact</a>
-    <a href="index.html">Home</a>
-          <a href="index.html">Home</a>
+        <nav class="nav-links" aria-label="Primary Navigation">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link" href="research.html">Research</a>
+          <a class="nav-link" href="publications.html" aria-current="page">Publications</a>
+          <a class="nav-link" href="about.html">About</a>
+          <a class="nav-link" href="contact.html">Contact</a>
         </nav>
-        <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle color theme">
-          <span class="material-symbols-outlined icon-dark" aria-hidden="true">dark_mode</span>
-          <span class="material-symbols-outlined icon-light" aria-hidden="true">light_mode</span>
+
+        <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle dark/light theme" title="Toggle theme">
+          <span class="material-symbols-outlined icon-dark">dark_mode</span>
+          <span class="material-symbols-outlined icon-light">light_mode</span>
         </button>
-        <a class="btn btn-primary btn-sm" href="assets/Lokesh_Kumar_CV.pdf">Download CV</a>
-        <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
-          <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+
+        <a class="btn btn-outline btn-sm" href="contact.html#join">Join Lab</a>
+
+        <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-expanded="false" aria-label="Open mobile menu">
+          <span class="material-symbols-outlined">menu</span>
         </button>
       </div>
     </div>
   </header>
 
-  <div class="mobile-menu" id="mobile-menu" data-mobile-menu aria-hidden="true">
-    <a href="about.html">Home</a>
-    <a href="about.html">About</a>
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-menu" data-mobile-menu aria-hidden="true">
+    <a href="index.html">Home</a>
     <a href="research.html">Research</a>
     <a href="publications.html" aria-current="page">Publications</a>
+    <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-    <a class="btn btn-primary" href="assets/Lokesh_Kumar_CV.pdf">Download CV</a>
+    <a class="btn btn-primary" href="contact.html#inquiry">Join NBL</a>
   </div>
 
-  <main id="main" class="container" style="padding-bottom:5rem">
-    <header class="page-hero page-hero-row">
-      <div>
-        <span class="eyebrow">Scholarly Output</span>
-        <h1 class="display font-display" style="margin-top:0.5rem">Publications &amp; <span class="accent">Patents</span></h1>
-      </div>
-      <div class="stats" title="Metrics from Google Scholar — verify periodically">
-        <div class="stat">
-          <span class="stat-label">Google Scholar</span>
-          <a class="stat-value" href="https://scholar.google.com/citations?user=B5zMjo4AAAAJ&hl=en" target="_blank" rel="noopener noreferrer" style="text-decoration:none">Profile</a>
+  <main id="main" class="section">
+    <div class="container">
+
+      <!-- Page Hero & Metric Links -->
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1.5rem;margin-bottom:3rem">
+        <div>
+          <span class="section-subtitle">Scholarly Impact &amp; IP</span>
+          <h1 class="section-title" style="font-size:clamp(2.2rem,4vw,3rem);margin-bottom:0.5rem">
+            Publications &amp; <span class="text-gradient">Granted Patents</span>
+          </h1>
+          <p style="color:var(--text-muted);max-width:640px;margin:0">
+            Selected peer-reviewed articles in high-impact journals and commercial intellectual property developed at NIT Calicut and IIT Bombay.
+          </p>
         </div>
-        <div class="stat-divider" aria-hidden="true"></div>
-        <div class="stat">
-          <span class="stat-label">ORCID</span>
-          <a class="stat-value" href="https://orcid.org/0000-0001-7667-8422" target="_blank" rel="noopener noreferrer" style="font-size:1rem;text-decoration:none">0000-0001-7667-8422</a>
+
+        <div style="display:flex;flex-wrap:wrap;gap:0.75rem">
+          <a class="btn btn-outline btn-sm" href="https://scholar.google.com/citations?user=B5zMjo4AAAAJ&hl=en" target="_blank" rel="noopener noreferrer">
+            <span class="material-symbols-outlined" style="font-size:1.1rem">school</span> Google Scholar
+          </a>
+          <a class="btn btn-outline btn-sm" href="https://orcid.org/0000-0001-7667-8422" target="_blank" rel="noopener noreferrer">
+            <span class="material-symbols-outlined" style="font-size:1.1rem">badge</span> ORCID: 0000-0001-7667-8422
+          </a>
         </div>
       </div>
-    </header>
 
-    <section class="reveal" style="margin-bottom:5rem">
-      <div class="section-divider">
-        <h2 class="section-title font-headline" style="margin:0">Selected Publications</h2>
+      <!-- Interactive Filter & Search Bar -->
+      <div class="filter-bar">
+        <div class="filter-chips">
+          <button type="button" class="filter-chip active" data-filter="all">All Records</button>
+          <button type="button" class="filter-chip" data-filter="neuromorphic">Neuromorphic</button>
+          <button type="button" class="filter-chip" data-filter="oect">OECTs &amp; Biosensors</button>
+          <button type="button" class="filter-chip" data-filter="graphene">2D Materials &amp; Graphene</button>
+          <button type="button" class="filter-chip" data-filter="patent">Patents</button>
+        </div>
+
+        <div class="search-box">
+          <span class="material-symbols-outlined" style="color:var(--text-dim);font-size:1.15rem">search</span>
+          <input type="text" class="search-input" data-search-input placeholder="Filter by title, author, journal, patent…">
+        </div>
       </div>
 
-      <div class="pub-list">
-        <article class="pub-item">
-          <div style="flex:1">
-            <h3>Bio-Realistic Emulation of Complex Synaptic Plasticity and Logic via a Fully Screen-Printed Flexible Neuromorphic Transistor</h3>
-            <p class="authors"><strong>L. Kumar</strong>, S. Kurup, B. B. Bhatt, and D. Gupta</p>
-            <div class="pub-meta">
-              <span class="chip">Applied Materials Today</span>
-              <span class="font-mono muted">Accepted April 2026</span>
-            </div>
+      <!-- Publications List -->
+      <div id="publications-container">
+
+        <!-- Pub 1: Applied Materials Today (2026) -->
+        <article class="pub-card" data-pub-item data-categories="neuromorphic oect journal">
+          <div class="pub-header">
+            <h2 class="pub-title">
+              Bio-Realistic Emulation of Complex Synaptic Plasticity and Logic via a Fully Screen-Printed Flexible Neuromorphic Transistor
+            </h2>
+            <span class="badge badge-emerald">2026</span>
+          </div>
+          <p class="pub-authors">
+            <strong>L. Kumar</strong>, S. Kurup, B. B. Bhatt, and D. Gupta
+          </p>
+          <div class="pub-meta">
+            <span class="pub-journal">Applied Materials Today</span>
+            <span class="text-muted font-mono">Accepted April 2026</span>
+            <span class="tag">Neuromorphic</span>
+            <span class="tag">Screen-Printed OECT</span>
           </div>
           <div class="pub-actions">
-            <a href="https://scholar.google.com/citations?user=B5zMjo4AAAAJ&hl=en" target="_blank" rel="noopener noreferrer" title="Google Scholar" aria-label="View on Google Scholar">
-              <span class="material-symbols-outlined" aria-hidden="true">school</span>
+            <button type="button" class="pub-btn" data-copy-bibtex='@article{kumar2026biorealistic,
+  title={Bio-Realistic Emulation of Complex Synaptic Plasticity and Logic via a Fully Screen-Printed Flexible Neuromorphic Transistor},
+  author={Kumar, Lokesh and Kurup, S. and Bhatt, Bharat Bhushan and Gupta, Dipti},
+  journal={Applied Materials Today},
+  year={2026},
+  publisher={Elsevier}
+}'>
+              <span class="material-symbols-outlined" style="font-size:1rem">content_copy</span> Copy BibTeX
+            </button>
+            <button type="button" class="pub-btn" data-copy-apa="Kumar, L., Kurup, S., Bhatt, B. B., & Gupta, D. (2026). Bio-Realistic Emulation of Complex Synaptic Plasticity and Logic via a Fully Screen-Printed Flexible Neuromorphic Transistor. Applied Materials Today.">
+              <span class="material-symbols-outlined" style="font-size:1rem">format_quote</span> Copy APA
+            </button>
+            <a class="pub-btn" href="https://scholar.google.com/citations?user=B5zMjo4AAAAJ&hl=en" target="_blank" rel="noopener noreferrer">
+              <span class="material-symbols-outlined" style="font-size:1rem">school</span> Google Scholar
             </a>
           </div>
         </article>
 
-        <article class="pub-item">
-          <div style="flex:1">
-            <h3>Low Voltage Photo-Thermally Reduced Graphene Oxide Transistor Device Based on Ion Gel Dielectric</h3>
-            <p class="authors"><strong>L. Kumar</strong>, B. B. Bhatt, D. Gupta</p>
-            <div class="pub-meta">
-              <span class="chip">Carbon</span>
-              <span class="font-mono muted">247, 120946, 2025</span>
-              <span class="font-mono text-primary">IF: 11.6</span>
-            </div>
+        <!-- Pub 2: Carbon (2025) -->
+        <article class="pub-card" data-pub-item data-categories="graphene transistor journal">
+          <div class="pub-header">
+            <h2 class="pub-title">
+              Low Voltage Photo-Thermally Reduced Graphene Oxide Transistor Device Based on Ion Gel Dielectric
+            </h2>
+            <span class="badge">2025</span>
+          </div>
+          <p class="pub-authors">
+            <strong>L. Kumar</strong>, B. B. Bhatt, and D. Gupta
+          </p>
+          <div class="pub-meta">
+            <span class="pub-journal">Carbon</span>
+            <span class="text-muted font-mono">Vol. 247, 120946 (2025)</span>
+            <span class="pub-if">IF: 11.6</span>
+            <span class="font-mono text-muted">DOI: 10.1016/j.carbon.2025.120946</span>
           </div>
           <div class="pub-actions">
-            <a href="https://doi.org/10.1016/j.carbon.2025.120946" target="_blank" rel="noopener noreferrer" title="DOI link" aria-label="Open DOI for Carbon paper">
-              <span class="material-symbols-outlined" aria-hidden="true">link</span>
+            <a class="pub-btn" href="https://doi.org/10.1016/j.carbon.2025.120946" target="_blank" rel="noopener noreferrer">
+              <span class="material-symbols-outlined" style="font-size:1rem">link</span> DOI / ScienceDirect
             </a>
-            <a href="https://doi.org/10.1016/j.carbon.2025.120946" target="_blank" rel="noopener noreferrer" title="Publisher page / PDF" aria-label="Open publisher page">
-              <span class="material-symbols-outlined" aria-hidden="true">picture_as_pdf</span>
-            </a>
+            <button type="button" class="pub-btn" data-copy-bibtex='@article{kumar2025low,
+  title={Low Voltage Photo-Thermally Reduced Graphene Oxide Transistor Device Based on Ion Gel Dielectric},
+  author={Kumar, Lokesh and Bhatt, Bharat Bhushan and Gupta, Dipti},
+  journal={Carbon},
+  volume={247},
+  pages={120946},
+  year={2025},
+  publisher={Elsevier},
+  doi={10.1016/j.carbon.2025.120946}
+}'>
+              <span class="material-symbols-outlined" style="font-size:1rem">content_copy</span> Copy BibTeX
+            </button>
+            <button type="button" class="pub-btn" data-copy-apa="Kumar, L., Bhatt, B. B., & Gupta, D. (2025). Low Voltage Photo-Thermally Reduced Graphene Oxide Transistor Device Based on Ion Gel Dielectric. Carbon, 247, 120946. https://doi.org/10.1016/j.carbon.2025.120946">
+              <span class="material-symbols-outlined" style="font-size:1rem">format_quote</span> Copy APA
+            </button>
           </div>
         </article>
 
-        <article class="pub-item">
-          <div style="flex:1">
-            <h3>Ultrasensitive Detection of Aromatic Water Pollutants Through Protein Immobilization Driven OECTs</h3>
-            <p class="authors"><strong>L. Kumar</strong>, S. Sahu, S. Das, D. Gupta, R. Ananda</p>
-            <div class="pub-meta">
-              <span class="chip">Chemical Science</span>
-              <span class="font-mono muted">15, 710–719, 2024</span>
-              <span class="font-mono text-primary">IF: 9.8</span>
-            </div>
+        <!-- Pub 3: Chemical Science (2024) -->
+        <article class="pub-card" data-pub-item data-categories="oect biosensor journal">
+          <div class="pub-header">
+            <h2 class="pub-title">
+              Ultrasensitive Detection of Aromatic Water Pollutants Through Protein Immobilization Driven OECTs
+            </h2>
+            <span class="badge">2024</span>
+          </div>
+          <p class="pub-authors">
+            <strong>L. Kumar</strong>, S. Sahu, S. Das, D. Gupta, and R. Ananda
+          </p>
+          <div class="pub-meta">
+            <span class="pub-journal">Chemical Science</span>
+            <span class="text-muted font-mono">Vol. 15, pp. 710–719 (2024)</span>
+            <span class="pub-if">IF: 9.8</span>
+            <span class="font-mono text-muted">DOI: 10.1039/d3sc03509c</span>
           </div>
           <div class="pub-actions">
-            <a href="https://doi.org/10.1039/d3sc03509c" target="_blank" rel="noopener noreferrer" title="DOI link" aria-label="Open DOI for Chemical Science paper">
-              <span class="material-symbols-outlined" aria-hidden="true">link</span>
+            <a class="pub-btn" href="https://doi.org/10.1039/d3sc03509c" target="_blank" rel="noopener noreferrer">
+              <span class="material-symbols-outlined" style="font-size:1rem">link</span> DOI / Royal Society of Chemistry
             </a>
-            <a href="https://doi.org/10.1039/d3sc03509c" target="_blank" rel="noopener noreferrer" title="Publisher page / PDF" aria-label="Open publisher page">
-              <span class="material-symbols-outlined" aria-hidden="true">picture_as_pdf</span>
+            <button type="button" class="pub-btn" data-copy-bibtex='@article{kumar2024ultrasensitive,
+  title={Ultrasensitive Detection of Aromatic Water Pollutants Through Protein Immobilization Driven OECTs},
+  author={Kumar, Lokesh and Sahu, S. and Das, S. and Gupta, Dipti and Ananda, R.},
+  journal={Chemical Science},
+  volume={15},
+  number={2},
+  pages={710--719},
+  year={2024},
+  publisher={Royal Society of Chemistry},
+  doi={10.1039/d3sc03509c}
+}'>
+              <span class="material-symbols-outlined" style="font-size:1rem">content_copy</span> Copy BibTeX
+            </button>
+            <button type="button" class="pub-btn" data-copy-apa="Kumar, L., Sahu, S., Das, S., Gupta, D., & Ananda, R. (2024). Ultrasensitive Detection of Aromatic Water Pollutants Through Protein Immobilization Driven OECTs. Chemical Science, 15(2), 710–719. https://doi.org/10.1039/d3sc03509c">
+              <span class="material-symbols-outlined" style="font-size:1rem">format_quote</span> Copy APA
+            </button>
+          </div>
+        </article>
+
+        <!-- Pub 4: Sensors and Actuators A: Physical (2021) -->
+        <article class="pub-card" data-pub-item data-categories="graphene biosensor journal">
+          <div class="pub-header">
+            <h2 class="pub-title">
+              An Ultra-Compressible Piezoresistive Strain and Pressure Sensor Based on RGO-CNT-Melamine Foam Composite for Biomedical Sensing
+            </h2>
+            <span class="badge">2021</span>
+          </div>
+          <p class="pub-authors">
+            B. B. Bhatt, <strong>L. Kumar</strong>, A. Kushwaha, and D. Gupta
+          </p>
+          <div class="pub-meta">
+            <span class="pub-journal">Sensors and Actuators, A: Physical</span>
+            <span class="text-muted font-mono">Vol. 332, 113114 (2021)</span>
+            <span class="font-mono text-muted">DOI: 10.1016/j.sna.2021.113114</span>
+          </div>
+          <div class="pub-actions">
+            <a class="pub-btn" href="https://doi.org/10.1016/j.sna.2021.113114" target="_blank" rel="noopener noreferrer">
+              <span class="material-symbols-outlined" style="font-size:1rem">link</span> DOI / Elsevier
             </a>
+            <button type="button" class="pub-btn" data-copy-bibtex='@article{bhatt2021ultra,
+  title={An ultra-compressible piezoresistive strain and pressure sensor based on RGO-CNT-Melamine foam composite for biomedical sensing},
+  author={Bhatt, Bharat Bhushan and Kumar, Lokesh and Kushwaha, Ashok and Gupta, Dipti},
+  journal={Sensors and Actuators A: Physical},
+  volume={332},
+  pages={113114},
+  year={2021},
+  publisher={Elsevier},
+  doi={10.1016/j.sna.2021.113114}
+}'>
+              <span class="material-symbols-outlined" style="font-size:1rem">content_copy</span> Copy BibTeX
+            </button>
+            <button type="button" class="pub-btn" data-copy-apa="Bhatt, B. B., Kumar, L., Kushwaha, A., & Gupta, D. (2021). An ultra-compressible piezoresistive strain and pressure sensor based on RGO-CNT-Melamine foam composite for biomedical sensing. Sensors and Actuators A: Physical, 332, 113114. https://doi.org/10.1016/j.sna.2021.113114">
+              <span class="material-symbols-outlined" style="font-size:1rem">format_quote</span> Copy APA
+            </button>
           </div>
         </article>
+
+        <!-- Conference Proceedings -->
+        <article class="pub-card" data-pub-item data-categories="oect biosensor conference">
+          <div class="pub-header">
+            <h2 class="pub-title">
+              Point-of-Care Microelectronic Sensors for Environmental Pollutant &amp; Protein Detection
+            </h2>
+            <span class="badge">Conferences</span>
+          </div>
+          <p class="pub-authors">
+            <strong>L. Kumar</strong>, D. Gupta, et al.
+          </p>
+          <div class="pub-meta">
+            <span class="pub-journal">Indo-UK Biosensor Workshop 2024 &amp; IECB 2024</span>
+            <span class="text-muted font-mono">NanoBios Lab &amp; MDPI</span>
+            <span class="tag">Conference Presentation</span>
+          </div>
+          <div class="pub-actions">
+            <span class="text-muted" style="font-size:0.85rem">Poster &amp; Invited Technical Presentations</span>
+          </div>
+        </article>
+
       </div>
 
-      <div class="center-cta">
-        <a class="btn btn-outline" href="https://scholar.google.com/citations?user=B5zMjo4AAAAJ&hl=en" target="_blank" rel="noopener noreferrer">
-          View complete list on Google Scholar
-          <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
-        </a>
+      <!-- Granted Patents Section -->
+      <div id="patents" style="margin-top:5rem">
+        <div class="section-head" style="text-align:left;margin-bottom:2rem">
+          <span class="section-subtitle">Intellectual Property</span>
+          <h2 class="section-title">Granted Patents</h2>
+          <p class="section-desc">Novel semiconductor architectures, electrochemical sensing platforms, and sustainable synthesis routes.</p>
+        </div>
+
+        <div class="grid-2">
+          <!-- Patent 1 -->
+          <article class="patent-item" data-pub-item data-categories="patent graphene transistor">
+            <div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem">
+                <span class="patent-num">Indian Patent No. 586571</span>
+                <span class="badge-emerald badge">GRANTED</span>
+              </div>
+              <h3 class="patent-title">Low Voltage Photo-Thermally Reduced Graphene Oxide Transistor Device</h3>
+              <p class="patent-desc">
+                Official Title: <em>An Organic Electrochemical Transistor (OECT) and a Method of Fabricating Thereof</em>.<br>
+                Discloses low-temperature photo-thermal processing to achieve stoichiometric reduction of graphene oxide with high on/off ratios and low gate leakage under sub-2V supply.
+              </p>
+            </div>
+            <div class="patent-foot">
+              <span class="text-muted">Granted: 10/04/2026</span>
+              <a class="pub-btn" href="https://patents.google.com/?q=586571" target="_blank" rel="noopener noreferrer">
+                <span class="material-symbols-outlined" style="font-size:1rem">verified</span> Google Patents
+              </a>
+            </div>
+          </article>
+
+          <!-- Patent 2 -->
+          <article class="patent-item" data-pub-item data-categories="patent oect biosensor">
+            <div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem">
+                <span class="patent-num">Indian Patent No. 474656</span>
+                <span class="badge-emerald badge">GRANTED</span>
+              </div>
+              <h3 class="patent-title">Protein Immobilized OECT Biosensor for Phenolic Pollutants</h3>
+              <p class="patent-desc">
+                Protective encapsulation and enzymatic functionalization of organic electrochemical transistor gate electrodes for real-time field monitoring of toxic environmental phenolic pollutants.
+              </p>
+            </div>
+            <div class="patent-foot">
+              <span class="text-muted">Status: Granted</span>
+              <a class="pub-btn" href="https://patents.google.com/?q=474656" target="_blank" rel="noopener noreferrer">
+                <span class="material-symbols-outlined" style="font-size:1rem">verified</span> Google Patents
+              </a>
+            </div>
+          </article>
+
+          <!-- Patent 3 -->
+          <article class="patent-item" data-pub-item data-categories="patent oect biosensor">
+            <div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem">
+                <span class="patent-num">Indian Patent No. 431170</span>
+                <span class="badge-emerald badge">GRANTED</span>
+              </div>
+              <h3 class="patent-title">OECT Based Biosensor for the Detection of DNA Binding Proteins</h3>
+              <p class="patent-desc">
+                Method and transducer configuration for label-free, sub-nanomolar quantification of specific DNA-binding nuclear proteins utilizing high volumetric transconductance OECT architectures.
+              </p>
+            </div>
+            <div class="patent-foot">
+              <span class="text-muted">Status: Granted</span>
+              <a class="pub-btn" href="https://patents.google.com/?q=431170" target="_blank" rel="noopener noreferrer">
+                <span class="material-symbols-outlined" style="font-size:1rem">verified</span> Google Patents
+              </a>
+            </div>
+          </article>
+
+          <!-- Patent 4 -->
+          <article class="patent-item" data-pub-item data-categories="patent graphene">
+            <div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem">
+                <span class="patent-num">Indian Patent No. 596620</span>
+                <span class="badge-emerald badge">GRANTED</span>
+              </div>
+              <h3 class="patent-title">Graphite-to-Graphene Transformation via Microwave Assisted Green Synthesis</h3>
+              <p class="patent-desc">
+                App No: 202521054957. A sustainable, eco-friendly microwave process for rapid exfoliation and synthesis of pristine graphene flakes with controlled defect density and scalable yield.
+              </p>
+            </div>
+            <div class="patent-foot">
+              <span class="text-muted">Granted: 23 July 2026</span>
+              <a class="pub-btn" href="https://patents.google.com/?q=596620" target="_blank" rel="noopener noreferrer">
+                <span class="material-symbols-outlined" style="font-size:1rem">verified</span> Google Patents
+              </a>
+            </div>
+          </article>
+        </div>
       </div>
-    </section>
 
-    <section class="reveal">
-      <div class="section-divider">
-        <h2 class="section-title font-headline" style="margin:0">Patents</h2>
-      </div>
-
-      <div class="patent-grid">
-        <article class="card patent-card">
-          <div>
-            <div class="patent-top">
-              <div class="patent-icon" aria-hidden="true">
-                <span class="material-symbols-outlined">verified</span>
-              </div>
-              <span class="patent-status">GRANTED</span>
-            </div>
-            <h3 class="card-title">Low Voltage Photo-Thermally Reduced Graphene Oxide Transistor Device</h3>
-            <p class="muted" style="font-size:0.8125rem;margin:0.35rem 0 0.75rem;line-height:1.45">
-              Official title: An Organic Electrochemical Transistor (OECT) and a Method of Fabricating Thereof
-            </p>
-            <p class="font-mono muted">Indian Patent No: 586571</p>
-            </div>
-          <div class="patent-foot">
-            <span class="muted" style="font-size:0.875rem">Granted 10/04/2026</span>
-            <a href="https://patents.google.com/?q=586571" target="_blank" rel="noopener noreferrer">Search Google Patents</a>
-          </div>
-        </article>
-
-        <article class="card patent-card">
-          <div>
-            <div class="patent-top">
-              <div class="patent-icon" aria-hidden="true">
-                <span class="material-symbols-outlined">verified</span>
-              </div>
-              <span class="patent-status">GRANTED</span>
-            </div>
-            <h3 class="card-title">Protein Immobilized OECT Biosensor for Phenolic Pollutants</h3>
-            <p class="font-mono muted">Indian Patent No: 474656</p>
-          </div>
-          <div class="patent-foot">
-            <span class="muted" style="font-size:0.875rem">Status: Granted</span>
-            <a href="https://patents.google.com/?q=474656&oq=474656" target="_blank" rel="noopener noreferrer">Search Google Patents</a>
-          </div>
-        </article>
-
-        <article class="card patent-card">
-          <div>
-            <div class="patent-top">
-              <div class="patent-icon" aria-hidden="true">
-                <span class="material-symbols-outlined">verified</span>
-              </div>
-              <span class="patent-status">GRANTED</span>
-            </div>
-            <h3 class="card-title">OECT Based Biosensor for the Detection of DNA Binding Proteins</h3>
-            <p class="font-mono muted">Indian Patent No: 431170</p>
-          </div>
-          <div class="patent-foot">
-            <span class="muted" style="font-size:0.875rem">Status: Granted</span>
-            <a href="https://patents.google.com/?q=431170&oq=431170" target="_blank" rel="noopener noreferrer">Search Google Patents</a>
-          </div>
-        </article>
-
-        <article class="card patent-card">
-          <div>
-            <div class="patent-top">
-              <div class="patent-icon" aria-hidden="true">
-                <span class="material-symbols-outlined">verified</span>
-              </div>
-              <span class="patent-status">GRANTED</span>
-            </div>
-            <h3 class="card-title">Graphite-to-Graphene Transformation via Microwave Assisted Green Synthesis</h3>
-            <p class="font-mono muted">Indian Patent No: 596620</p>
-            </div>
-          <div class="patent-foot">
-            <span class="muted" style="font-size:0.875rem">Granted 23 July 2026</span>
-            <a href="https://patents.google.com/?q=596620" target="_blank" rel="noopener noreferrer">Search Google Patents</a>
-          </div>
-        </article>
-      </div>
-    </section>
+    </div>
   </main>
 
+  <!-- Back to Top Button -->
+  <button type="button" class="back-to-top" data-back-to-top aria-label="Back to top">
+    <span class="material-symbols-outlined">arrow_upward</span>
+  </button>
+
+  <!-- Footer -->
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <div>
-        <span class="footer-brand">© 2026 Lokesh Kumar</span>
-        <p class="footer-copy">Experimental Semiconductor Physics</p>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand" style="margin-bottom:0.5rem">
+            <div class="brand-icon" style="width:1.85rem;height:1.85rem;font-size:1rem">
+              <span class="material-symbols-outlined" style="font-size:1.15rem">memory</span>
+            </div>
+            <span class="brand-lab">Neuromorphic Bioelectronics Lab (NBL)</span>
+          </div>
+          <p class="footer-brand-desc">
+            Department of Physics, National Institute of Technology Calicut<br>
+            Kozhikode – 673601, Kerala, India.<br>
+            Led by Dr. Lokesh Kumar (PhD, IIT Bombay).
+          </p>
+        </div>
+
+        <div>
+                    <h4 class="footer-heading">Navigate</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home (Fab Story)</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="publications.html">Publications &amp; Patents</a></li>
+            <li><a href="about.html">About PI</a></li>
+            <li><a href="contact.html">Contact &amp; Join</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Academic Profiles</h4>
+          <ul class="footer-links">
+            <li><a href="https://scholar.google.com/citations?user=B5zMjo4AAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a></li>
+            <li><a href="https://orcid.org/0000-0001-7667-8422" target="_blank" rel="noopener noreferrer">ORCID (0000-0001-7667-8422)</a></li>
+            <li><a href="https://www.linkedin.com/in/lokesh-kumar-phd-09920079" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="https://nitc.ac.in/department/physics/faculty-and-staff/faculty/5566ed19-19e4-4a1f-b4d2-89456e2442d5" target="_blank" rel="noopener noreferrer">NITC Faculty Profile</a></li>
+          </ul>
+        </div>
       </div>
-      <nav class="footer-links" aria-label="Footer">
-        <a href="mailto:lokesh@nitc.ac.in">Email</a>
-        <a href="https://www.linkedin.com/in/lokesh-kumar-phd-09920079" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="https://scholar.google.com/citations?user=B5zMjo4AAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Scholar</a>
-        <a href="https://orcid.org/0000-0001-7667-8422" target="_blank" rel="noopener noreferrer">ORCID</a>
-        <a href="https://nitc.ac.in/department/physics/faculty-and-staff/faculty/5566ed19-19e4-4a1f-b4d2-89456e2442d5" target="_blank" rel="noopener noreferrer">Affiliation</a>
-        <a href="index.html">Home</a>
-      </nav>
+
+      <div class="footer-bottom">
+        <p>© 2026 Neuromorphic Bioelectronics Lab (NBL) · Dr. Lokesh Kumar. All rights reserved.</p>
+        <p class="font-mono">NIT Calicut · Department of Physics</p>
+      </div>
     </div>
   </footer>
 
-  <script src="js/main.js" defer></script>
+  <script src="js/nbl.js" defer></script>
 </body>
 </html>
